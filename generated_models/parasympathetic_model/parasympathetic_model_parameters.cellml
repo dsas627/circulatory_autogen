@@ -1,0 +1,318 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<model name="Parameters" xmlns="http://www.cellml.org/cellml/1.1#" xmlns:cellml="http://www.cellml.org/cellml/1.1#" xmlns:xlink="http://www.w3.org/1999/xlink">
+<!--&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;parameter_units&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;//-->
+<import xlink:href="parasympathetic_model_units.cellml">
+    <units name="s2" units_ref="s2"/>
+    <units name="Hz" units_ref="Hz"/>
+    <units name="millis" units_ref="millis"/>
+    <units name="per_millis" units_ref="per_millis"/>
+    <units name="mm" units_ref="mm"/>
+    <units name="m2" units_ref="m2"/>
+    <units name="mm2" units_ref="mm2"/>
+    <units name="m3" units_ref="m3"/>
+    <units name="m4" units_ref="m4"/>
+    <units name="mm3" units_ref="mm3"/>
+    <units name="J_per_s" units_ref="J_per_s"/>
+    <units name="mol_per_s" units_ref="mol_per_s"/>
+    <units name="mmol_per_s" units_ref="mmol_per_s"/>
+    <units name="umol_per_s" units_ref="umol_per_s"/>
+    <units name="C_per_s" units_ref="C_per_s"/>
+    <units name="mC_per_s" units_ref="mC_per_s"/>
+    <units name="uC_per_s" units_ref="uC_per_s"/>
+    <units name="nC_per_s" units_ref="nC_per_s"/>
+    <units name="Cm_per_millis" units_ref="Cm_per_millis"/>
+    <units name="m_per_s" units_ref="m_per_s"/>
+    <units name="mm_per_s" units_ref="mm_per_s"/>
+    <units name="um_per_s" units_ref="um_per_s"/>
+    <units name="rad_per_s" units_ref="rad_per_s"/>
+    <units name="m3_per_s" units_ref="m3_per_s"/>
+    <units name="mL" units_ref="mL"/>
+    <units name="per_milliL_s" units_ref="per_milliL_s"/>
+    <units name="s_per_m3" units_ref="s_per_m3"/>
+    <units name="s_per_milliV" units_ref="s_per_milliV"/>
+    <units name="s_per_millis" units_ref="s_per_millis"/>
+    <units name="millis_per_s" units_ref="millis_per_s"/>
+    <units name="mm3_per_s" units_ref="mm3_per_s"/>
+    <units name="l_per_s" units_ref="l_per_s"/>
+    <units name="per_ml_s" units_ref="per_ml_s"/>
+    <units name="per_m3_s" units_ref="per_m3_s"/>
+    <units name="J_per_mol" units_ref="J_per_mol"/>
+    <units name="J_per_kmol_K" units_ref="J_per_kmol_K"/>
+    <units name="J_per_M" units_ref="J_per_M"/>
+    <units name="J_per_C" units_ref="J_per_C"/>
+    <units name="J_per_C_s" units_ref="J_per_C_s"/>
+    <units name="J_per_m" units_ref="J_per_m"/>
+    <units name="J_per_m3" units_ref="J_per_m3"/>
+    <units name="mmHg" units_ref="mmHg"/>
+    <units name="per_mmHg" units_ref="per_mmHg"/>
+    <units name="mmHg2" units_ref="mmHg2"/>
+    <units name="Pa_per_mmHg" units_ref="Pa_per_mmHg"/>
+    <units name="m3_per_J" units_ref="m3_per_J"/>
+    <units name="J_per_m3s" units_ref="J_per_m3s"/>
+    <units name="m3_per_Js" units_ref="m3_per_Js"/>
+    <units name="J2_per_m6" units_ref="J2_per_m6"/>
+    <units name="Js2_per_C2" units_ref="Js2_per_C2"/>
+    <units name="Js2_per_mol2" units_ref="Js2_per_mol2"/>
+    <units name="Js_per_mol2" units_ref="Js_per_mol2"/>
+    <units name="Js_per_C2" units_ref="Js_per_C2"/>
+    <units name="J_per_mol2" units_ref="J_per_mol2"/>
+    <units name="C2_per_J_s" units_ref="C2_per_J_s"/>
+    <units name="J_per_C2" units_ref="J_per_C2"/>
+    <units name="C2_per_J" units_ref="C2_per_J"/>
+    <units name="mol_per_m3" units_ref="mol_per_m3"/>
+    <units name="M" units_ref="M"/>
+    <units name="mM" units_ref="mM"/>
+    <units name="milliM" units_ref="milliM"/>
+    <units name="uM" units_ref="uM"/>
+    <units name="kg_per_m3" units_ref="kg_per_m3"/>
+    <units name="m3_per_kg" units_ref="m3_per_kg"/>
+    <units name="per_m3" units_ref="per_m3"/>
+    <units name="mol_per_m2_s" units_ref="mol_per_m2_s"/>
+    <units name="mM_m_per_s" units_ref="mM_m_per_s"/>
+    <units name="J_per_m2_s" units_ref="J_per_m2_s"/>
+    <units name="Js_per_m4" units_ref="Js_per_m4"/>
+    <units name="mM_per_s" units_ref="mM_per_s"/>
+    <units name="per_s" units_ref="per_s"/>
+    <units name="per_s2" units_ref="per_s2"/>
+    <units name="per_mM_s" units_ref="per_mM_s"/>
+    <units name="m6_per_mol2_s" units_ref="m6_per_mol2_s"/>
+    <units name="m3_per_mol" units_ref="m3_per_mol"/>
+    <units name="mol_per_m3_s" units_ref="mol_per_m3_s"/>
+    <units name="per_mol" units_ref="per_mol"/>
+    <units name="J_per_mol_K" units_ref="J_per_mol_K"/>
+    <units name="m2_per_s" units_ref="m2_per_s"/>
+    <units name="per_C" units_ref="per_C"/>
+    <units name="per_m" units_ref="per_m"/>
+    <units name="per_mM" units_ref="per_mM"/>
+    <units name="Js2_per_m2" units_ref="Js2_per_m2"/>
+    <units name="Js_per_m2" units_ref="Js_per_m2"/>
+    <units name="J_per_m2" units_ref="J_per_m2"/>
+    <units name="m_per_s2" units_ref="m_per_s2"/>
+    <units name="rad_per_s2" units_ref="rad_per_s2"/>
+    <units name="Js_per_m3" units_ref="Js_per_m3"/>
+    <units name="Js2_per_m5" units_ref="Js2_per_m5"/>
+    <units name="m5_per_Js2" units_ref="m5_per_Js2"/>
+    <units name="J_per_m6" units_ref="J_per_m6"/>
+    <units name="m6_per_J" units_ref="m6_per_J"/>
+    <units name="m6_per_Js" units_ref="m6_per_Js"/>
+    <units name="mm6_per_J" units_ref="mm6_per_J"/>
+    <units name="Js2_per_m9" units_ref="Js2_per_m9"/>
+    <units name="m6s_per_J" units_ref="m6s_per_J"/>
+    <units name="Js_per_m6" units_ref="Js_per_m6"/>
+    <units name="Js2_per_m6" units_ref="Js2_per_m6"/>
+    <units name="m3_per_s2" units_ref="m3_per_s2"/>
+    <units name="mm3_per_s2" units_ref="mm3_per_s2"/>
+    <units name="per_mm3" units_ref="per_mm3"/>
+    <units name="UnitValve" units_ref="UnitValve"/>
+    <units name="J_per_m9" units_ref="J_per_m9"/>
+    <units name="milliV" units_ref="milliV"/>
+    <units name="per_milliV" units_ref="per_milliV"/>
+    <units name="millis_per_milliV" units_ref="millis_per_milliV"/>
+    <units name="per_V" units_ref="per_V"/>
+    <units name="milliV_per_V" units_ref="milliV_per_V"/>
+    <units name="V_per_milliV" units_ref="V_per_milliV"/>
+    <units name="V_per_s" units_ref="V_per_s"/>
+    <units name="milliV_per_kiloV" units_ref="milliV_per_kiloV"/>
+    <units name="V2" units_ref="V2"/>
+    <units name="milliV2" units_ref="milliV2"/>
+    <units name="millimol" units_ref="millimol"/>
+    <units name="millimolar" units_ref="millimolar"/>
+    <units name="per_millimolar" units_ref="per_millimolar"/>
+    <units name="per_millimolar_s" units_ref="per_millimolar_s"/>
+    <units name="per_millimolar2_s" units_ref="per_millimolar2_s"/>
+    <units name="millimolar_per_s" units_ref="millimolar_per_s"/>
+    <units name="millimolar_per_megamolar" units_ref="millimolar_per_megamolar"/>
+    <units name="per_millimol_milliS" units_ref="per_millimol_milliS"/>
+    <units name="per_millimol_millis" units_ref="per_millimol_millis"/>
+    <units name="per_millimol_s" units_ref="per_millimol_s"/>
+    <units name="microm" units_ref="microm"/>
+    <units name="microS" units_ref="microS"/>
+    <units name="microm3" units_ref="microm3"/>
+    <units name="m3_per_microm3" units_ref="m3_per_microm3"/>
+    <units name="picoF" units_ref="picoF"/>
+    <units name="S_per_F" units_ref="S_per_F"/>
+    <units name="m3_per_Fs" units_ref="m3_per_Fs"/>
+    <units name="A_per_F" units_ref="A_per_F"/>
+    <units name="megaOhm" units_ref="megaOhm"/>
+    <units name="nanoA" units_ref="nanoA"/>
+    <units name="nanoA_per_milliA" units_ref="nanoA_per_milliA"/>
+    <units name="nanoA_per_A" units_ref="nanoA_per_A"/>
+    <units name="A_per_nanoA" units_ref="A_per_nanoA"/>
+    <units name="C_per_mol" units_ref="C_per_mol"/>
+    <units name="m3_per_J_millis" units_ref="m3_per_J_millis"/>
+    <units name="m3_per_mol_millis" units_ref="m3_per_mol_millis"/>
+    <units name="m3_per_millimol_s" units_ref="m3_per_millimol_s"/>
+    <units name="millimol_per_m3" units_ref="millimol_per_m3"/>
+    <units name="mmol_per_l" units_ref="mmol_per_l"/>
+    <units name="l_per_mmol" units_ref="l_per_mmol"/>
+    <units name="l_per_mmol_per_s" units_ref="l_per_mmol_per_s"/>
+    <units name="l2_per_mmol_per_s" units_ref="l2_per_mmol_per_s"/>
+    <units name="mmol_per_s2" units_ref="mmol_per_s2"/>
+    <units name="mmol" units_ref="mmol"/>
+    <units name="mmol_per_l_per_s" units_ref="mmol_per_l_per_s"/>
+    <units name="Hz2" units_ref="Hz2"/>
+    <units name="cm" units_ref="cm"/>
+    <units name="J_per_m4_s" units_ref="J_per_m4_s"/>
+    <units name="m3_per_mol_per_sec" units_ref="m3_per_mol_per_sec"/>
+    <units name="mol_per_m3_per_kPa" units_ref="mol_per_m3_per_kPa"/>
+    <units name="mol_per_m3_per_Pa" units_ref="mol_per_m3_per_Pa"/>
+    <units name="m3_per_mol_per_s" units_ref="m3_per_mol_per_s"/>
+    <units name="mol_per_m3_per_s" units_ref="mol_per_m3_per_s"/>
+    <units name="dim" units_ref="dim"/>
+    <units name="fmol" units_ref="fmol"/>
+    <units name="per_fmol" units_ref="per_fmol"/>
+    <units name="nJ_per_s" units_ref="nJ_per_s"/>
+    <units name="fmol_per_s" units_ref="fmol_per_s"/>
+    <units name="nC_per_fmol" units_ref="nC_per_fmol"/>
+    <units name="nC" units_ref="nC"/>
+    <units name="nJ_per_fmol" units_ref="nJ_per_fmol"/>
+    <units name="nJ_per_nC" units_ref="nJ_per_nC"/>
+    <units name="fC" units_ref="fC"/>
+    <units name="fF" units_ref="fF"/>
+    <units name="volt_per_sec" units_ref="volt_per_sec"/>
+    <units name="J_per_K_per_mol" units_ref="J_per_K_per_mol"/>
+    <units name="nS" units_ref="nS"/>
+    <units name="nSmV" units_ref="nSmV"/>
+    <units name="per_ms" units_ref="per_ms"/>
+    <units name="mM4" units_ref="mM4"/>
+    <units name="mM_per_ms" units_ref="mM_per_ms"/>
+    <units name="mMms" units_ref="mMms"/>
+    <units name="per_mMms" units_ref="per_mMms"/>
+    <units name="molar" units_ref="molar"/>
+    <units name="micromolar" units_ref="micromolar"/>
+    <units name="nanomolar" units_ref="nanomolar"/>
+    <units name="ms" units_ref="ms"/>
+    <units name="m_cubed" units_ref="m_cubed"/>
+    <units name="mV" units_ref="mV"/>
+    <units name="m_cubed_per_second" units_ref="m_cubed_per_second"/>
+    <units name="micromolar_m_cubed" units_ref="micromolar_m_cubed"/>
+    <units name="C" units_ref="C"/>
+    <units name="C_per_millimol" units_ref="C_per_millimol"/>
+    <units name="picoA" units_ref="picoA"/>
+    <units name="picoA_per_picoFarad" units_ref="picoA_per_picoFarad"/>
+    <units name="microL" units_ref="microL"/>
+    <units name="picoFarad" units_ref="picoFarad"/>
+    <units name="cm3_per_second" units_ref="cm3_per_second"/>
+    <units name="um3_per_second" units_ref="um3_per_second"/>
+    <units name="m3mM" units_ref="m3mM"/>
+    <units name="ms2" units_ref="ms2"/>
+    <units name="nM3_per_ps" units_ref="nM3_per_ps"/>
+    <units name="per_s_squared_m_cubed" units_ref="per_s_squared_m_cubed"/>
+    <units name="per_meters_cubed" units_ref="per_meters_cubed"/>
+    <units name="umeter3" units_ref="umeter3"/>
+    <units name="mill1" units_ref="mill1"/>
+    <units name="picoV" units_ref="picoV"/>
+    <units name="pic0" units_ref="pic0"/>
+    <units name="nanoV" units_ref="nanoV"/>
+    <units name="nan0" units_ref="nan0"/>
+    <units name="kPa" units_ref="kPa"/>
+    <units name="L_per_s" units_ref="L_per_s"/>
+    <units name="L_per_s_per_kPa" units_ref="L_per_s_per_kPa"/>
+    <units name="kPa_per_L" units_ref="kPa_per_L"/>
+    <units name="L_per_kPa" units_ref="L_per_kPa"/>
+    <units name="kPa_s_per_L" units_ref="kPa_s_per_L"/>
+</import>
+<component name="parameters_global">
+<variable initial_value="2.66" name="f_es_min" public_interface="out" units="per_s"/>
+</component>
+<component name="parameters">
+<variable initial_value="2.0" name="tau_lung_lung_stretch" public_interface="out" units="second"/>
+<variable initial_value="23.291e6" name="G_al_lung_stretch" public_interface="out" units="per_m3_s"/>
+<variable initial_value="0.0" name="q_str_lung_stretch" public_interface="out" units="m3"/>
+<variable initial_value="39990" name="P_baro_init_baroreceptor" public_interface="out" units="J_per_m3"/>
+<variable initial_value="12263.6" name="P_nom_baroreceptor" public_interface="out" units="J_per_m3"/>
+<variable initial_value="6.37" name="tau_zb_baroreceptor" public_interface="out" units="second"/>
+<variable initial_value="2.076" name="tau_pb_baroreceptor" public_interface="out" units="second"/>
+<variable initial_value="2.52" name="f_ab_min_baroreceptor" public_interface="out" units="per_s"/>
+<variable initial_value="47.78" name="f_ab_max_baroreceptor" public_interface="out" units="per_s"/>
+<variable initial_value="1567.3414" name="k_ab_baroreceptor" public_interface="out" units="J_per_m3"/>
+<variable initial_value="16662" name="P_sys_baroreceptor" public_interface="out" units="J_per_m3"/>
+<variable initial_value="26.66" name="dP_sys_dt_baroreceptor" public_interface="out" units="J_per_m3s"/>
+<variable initial_value="2" name="tau_cp_cardiopulm_receptor" public_interface="out" units="second"/>
+<variable initial_value="0.0" name="P_l_init_cardiopulm_receptor" public_interface="out" units="J_per_m3"/>
+<variable initial_value="20" name="f_maxl_cardiopulm_receptor" public_interface="out" units="Hz"/>
+<variable initial_value="1440" name="P_tn_cardiopulm_receptor" public_interface="out" units="J_per_m3"/>
+<variable initial_value="190.47809" name="k_l_cardiopulm_receptor" public_interface="out" units="J_per_m3"/>
+<variable initial_value="500" name="P_pvn_cardiopulm_receptor" public_interface="out" units="J_per_m3"/>
+<variable initial_value="500" name="P_mus_cardiopulm_receptor" public_interface="out" units="J_per_m3"/>
+<variable initial_value="1.0" name="G_abh_sympathetic_afferent" public_interface="out" units="dimensionless"/>
+<variable initial_value="1.541" name="G_alh_sympathetic_afferent" public_interface="out" units="dimensionless"/>
+<variable initial_value="2.0" name="G_ach_sympathetic_afferent" public_interface="out" units="dimensionless"/>
+<variable initial_value="1.0" name="G_abp_sympathetic_afferent" public_interface="out" units="dimensionless"/>
+<variable initial_value="0.33" name="G_alp_sympathetic_afferent" public_interface="out" units="dimensionless"/>
+<variable initial_value="2.5" name="G_acp_sympathetic_afferent" public_interface="out" units="dimensionless"/>
+<variable initial_value="1.0" name="G_abv_sympathetic_afferent" public_interface="out" units="dimensionless"/>
+<variable initial_value="0.0" name="G_alv_sympathetic_afferent" public_interface="out" units="dimensionless"/>
+<variable initial_value="0.0" name="G_acv_sympathetic_afferent" public_interface="out" units="dimensionless"/>
+<variable initial_value="2.1" name="f_esinf_sympathetic_efferent" public_interface="out" units="Hz"/>
+<variable initial_value="16.11" name="f_es0_sympathetic_efferent" public_interface="out" units="Hz"/>
+<variable initial_value="0.0675" name="k_es_sympathetic_efferent" public_interface="out" units="second"/>
+<variable initial_value="0.304" name="f_min_br_NTS" public_interface="out" units="Hz"/>
+<variable initial_value="21.499" name="f_max_br_NTS" public_interface="out" units="Hz"/>
+<variable initial_value="44.125" name="f_mid_br_NTS" public_interface="out" units="Hz"/>
+<variable initial_value="2.75" name="f_min_ls_NTS" public_interface="out" units="Hz"/>
+<variable initial_value="31.569" name="f_max_ls_NTS" public_interface="out" units="Hz"/>
+<variable initial_value="11.126" name="f_mid_ls_NTS" public_interface="out" units="Hz"/>
+<variable initial_value="0.451" name="f_min_cp_NTS" public_interface="out" units="Hz"/>
+<variable initial_value="28.327" name="f_max_cp_NTS" public_interface="out" units="Hz"/>
+<variable initial_value="10.2" name="f_mid_cp_NTS" public_interface="out" units="Hz"/>
+<variable initial_value="2.2343941" name="f_min_ch_NTS" public_interface="out" units="Hz"/>
+<variable initial_value="25" name="f_max_ch_NTS" public_interface="out" units="Hz"/>
+<variable initial_value="0.05" name="f_mid_ch_NTS" public_interface="out" units="Hz"/>
+<variable initial_value="21" name="k_NTS_br_NTS" public_interface="out" units="dimensionless"/>
+<variable initial_value="2" name="k_NTS_ls_NTS" public_interface="out" units="dimensionless"/>
+<variable initial_value="7" name="k_NTS_cp_NTS" public_interface="out" units="dimensionless"/>
+<variable initial_value="1.0" name="k_NTS_ch_NTS" public_interface="out" units="dimensionless"/>
+<variable initial_value="3.7" name="f_apc_NTS" public_interface="out" units="Hz"/>
+<variable initial_value="2.59" name="f_min_DMV_DMV" public_interface="out" units="Hz"/>
+<variable initial_value="6.66" name="f_max_DMV_DMV" public_interface="out" units="Hz"/>
+<variable initial_value="42.91" name="f_mid_DMV_DMV" public_interface="out" units="Hz"/>
+<variable initial_value="33.5" name="k_DMV_DMV" public_interface="out" units="dimensionless"/>
+<variable initial_value="4.88" name="f_min_NA_NA" public_interface="out" units="Hz"/>
+<variable initial_value="15.78" name="f_max_NA_NA" public_interface="out" units="Hz"/>
+<variable initial_value="59.83" name="f_mid_NA_NA" public_interface="out" units="Hz"/>
+<variable initial_value="0.5" name="k_RSA_NA" public_interface="out" units="dimensionless"/>
+<variable initial_value="23" name="k_NA_NA" public_interface="out" units="dimensionless"/>
+<variable initial_value="0.0" name="s_floor_NA" public_interface="out" units="dimensionless"/>
+<variable initial_value="0.61" name="f_min_NActr_NActr" public_interface="out" units="Hz"/>
+<variable initial_value="11" name="f_max_NActr_NActr" public_interface="out" units="Hz"/>
+<variable initial_value="12.81" name="f_mid_NActr_NActr" public_interface="out" units="Hz"/>
+<variable initial_value="23" name="k_NActr_NActr" public_interface="out" units="dimensionless"/>
+<variable initial_value="1.9886" name="f_min_LCN_LCN" public_interface="out" units="Hz"/>
+<variable initial_value="18.3757" name="f_max_LCN_LCN" public_interface="out" units="Hz"/>
+<variable initial_value="521.2172" name="f_mid_LCN_LCN" public_interface="out" units="Hz"/>
+<variable initial_value="3.3299" name="k_evEmax_gainLCN_LCN" public_interface="out" units="dimensionless"/>
+<variable initial_value="2.6617" name="k_br_gainLCN_LCN" public_interface="out" units="dimensionless"/>
+<variable initial_value="0.0668" name="k_esh_gainLCN_LCN" public_interface="out" units="dimensionless"/>
+<variable initial_value="5.643" name="k_cp_gainLCN_LCN" public_interface="out" units="dimensionless"/>
+<variable initial_value="2.8473" name="k_LCN_LCN" public_interface="out" units="dimensionless"/>
+<variable initial_value="0.857242" name="f_min_PNNA_PNNA" public_interface="out" units="Hz"/>
+<variable initial_value="12.624676" name="f_max_PNNA_PNNA" public_interface="out" units="Hz"/>
+<variable initial_value="13.811104" name="f_mid_PNNA_PNNA" public_interface="out" units="Hz"/>
+<variable initial_value="0.0" name="f_vagal_stim_PNNA" public_interface="out" units="Hz"/>
+<variable initial_value="3.230162" name="k_PNNA_PNNA" public_interface="out" units="dimensionless"/>
+<variable initial_value="2.4152" name="f_min_PNDMV_PNDMV" public_interface="out" units="Hz"/>
+<variable initial_value="17.719" name="f_max_PNDMV_PNDMV" public_interface="out" units="Hz"/>
+<variable initial_value="14.1838" name="f_mid_PNDMV_PNDMV" public_interface="out" units="Hz"/>
+<variable initial_value="13.3561" name="k_PNDMV_PNDMV" public_interface="out" units="dimensionless"/>
+<variable initial_value="3.333" name="tau_PNDMV_PNDMV" public_interface="out" units="second"/>
+<variable initial_value="-0.13" name="G_Ts_heart_effector_T" public_interface="out" units="second"/>
+<variable initial_value="0.09" name="G_Tv_heart_effector_T" public_interface="out" units="s2"/>
+<variable initial_value="2" name="tau_Ts_heart_effector_T" public_interface="out" units="second"/>
+<variable initial_value="1.5" name="tau_Tv_heart_effector_T" public_interface="out" units="second"/>
+<variable initial_value="1.0e7" name="G_Es_heart_effector_Elv" public_interface="out" units="J_per_m6"/>
+<variable initial_value="2" name="tau_Es_heart_effector_Elv" public_interface="out" units="second"/>
+<variable initial_value="-0.5e7" name="G_Ev_heart_effector_Elv" public_interface="out" units="Js_per_m6"/>
+<variable initial_value="0.2" name="tau_Ev_heart_effector_Elv" public_interface="out" units="second"/>
+<variable initial_value="1.0" name="scale_heart_effector_Elv" public_interface="out" units="dimensionless"/>
+<variable initial_value="0.5e7" name="G_Es_heart_effector_Erv" public_interface="out" units="J_per_m6"/>
+<variable initial_value="2" name="tau_Es_heart_effector_Erv" public_interface="out" units="second"/>
+<variable initial_value="-0.5e7" name="G_Ev_heart_effector_Erv" public_interface="out" units="Js_per_m6"/>
+<variable initial_value="0.2" name="tau_Ev_heart_effector_Erv" public_interface="out" units="second"/>
+<variable initial_value="0.5903" name="scale_heart_effector_Erv" public_interface="out" units="dimensionless"/>
+<variable initial_value="2.0" name="tau_Rsp_peripheral_effector_arms" public_interface="out" units="second"/>
+<variable initial_value="92.6574e6" name="G_Rsp_peripheral_effector_arms" public_interface="out" units="Js_per_m6"/>
+<variable initial_value="5.0" name="tau_Vusv_venous_volume_effector_lb" public_interface="out" units="second"/>
+<variable initial_value="-265.4e-6" name="G_Vusv_venous_volume_effector_lb" public_interface="out" units="m3"/>
+</component>
+</model>

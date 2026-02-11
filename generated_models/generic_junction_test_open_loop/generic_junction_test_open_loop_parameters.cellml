@@ -1,0 +1,1187 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<model name="Parameters" xmlns="http://www.cellml.org/cellml/1.1#" xmlns:cellml="http://www.cellml.org/cellml/1.1#" xmlns:xlink="http://www.w3.org/1999/xlink">
+<!--&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;parameter_units&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;//-->
+<import xlink:href="generic_junction_test_open_loop_units.cellml">
+    <units name="s2" units_ref="s2"/>
+    <units name="Hz" units_ref="Hz"/>
+    <units name="millis" units_ref="millis"/>
+    <units name="per_millis" units_ref="per_millis"/>
+    <units name="mm" units_ref="mm"/>
+    <units name="m2" units_ref="m2"/>
+    <units name="mm2" units_ref="mm2"/>
+    <units name="m3" units_ref="m3"/>
+    <units name="m4" units_ref="m4"/>
+    <units name="mm3" units_ref="mm3"/>
+    <units name="J_per_s" units_ref="J_per_s"/>
+    <units name="mol_per_s" units_ref="mol_per_s"/>
+    <units name="mmol_per_s" units_ref="mmol_per_s"/>
+    <units name="umol_per_s" units_ref="umol_per_s"/>
+    <units name="C_per_s" units_ref="C_per_s"/>
+    <units name="mC_per_s" units_ref="mC_per_s"/>
+    <units name="uC_per_s" units_ref="uC_per_s"/>
+    <units name="nC_per_s" units_ref="nC_per_s"/>
+    <units name="Cm_per_millis" units_ref="Cm_per_millis"/>
+    <units name="m_per_s" units_ref="m_per_s"/>
+    <units name="mm_per_s" units_ref="mm_per_s"/>
+    <units name="um_per_s" units_ref="um_per_s"/>
+    <units name="rad_per_s" units_ref="rad_per_s"/>
+    <units name="m3_per_s" units_ref="m3_per_s"/>
+    <units name="mL" units_ref="mL"/>
+    <units name="per_milliL_s" units_ref="per_milliL_s"/>
+    <units name="s_per_m3" units_ref="s_per_m3"/>
+    <units name="s_per_milliV" units_ref="s_per_milliV"/>
+    <units name="s_per_millis" units_ref="s_per_millis"/>
+    <units name="millis_per_s" units_ref="millis_per_s"/>
+    <units name="mm3_per_s" units_ref="mm3_per_s"/>
+    <units name="l_per_s" units_ref="l_per_s"/>
+    <units name="per_ml_s" units_ref="per_ml_s"/>
+    <units name="per_m3_s" units_ref="per_m3_s"/>
+    <units name="J_per_mol" units_ref="J_per_mol"/>
+    <units name="J_per_kmol_K" units_ref="J_per_kmol_K"/>
+    <units name="J_per_M" units_ref="J_per_M"/>
+    <units name="J_per_C" units_ref="J_per_C"/>
+    <units name="J_per_C_s" units_ref="J_per_C_s"/>
+    <units name="J_per_m" units_ref="J_per_m"/>
+    <units name="J_per_m3" units_ref="J_per_m3"/>
+    <units name="mmHg" units_ref="mmHg"/>
+    <units name="per_mmHg" units_ref="per_mmHg"/>
+    <units name="mmHg2" units_ref="mmHg2"/>
+    <units name="Pa_per_mmHg" units_ref="Pa_per_mmHg"/>
+    <units name="m3_per_J" units_ref="m3_per_J"/>
+    <units name="J_per_m3s" units_ref="J_per_m3s"/>
+    <units name="m3_per_Js" units_ref="m3_per_Js"/>
+    <units name="J2_per_m6" units_ref="J2_per_m6"/>
+    <units name="Js2_per_C2" units_ref="Js2_per_C2"/>
+    <units name="Js2_per_mol2" units_ref="Js2_per_mol2"/>
+    <units name="Js_per_mol2" units_ref="Js_per_mol2"/>
+    <units name="Js_per_C2" units_ref="Js_per_C2"/>
+    <units name="J_per_mol2" units_ref="J_per_mol2"/>
+    <units name="C2_per_J_s" units_ref="C2_per_J_s"/>
+    <units name="J_per_C2" units_ref="J_per_C2"/>
+    <units name="C2_per_J" units_ref="C2_per_J"/>
+    <units name="mol_per_m3" units_ref="mol_per_m3"/>
+    <units name="M" units_ref="M"/>
+    <units name="mM" units_ref="mM"/>
+    <units name="milliM" units_ref="milliM"/>
+    <units name="uM" units_ref="uM"/>
+    <units name="kg_per_m3" units_ref="kg_per_m3"/>
+    <units name="m3_per_kg" units_ref="m3_per_kg"/>
+    <units name="per_m3" units_ref="per_m3"/>
+    <units name="mol_per_m2_s" units_ref="mol_per_m2_s"/>
+    <units name="mM_m_per_s" units_ref="mM_m_per_s"/>
+    <units name="J_per_m2_s" units_ref="J_per_m2_s"/>
+    <units name="Js_per_m4" units_ref="Js_per_m4"/>
+    <units name="mM_per_s" units_ref="mM_per_s"/>
+    <units name="per_s" units_ref="per_s"/>
+    <units name="per_s2" units_ref="per_s2"/>
+    <units name="per_mM_s" units_ref="per_mM_s"/>
+    <units name="m6_per_mol2_s" units_ref="m6_per_mol2_s"/>
+    <units name="m3_per_mol" units_ref="m3_per_mol"/>
+    <units name="mol_per_m3_s" units_ref="mol_per_m3_s"/>
+    <units name="per_mol" units_ref="per_mol"/>
+    <units name="J_per_mol_K" units_ref="J_per_mol_K"/>
+    <units name="m2_per_s" units_ref="m2_per_s"/>
+    <units name="per_C" units_ref="per_C"/>
+    <units name="per_m" units_ref="per_m"/>
+    <units name="per_mM" units_ref="per_mM"/>
+    <units name="Js2_per_m2" units_ref="Js2_per_m2"/>
+    <units name="Js_per_m2" units_ref="Js_per_m2"/>
+    <units name="J_per_m2" units_ref="J_per_m2"/>
+    <units name="m_per_s2" units_ref="m_per_s2"/>
+    <units name="rad_per_s2" units_ref="rad_per_s2"/>
+    <units name="Js_per_m3" units_ref="Js_per_m3"/>
+    <units name="Js2_per_m5" units_ref="Js2_per_m5"/>
+    <units name="m5_per_Js2" units_ref="m5_per_Js2"/>
+    <units name="J_per_m6" units_ref="J_per_m6"/>
+    <units name="m6_per_J" units_ref="m6_per_J"/>
+    <units name="m6_per_Js" units_ref="m6_per_Js"/>
+    <units name="mm6_per_J" units_ref="mm6_per_J"/>
+    <units name="Js2_per_m9" units_ref="Js2_per_m9"/>
+    <units name="m6s_per_J" units_ref="m6s_per_J"/>
+    <units name="Js_per_m6" units_ref="Js_per_m6"/>
+    <units name="Js2_per_m6" units_ref="Js2_per_m6"/>
+    <units name="m3_per_s2" units_ref="m3_per_s2"/>
+    <units name="mm3_per_s2" units_ref="mm3_per_s2"/>
+    <units name="per_mm3" units_ref="per_mm3"/>
+    <units name="UnitValve" units_ref="UnitValve"/>
+    <units name="J_per_m9" units_ref="J_per_m9"/>
+    <units name="milliV" units_ref="milliV"/>
+    <units name="per_milliV" units_ref="per_milliV"/>
+    <units name="millis_per_milliV" units_ref="millis_per_milliV"/>
+    <units name="per_V" units_ref="per_V"/>
+    <units name="milliV_per_V" units_ref="milliV_per_V"/>
+    <units name="V_per_milliV" units_ref="V_per_milliV"/>
+    <units name="V_per_s" units_ref="V_per_s"/>
+    <units name="milliV_per_kiloV" units_ref="milliV_per_kiloV"/>
+    <units name="V2" units_ref="V2"/>
+    <units name="milliV2" units_ref="milliV2"/>
+    <units name="millimol" units_ref="millimol"/>
+    <units name="millimolar" units_ref="millimolar"/>
+    <units name="per_millimolar" units_ref="per_millimolar"/>
+    <units name="per_millimolar_s" units_ref="per_millimolar_s"/>
+    <units name="per_millimolar2_s" units_ref="per_millimolar2_s"/>
+    <units name="millimolar_per_s" units_ref="millimolar_per_s"/>
+    <units name="millimolar_per_megamolar" units_ref="millimolar_per_megamolar"/>
+    <units name="per_millimol_milliS" units_ref="per_millimol_milliS"/>
+    <units name="per_millimol_millis" units_ref="per_millimol_millis"/>
+    <units name="per_millimol_s" units_ref="per_millimol_s"/>
+    <units name="microm" units_ref="microm"/>
+    <units name="microS" units_ref="microS"/>
+    <units name="microm3" units_ref="microm3"/>
+    <units name="m3_per_microm3" units_ref="m3_per_microm3"/>
+    <units name="picoF" units_ref="picoF"/>
+    <units name="S_per_F" units_ref="S_per_F"/>
+    <units name="m3_per_Fs" units_ref="m3_per_Fs"/>
+    <units name="A_per_F" units_ref="A_per_F"/>
+    <units name="megaOhm" units_ref="megaOhm"/>
+    <units name="nanoA" units_ref="nanoA"/>
+    <units name="nanoA_per_milliA" units_ref="nanoA_per_milliA"/>
+    <units name="nanoA_per_A" units_ref="nanoA_per_A"/>
+    <units name="A_per_nanoA" units_ref="A_per_nanoA"/>
+    <units name="C_per_mol" units_ref="C_per_mol"/>
+    <units name="m3_per_J_millis" units_ref="m3_per_J_millis"/>
+    <units name="m3_per_mol_millis" units_ref="m3_per_mol_millis"/>
+    <units name="m3_per_millimol_s" units_ref="m3_per_millimol_s"/>
+    <units name="millimol_per_m3" units_ref="millimol_per_m3"/>
+    <units name="mmol_per_l" units_ref="mmol_per_l"/>
+    <units name="l_per_mmol" units_ref="l_per_mmol"/>
+    <units name="l_per_mmol_per_s" units_ref="l_per_mmol_per_s"/>
+    <units name="l2_per_mmol_per_s" units_ref="l2_per_mmol_per_s"/>
+    <units name="mmol_per_s2" units_ref="mmol_per_s2"/>
+    <units name="mmol" units_ref="mmol"/>
+    <units name="mmol_per_l_per_s" units_ref="mmol_per_l_per_s"/>
+    <units name="Hz2" units_ref="Hz2"/>
+    <units name="cm" units_ref="cm"/>
+    <units name="J_per_m4_s" units_ref="J_per_m4_s"/>
+    <units name="m3_per_mol_per_sec" units_ref="m3_per_mol_per_sec"/>
+    <units name="mol_per_m3_per_kPa" units_ref="mol_per_m3_per_kPa"/>
+    <units name="mol_per_m3_per_Pa" units_ref="mol_per_m3_per_Pa"/>
+    <units name="m3_per_mol_per_s" units_ref="m3_per_mol_per_s"/>
+    <units name="mol_per_m3_per_s" units_ref="mol_per_m3_per_s"/>
+    <units name="dim" units_ref="dim"/>
+    <units name="fmol" units_ref="fmol"/>
+    <units name="per_fmol" units_ref="per_fmol"/>
+    <units name="nJ_per_s" units_ref="nJ_per_s"/>
+    <units name="fmol_per_s" units_ref="fmol_per_s"/>
+    <units name="nC_per_fmol" units_ref="nC_per_fmol"/>
+    <units name="nC" units_ref="nC"/>
+    <units name="nJ_per_fmol" units_ref="nJ_per_fmol"/>
+    <units name="nJ_per_nC" units_ref="nJ_per_nC"/>
+    <units name="fC" units_ref="fC"/>
+    <units name="fF" units_ref="fF"/>
+    <units name="volt_per_sec" units_ref="volt_per_sec"/>
+    <units name="J_per_K_per_mol" units_ref="J_per_K_per_mol"/>
+    <units name="nS" units_ref="nS"/>
+    <units name="nSmV" units_ref="nSmV"/>
+    <units name="per_ms" units_ref="per_ms"/>
+    <units name="mM4" units_ref="mM4"/>
+    <units name="mM_per_ms" units_ref="mM_per_ms"/>
+    <units name="mMms" units_ref="mMms"/>
+    <units name="per_mMms" units_ref="per_mMms"/>
+    <units name="molar" units_ref="molar"/>
+    <units name="micromolar" units_ref="micromolar"/>
+    <units name="nanomolar" units_ref="nanomolar"/>
+    <units name="ms" units_ref="ms"/>
+    <units name="m_cubed" units_ref="m_cubed"/>
+    <units name="mV" units_ref="mV"/>
+    <units name="m_cubed_per_second" units_ref="m_cubed_per_second"/>
+    <units name="micromolar_m_cubed" units_ref="micromolar_m_cubed"/>
+    <units name="C" units_ref="C"/>
+    <units name="C_per_millimol" units_ref="C_per_millimol"/>
+    <units name="picoA" units_ref="picoA"/>
+    <units name="picoA_per_picoFarad" units_ref="picoA_per_picoFarad"/>
+    <units name="microL" units_ref="microL"/>
+    <units name="picoFarad" units_ref="picoFarad"/>
+    <units name="cm3_per_second" units_ref="cm3_per_second"/>
+    <units name="um3_per_second" units_ref="um3_per_second"/>
+    <units name="m3mM" units_ref="m3mM"/>
+    <units name="ms2" units_ref="ms2"/>
+    <units name="nM3_per_ps" units_ref="nM3_per_ps"/>
+    <units name="per_s_squared_m_cubed" units_ref="per_s_squared_m_cubed"/>
+    <units name="per_meters_cubed" units_ref="per_meters_cubed"/>
+    <units name="umeter3" units_ref="umeter3"/>
+    <units name="mill1" units_ref="mill1"/>
+    <units name="picoV" units_ref="picoV"/>
+    <units name="pic0" units_ref="pic0"/>
+    <units name="nanoV" units_ref="nanoV"/>
+    <units name="nan0" units_ref="nan0"/>
+    <units name="kPa" units_ref="kPa"/>
+    <units name="L_per_s" units_ref="L_per_s"/>
+    <units name="L_per_s_per_kPa" units_ref="L_per_s_per_kPa"/>
+    <units name="kPa_per_L" units_ref="kPa_per_L"/>
+    <units name="L_per_kPa" units_ref="L_per_kPa"/>
+    <units name="kPa_s_per_L" units_ref="kPa_s_per_L"/>
+</import>
+<component name="parameters_global">
+<variable initial_value="1" name="T" public_interface="out" units="second"/>
+<variable initial_value="0.004" name="mu" public_interface="out" units="Js_per_m3"/>
+<variable initial_value="1040" name="rho" public_interface="out" units="Js2_per_m5"/>
+<variable initial_value="9.81" name="g" public_interface="out" units="m_per_s2"/>
+<variable initial_value="0" name="beta_g" public_interface="out" units="dimensionless"/>
+<variable initial_value="1" name="R_flag" public_interface="out" units="dimensionless"/>
+<variable initial_value="0.5" name="nu" public_interface="out" units="dimensionless"/>
+<variable initial_value="0.1" name="SMvolfrac_art" public_interface="out" units="dimensionless"/>
+<variable initial_value="0.2802" name="a_vessel" public_interface="out" units="dimensionless"/>
+<variable initial_value="-505.3" name="b_vessel" public_interface="out" units="per_m"/>
+<variable initial_value="0.1324" name="c_vessel" public_interface="out" units="dimensionless"/>
+<variable initial_value="-11.14" name="d_vessel" public_interface="out" units="per_m"/>
+</component>
+<component name="parameters">
+<variable initial_value="0" name="u_ext_aortic_arch_I" public_interface="out" units="J_per_m3"/>
+<variable initial_value="10000" name="u_0_aortic_arch_I" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0" name="theta_aortic_arch_I" public_interface="out" units="dimensionless"/>
+<variable initial_value="0.074413765495" name="l_aortic_arch_I" public_interface="out" units="metre"/>
+<variable initial_value="0.0144512199325" name="r_0_aortic_arch_I" public_interface="out" units="metre"/>
+<variable initial_value="0.5" name="m_tube_aortic_arch_I" public_interface="out" units="dimensionless"/>
+<variable initial_value="0" name="n_tube_aortic_arch_I" public_interface="out" units="dimensionless"/>
+<variable initial_value="1" name="I_scale_aortic_arch_I" public_interface="out" units="dimensionless"/>
+<variable initial_value="0" name="u_ext_brachiocephalic_trunk" public_interface="out" units="J_per_m3"/>
+<variable initial_value="10000" name="u_0_brachiocephalic_trunk" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0" name="theta_brachiocephalic_trunk" public_interface="out" units="dimensionless"/>
+<variable initial_value="0.047351277755" name="l_brachiocephalic_trunk" public_interface="out" units="metre"/>
+<variable initial_value="0.006443415" name="r_0_brachiocephalic_trunk" public_interface="out" units="metre"/>
+<variable initial_value="0.5" name="m_tube_brachiocephalic_trunk" public_interface="out" units="dimensionless"/>
+<variable initial_value="0" name="n_tube_brachiocephalic_trunk" public_interface="out" units="dimensionless"/>
+<variable initial_value="1" name="I_scale_brachiocephalic_trunk" public_interface="out" units="dimensionless"/>
+<variable initial_value="0" name="u_ext_aortic_arch_II" public_interface="out" units="J_per_m3"/>
+<variable initial_value="10000" name="u_0_aortic_arch_II" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0" name="theta_aortic_arch_II" public_interface="out" units="dimensionless"/>
+<variable initial_value="0.009603836388" name="l_aortic_arch_II" public_interface="out" units="metre"/>
+<variable initial_value="0.012759007397" name="r_0_aortic_arch_II" public_interface="out" units="metre"/>
+<variable initial_value="0.5" name="m_tube_aortic_arch_II" public_interface="out" units="dimensionless"/>
+<variable initial_value="0" name="n_tube_aortic_arch_II" public_interface="out" units="dimensionless"/>
+<variable initial_value="1" name="I_scale_aortic_arch_II" public_interface="out" units="dimensionless"/>
+<variable initial_value="0" name="u_ext_subclavian_R_I" public_interface="out" units="J_per_m3"/>
+<variable initial_value="10000" name="u_0_subclavian_R_I" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0" name="theta_subclavian_R_I" public_interface="out" units="dimensionless"/>
+<variable initial_value="0.015740629027" name="l_subclavian_R_I" public_interface="out" units="metre"/>
+<variable initial_value="0.004536488852" name="r_0_subclavian_R_I" public_interface="out" units="metre"/>
+<variable initial_value="0.5" name="m_tube_subclavian_R_I" public_interface="out" units="dimensionless"/>
+<variable initial_value="0" name="n_tube_subclavian_R_I" public_interface="out" units="dimensionless"/>
+<variable initial_value="1" name="I_scale_subclavian_R_I" public_interface="out" units="dimensionless"/>
+<variable initial_value="0" name="u_ext_common_carotid_R" public_interface="out" units="J_per_m3"/>
+<variable initial_value="10000" name="u_0_common_carotid_R" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0" name="theta_common_carotid_R" public_interface="out" units="dimensionless"/>
+<variable initial_value="0.081219358067" name="l_common_carotid_R" public_interface="out" units="metre"/>
+<variable initial_value="0.003900915" name="r_0_common_carotid_R" public_interface="out" units="metre"/>
+<variable initial_value="0.5" name="m_tube_common_carotid_R" public_interface="out" units="dimensionless"/>
+<variable initial_value="0" name="n_tube_common_carotid_R" public_interface="out" units="dimensionless"/>
+<variable initial_value="1" name="I_scale_common_carotid_R" public_interface="out" units="dimensionless"/>
+<variable initial_value="0" name="u_ext_vertebral_R" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0" name="theta_vertebral_R" public_interface="out" units="dimensionless"/>
+<variable initial_value="0.204453188261" name="l_vertebral_R" public_interface="out" units="metre"/>
+<variable initial_value="0.00133527" name="r_0_vertebral_R" public_interface="out" units="metre"/>
+<variable initial_value="10000" name="u_0_vertebral_R" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.5" name="m_tube_vertebral_R" public_interface="out" units="dimensionless"/>
+<variable initial_value="0" name="n_tube_vertebral_R" public_interface="out" units="dimensionless"/>
+<variable initial_value="1" name="I_scale_vertebral_R" public_interface="out" units="dimensionless"/>
+<variable initial_value="0" name="u_ext_subclavian_R_II" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0" name="theta_subclavian_R_II" public_interface="out" units="dimensionless"/>
+<variable initial_value="0.041118782084" name="l_subclavian_R_II" public_interface="out" units="metre"/>
+<variable initial_value="0.003239173852" name="r_0_subclavian_R_II" public_interface="out" units="metre"/>
+<variable initial_value="10000" name="u_0_subclavian_R_II" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.5" name="m_tube_subclavian_R_II" public_interface="out" units="dimensionless"/>
+<variable initial_value="0" name="n_tube_subclavian_R_II" public_interface="out" units="dimensionless"/>
+<variable initial_value="1" name="I_scale_subclavian_R_II" public_interface="out" units="dimensionless"/>
+<variable initial_value="0" name="u_ext_axillary_R" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0" name="theta_axillary_R" public_interface="out" units="dimensionless"/>
+<variable initial_value="0.12000204811" name="l_axillary_R" public_interface="out" units="metre"/>
+<variable initial_value="0.002189" name="r_0_axillary_R" public_interface="out" units="metre"/>
+<variable initial_value="10000" name="u_0_axillary_R" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.5" name="m_tube_axillary_R" public_interface="out" units="dimensionless"/>
+<variable initial_value="0" name="n_tube_axillary_R" public_interface="out" units="dimensionless"/>
+<variable initial_value="1" name="I_scale_axillary_R" public_interface="out" units="dimensionless"/>
+<variable initial_value="0" name="u_ext_brachial_R" public_interface="out" units="J_per_m3"/>
+<variable initial_value="10000" name="u_0_brachial_R" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0" name="theta_brachial_R" public_interface="out" units="dimensionless"/>
+<variable initial_value="0.223108204635" name="l_brachial_R" public_interface="out" units="metre"/>
+<variable initial_value="0.001952635" name="r_0_brachial_R" public_interface="out" units="metre"/>
+<variable initial_value="0.5" name="m_tube_brachial_R" public_interface="out" units="dimensionless"/>
+<variable initial_value="0" name="n_tube_brachial_R" public_interface="out" units="dimensionless"/>
+<variable initial_value="1" name="I_scale_brachial_R" public_interface="out" units="dimensionless"/>
+<variable initial_value="0" name="u_ext_radial_R" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0" name="theta_radial_R" public_interface="out" units="dimensionless"/>
+<variable initial_value="0.300885766109" name="l_radial_R" public_interface="out" units="metre"/>
+<variable initial_value="0.001378" name="r_0_radial_R" public_interface="out" units="metre"/>
+<variable initial_value="10000" name="u_0_radial_R" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.5" name="m_tube_radial_R" public_interface="out" units="dimensionless"/>
+<variable initial_value="0" name="n_tube_radial_R" public_interface="out" units="dimensionless"/>
+<variable initial_value="1" name="I_scale_radial_R" public_interface="out" units="dimensionless"/>
+<variable initial_value="0" name="u_ext_ulnar_R_I" public_interface="out" units="J_per_m3"/>
+<variable initial_value="10000" name="u_0_ulnar_R_I" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0" name="theta_ulnar_R_I" public_interface="out" units="dimensionless"/>
+<variable initial_value="0.029756240754" name="l_ulnar_R_I" public_interface="out" units="metre"/>
+<variable initial_value="0.001408" name="r_0_ulnar_R_I" public_interface="out" units="metre"/>
+<variable initial_value="0.5" name="m_tube_ulnar_R_I" public_interface="out" units="dimensionless"/>
+<variable initial_value="0" name="n_tube_ulnar_R_I" public_interface="out" units="dimensionless"/>
+<variable initial_value="1" name="I_scale_ulnar_R_I" public_interface="out" units="dimensionless"/>
+<variable initial_value="0" name="u_ext_common_interosseous_R" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0" name="theta_common_interosseous_R" public_interface="out" units="dimensionless"/>
+<variable initial_value="0.016266065799" name="l_common_interosseous_R" public_interface="out" units="metre"/>
+<variable initial_value="0.000959" name="r_0_common_interosseous_R" public_interface="out" units="metre"/>
+<variable initial_value="10000" name="u_0_common_interosseous_R" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.5" name="m_tube_common_interosseous_R" public_interface="out" units="dimensionless"/>
+<variable initial_value="0" name="n_tube_common_interosseous_R" public_interface="out" units="dimensionless"/>
+<variable initial_value="1" name="I_scale_common_interosseous_R" public_interface="out" units="dimensionless"/>
+<variable initial_value="0" name="u_ext_ulnar_R_II" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0" name="theta_ulnar_R_II" public_interface="out" units="dimensionless"/>
+<variable initial_value="0.239261629581" name="l_ulnar_R_II" public_interface="out" units="metre"/>
+<variable initial_value="0.001408" name="r_0_ulnar_R_II" public_interface="out" units="metre"/>
+<variable initial_value="10000" name="u_0_ulnar_R_II" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.5" name="m_tube_ulnar_R_II" public_interface="out" units="dimensionless"/>
+<variable initial_value="0" name="n_tube_ulnar_R_II" public_interface="out" units="dimensionless"/>
+<variable initial_value="1" name="I_scale_ulnar_R_II" public_interface="out" units="dimensionless"/>
+<variable initial_value="0" name="u_ext_posterior_interosseous_R" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0" name="theta_posterior_interosseous_R" public_interface="out" units="dimensionless"/>
+<variable initial_value="0.230561368515" name="l_posterior_interosseous_R" public_interface="out" units="metre"/>
+<variable initial_value="0.000676" name="r_0_posterior_interosseous_R" public_interface="out" units="metre"/>
+<variable initial_value="10000" name="u_0_posterior_interosseous_R" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.5" name="m_tube_posterior_interosseous_R" public_interface="out" units="dimensionless"/>
+<variable initial_value="0" name="n_tube_posterior_interosseous_R" public_interface="out" units="dimensionless"/>
+<variable initial_value="1" name="I_scale_posterior_interosseous_R" public_interface="out" units="dimensionless"/>
+<variable initial_value="0" name="u_ext_external_carotid_R" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0" name="theta_external_carotid_R" public_interface="out" units="dimensionless"/>
+<variable initial_value="0.06089687742" name="l_external_carotid_R" public_interface="out" units="metre"/>
+<variable initial_value="0.00226547" name="r_0_external_carotid_R" public_interface="out" units="metre"/>
+<variable initial_value="10000" name="u_0_external_carotid_R" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.5" name="m_tube_external_carotid_R" public_interface="out" units="dimensionless"/>
+<variable initial_value="0" name="n_tube_external_carotid_R" public_interface="out" units="dimensionless"/>
+<variable initial_value="1" name="I_scale_external_carotid_R" public_interface="out" units="dimensionless"/>
+<variable initial_value="0" name="u_ext_internal_carotid_R" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0" name="theta_internal_carotid_R" public_interface="out" units="dimensionless"/>
+<variable initial_value="0.132109962786" name="l_internal_carotid_R" public_interface="out" units="metre"/>
+<variable initial_value="0.00276538" name="r_0_internal_carotid_R" public_interface="out" units="metre"/>
+<variable initial_value="10000" name="u_0_internal_carotid_R" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.5" name="m_tube_internal_carotid_R" public_interface="out" units="dimensionless"/>
+<variable initial_value="0" name="n_tube_internal_carotid_R" public_interface="out" units="dimensionless"/>
+<variable initial_value="1" name="I_scale_internal_carotid_R" public_interface="out" units="dimensionless"/>
+<variable initial_value="0" name="u_ext_common_carotid_L" public_interface="out" units="J_per_m3"/>
+<variable initial_value="10000" name="u_0_common_carotid_L" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0" name="theta_common_carotid_L" public_interface="out" units="dimensionless"/>
+<variable initial_value="0.121319039241" name="l_common_carotid_L" public_interface="out" units="metre"/>
+<variable initial_value="0.003900915" name="r_0_common_carotid_L" public_interface="out" units="metre"/>
+<variable initial_value="0.5" name="m_tube_common_carotid_L" public_interface="out" units="dimensionless"/>
+<variable initial_value="0" name="n_tube_common_carotid_L" public_interface="out" units="dimensionless"/>
+<variable initial_value="1" name="I_scale_common_carotid_L" public_interface="out" units="dimensionless"/>
+<variable initial_value="0" name="u_ext_aortic_arch_III" public_interface="out" units="J_per_m3"/>
+<variable initial_value="10000" name="u_0_aortic_arch_III" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0" name="theta_aortic_arch_III" public_interface="out" units="dimensionless"/>
+<variable initial_value="0.006978531332" name="l_aortic_arch_III" public_interface="out" units="metre"/>
+<variable initial_value="0.012425019167" name="r_0_aortic_arch_III" public_interface="out" units="metre"/>
+<variable initial_value="0.5" name="m_tube_aortic_arch_III" public_interface="out" units="dimensionless"/>
+<variable initial_value="0" name="n_tube_aortic_arch_III" public_interface="out" units="dimensionless"/>
+<variable initial_value="1" name="I_scale_aortic_arch_III" public_interface="out" units="dimensionless"/>
+<variable initial_value="0" name="u_ext_external_carotid_L" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0" name="theta_external_carotid_L" public_interface="out" units="dimensionless"/>
+<variable initial_value="0.060897059943" name="l_external_carotid_L" public_interface="out" units="metre"/>
+<variable initial_value="0.00226547" name="r_0_external_carotid_L" public_interface="out" units="metre"/>
+<variable initial_value="10000" name="u_0_external_carotid_L" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.5" name="m_tube_external_carotid_L" public_interface="out" units="dimensionless"/>
+<variable initial_value="0" name="n_tube_external_carotid_L" public_interface="out" units="dimensionless"/>
+<variable initial_value="1" name="I_scale_external_carotid_L" public_interface="out" units="dimensionless"/>
+<variable initial_value="0" name="u_ext_internal_carotid_L" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0" name="theta_internal_carotid_L" public_interface="out" units="dimensionless"/>
+<variable initial_value="0.132110383494" name="l_internal_carotid_L" public_interface="out" units="metre"/>
+<variable initial_value="0.00276538" name="r_0_internal_carotid_L" public_interface="out" units="metre"/>
+<variable initial_value="10000" name="u_0_internal_carotid_L" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.5" name="m_tube_internal_carotid_L" public_interface="out" units="dimensionless"/>
+<variable initial_value="0" name="n_tube_internal_carotid_L" public_interface="out" units="dimensionless"/>
+<variable initial_value="1" name="I_scale_internal_carotid_L" public_interface="out" units="dimensionless"/>
+<variable initial_value="0" name="u_ext_subclavian_L_I" public_interface="out" units="J_per_m3"/>
+<variable initial_value="10000" name="u_0_subclavian_L_I" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0" name="theta_subclavian_L_I" public_interface="out" units="dimensionless"/>
+<variable initial_value="0.049384125272" name="l_subclavian_L_I" public_interface="out" units="metre"/>
+<variable initial_value="0.004187732695" name="r_0_subclavian_L_I" public_interface="out" units="metre"/>
+<variable initial_value="0.5" name="m_tube_subclavian_L_I" public_interface="out" units="dimensionless"/>
+<variable initial_value="0" name="n_tube_subclavian_L_I" public_interface="out" units="dimensionless"/>
+<variable initial_value="1" name="I_scale_subclavian_L_I" public_interface="out" units="dimensionless"/>
+<variable initial_value="0" name="u_ext_aortic_arch_IV" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0" name="theta_aortic_arch_IV" public_interface="out" units="dimensionless"/>
+<variable initial_value="0.043057670133" name="l_aortic_arch_IV" public_interface="out" units="metre"/>
+<variable initial_value="0.0114172317025" name="r_0_aortic_arch_IV" public_interface="out" units="metre"/>
+<variable initial_value="10000" name="u_0_aortic_arch_IV" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.5" name="m_tube_aortic_arch_IV" public_interface="out" units="dimensionless"/>
+<variable initial_value="0" name="n_tube_aortic_arch_IV" public_interface="out" units="dimensionless"/>
+<variable initial_value="1" name="I_scale_aortic_arch_IV" public_interface="out" units="dimensionless"/>
+<variable initial_value="0" name="u_ext_vertebral_L" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0" name="theta_vertebral_L" public_interface="out" units="dimensionless"/>
+<variable initial_value="0.204153808747" name="l_vertebral_L" public_interface="out" units="metre"/>
+<variable initial_value="0.00133527" name="r_0_vertebral_L" public_interface="out" units="metre"/>
+<variable initial_value="10000" name="u_0_vertebral_L" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.5" name="m_tube_vertebral_L" public_interface="out" units="dimensionless"/>
+<variable initial_value="0" name="n_tube_vertebral_L" public_interface="out" units="dimensionless"/>
+<variable initial_value="1" name="I_scale_vertebral_L" public_interface="out" units="dimensionless"/>
+<variable initial_value="0" name="u_ext_subclavian_L_II" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0" name="theta_subclavian_L_II" public_interface="out" units="dimensionless"/>
+<variable initial_value="0.041118785899" name="l_subclavian_L_II" public_interface="out" units="metre"/>
+<variable initial_value="0.002890417695" name="r_0_subclavian_L_II" public_interface="out" units="metre"/>
+<variable initial_value="10000" name="u_0_subclavian_L_II" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.5" name="m_tube_subclavian_L_II" public_interface="out" units="dimensionless"/>
+<variable initial_value="0" name="n_tube_subclavian_L_II" public_interface="out" units="dimensionless"/>
+<variable initial_value="1" name="I_scale_subclavian_L_II" public_interface="out" units="dimensionless"/>
+<variable initial_value="0" name="u_ext_axillary_L" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0" name="theta_axillary_L" public_interface="out" units="dimensionless"/>
+<variable initial_value="0.120002137018" name="l_axillary_L" public_interface="out" units="metre"/>
+<variable initial_value="0.002189" name="r_0_axillary_L" public_interface="out" units="metre"/>
+<variable initial_value="10000" name="u_0_axillary_L" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.5" name="m_tube_axillary_L" public_interface="out" units="dimensionless"/>
+<variable initial_value="0" name="n_tube_axillary_L" public_interface="out" units="dimensionless"/>
+<variable initial_value="1" name="I_scale_axillary_L" public_interface="out" units="dimensionless"/>
+<variable initial_value="0" name="u_ext_brachial_L" public_interface="out" units="J_per_m3"/>
+<variable initial_value="10000" name="u_0_brachial_L" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0" name="theta_brachial_L" public_interface="out" units="dimensionless"/>
+<variable initial_value="0.2231087827" name="l_brachial_L" public_interface="out" units="metre"/>
+<variable initial_value="0.001952635" name="r_0_brachial_L" public_interface="out" units="metre"/>
+<variable initial_value="0.5" name="m_tube_brachial_L" public_interface="out" units="dimensionless"/>
+<variable initial_value="0" name="n_tube_brachial_L" public_interface="out" units="dimensionless"/>
+<variable initial_value="1" name="I_scale_brachial_L" public_interface="out" units="dimensionless"/>
+<variable initial_value="0" name="u_ext_radial_L" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0" name="theta_radial_L" public_interface="out" units="dimensionless"/>
+<variable initial_value="0.310884406105" name="l_radial_L" public_interface="out" units="metre"/>
+<variable initial_value="0.001378" name="r_0_radial_L" public_interface="out" units="metre"/>
+<variable initial_value="10000" name="u_0_radial_L" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.5" name="m_tube_radial_L" public_interface="out" units="dimensionless"/>
+<variable initial_value="0" name="n_tube_radial_L" public_interface="out" units="dimensionless"/>
+<variable initial_value="1" name="I_scale_radial_L" public_interface="out" units="dimensionless"/>
+<variable initial_value="0" name="u_ext_ulnar_L_I" public_interface="out" units="J_per_m3"/>
+<variable initial_value="10000" name="u_0_ulnar_L_I" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0" name="theta_ulnar_L_I" public_interface="out" units="dimensionless"/>
+<variable initial_value="0.029755789889" name="l_ulnar_L_I" public_interface="out" units="metre"/>
+<variable initial_value="0.001408" name="r_0_ulnar_L_I" public_interface="out" units="metre"/>
+<variable initial_value="0.5" name="m_tube_ulnar_L_I" public_interface="out" units="dimensionless"/>
+<variable initial_value="0" name="n_tube_ulnar_L_I" public_interface="out" units="dimensionless"/>
+<variable initial_value="1" name="I_scale_ulnar_L_I" public_interface="out" units="dimensionless"/>
+<variable initial_value="0" name="u_ext_common_interosseous_L" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0" name="theta_common_interosseous_L" public_interface="out" units="dimensionless"/>
+<variable initial_value="0.016266062673" name="l_common_interosseous_L" public_interface="out" units="metre"/>
+<variable initial_value="0.000959" name="r_0_common_interosseous_L" public_interface="out" units="metre"/>
+<variable initial_value="10000" name="u_0_common_interosseous_L" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.5" name="m_tube_common_interosseous_L" public_interface="out" units="dimensionless"/>
+<variable initial_value="0" name="n_tube_common_interosseous_L" public_interface="out" units="dimensionless"/>
+<variable initial_value="1" name="I_scale_common_interosseous_L" public_interface="out" units="dimensionless"/>
+<variable initial_value="0" name="u_ext_ulnar_L_II" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0" name="theta_ulnar_L_II" public_interface="out" units="dimensionless"/>
+<variable initial_value="0.239262158888" name="l_ulnar_L_II" public_interface="out" units="metre"/>
+<variable initial_value="0.001408" name="r_0_ulnar_L_II" public_interface="out" units="metre"/>
+<variable initial_value="10000" name="u_0_ulnar_L_II" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.5" name="m_tube_ulnar_L_II" public_interface="out" units="dimensionless"/>
+<variable initial_value="0" name="n_tube_ulnar_L_II" public_interface="out" units="dimensionless"/>
+<variable initial_value="1" name="I_scale_ulnar_L_II" public_interface="out" units="dimensionless"/>
+<variable initial_value="0" name="u_ext_posterior_interosseous_L" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0" name="theta_posterior_interosseous_L" public_interface="out" units="dimensionless"/>
+<variable initial_value="0.230562469653" name="l_posterior_interosseous_L" public_interface="out" units="metre"/>
+<variable initial_value="0.000676" name="r_0_posterior_interosseous_L" public_interface="out" units="metre"/>
+<variable initial_value="10000" name="u_0_posterior_interosseous_L" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.5" name="m_tube_posterior_interosseous_L" public_interface="out" units="dimensionless"/>
+<variable initial_value="0" name="n_tube_posterior_interosseous_L" public_interface="out" units="dimensionless"/>
+<variable initial_value="1" name="I_scale_posterior_interosseous_L" public_interface="out" units="dimensionless"/>
+<variable initial_value="0" name="u_ext_thoracic_aorta_I" public_interface="out" units="J_per_m3"/>
+<variable initial_value="10000" name="u_0_thoracic_aorta_I" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0" name="theta_thoracic_aorta_I" public_interface="out" units="dimensionless"/>
+<variable initial_value="0.009897081257" name="l_thoracic_aorta_I" public_interface="out" units="metre"/>
+<variable initial_value="0.0104569025195" name="r_0_thoracic_aorta_I" public_interface="out" units="metre"/>
+<variable initial_value="0.5" name="m_tube_thoracic_aorta_I" public_interface="out" units="dimensionless"/>
+<variable initial_value="0" name="n_tube_thoracic_aorta_I" public_interface="out" units="dimensionless"/>
+<variable initial_value="1" name="I_scale_thoracic_aorta_I" public_interface="out" units="dimensionless"/>
+<variable initial_value="0" name="u_ext_posterior_intercostal_T6_R" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0" name="theta_posterior_intercostal_T6_R" public_interface="out" units="dimensionless"/>
+<variable initial_value="0.196881098828" name="l_posterior_intercostal_T6_R" public_interface="out" units="metre"/>
+<variable initial_value="0.0014" name="r_0_posterior_intercostal_T6_R" public_interface="out" units="metre"/>
+<variable initial_value="10000" name="u_0_posterior_intercostal_T6_R" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.5" name="m_tube_posterior_intercostal_T6_R" public_interface="out" units="dimensionless"/>
+<variable initial_value="0" name="n_tube_posterior_intercostal_T6_R" public_interface="out" units="dimensionless"/>
+<variable initial_value="1" name="I_scale_posterior_intercostal_T6_R" public_interface="out" units="dimensionless"/>
+<variable initial_value="0" name="u_ext_thoracic_aorta_II" public_interface="out" units="J_per_m3"/>
+<variable initial_value="10000" name="u_0_thoracic_aorta_II" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0" name="theta_thoracic_aorta_II" public_interface="out" units="dimensionless"/>
+<variable initial_value="0.007880384409" name="l_thoracic_aorta_II" public_interface="out" units="metre"/>
+<variable initial_value="0.0102896777365" name="r_0_thoracic_aorta_II" public_interface="out" units="metre"/>
+<variable initial_value="0.5" name="m_tube_thoracic_aorta_II" public_interface="out" units="dimensionless"/>
+<variable initial_value="0" name="n_tube_thoracic_aorta_II" public_interface="out" units="dimensionless"/>
+<variable initial_value="1" name="I_scale_thoracic_aorta_II" public_interface="out" units="dimensionless"/>
+<variable initial_value="0" name="u_ext_posterior_intercostal_T6_L" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0" name="theta_posterior_intercostal_T6_L" public_interface="out" units="dimensionless"/>
+<variable initial_value="0.178030219964" name="l_posterior_intercostal_T6_L" public_interface="out" units="metre"/>
+<variable initial_value="0.0014" name="r_0_posterior_intercostal_T6_L" public_interface="out" units="metre"/>
+<variable initial_value="10000" name="u_0_posterior_intercostal_T6_L" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.5" name="m_tube_posterior_intercostal_T6_L" public_interface="out" units="dimensionless"/>
+<variable initial_value="0" name="n_tube_posterior_intercostal_T6_L" public_interface="out" units="dimensionless"/>
+<variable initial_value="1" name="I_scale_posterior_intercostal_T6_L" public_interface="out" units="dimensionless"/>
+<variable initial_value="0" name="u_ext_thoracic_aorta_III" public_interface="out" units="J_per_m3"/>
+<variable initial_value="10000" name="u_0_thoracic_aorta_III" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0" name="theta_thoracic_aorta_III" public_interface="out" units="dimensionless"/>
+<variable initial_value="0.015555917597" name="l_thoracic_aorta_III" public_interface="out" units="metre"/>
+<variable initial_value="0.0100692227745" name="r_0_thoracic_aorta_III" public_interface="out" units="metre"/>
+<variable initial_value="0.5" name="m_tube_thoracic_aorta_III" public_interface="out" units="dimensionless"/>
+<variable initial_value="0" name="n_tube_thoracic_aorta_III" public_interface="out" units="dimensionless"/>
+<variable initial_value="1" name="I_scale_thoracic_aorta_III" public_interface="out" units="dimensionless"/>
+<variable initial_value="0" name="u_ext_posterior_intercostal_T7_R" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0" name="theta_posterior_intercostal_T7_R" public_interface="out" units="dimensionless"/>
+<variable initial_value="0.201560344682" name="l_posterior_intercostal_T7_R" public_interface="out" units="metre"/>
+<variable initial_value="0.00155" name="r_0_posterior_intercostal_T7_R" public_interface="out" units="metre"/>
+<variable initial_value="10000" name="u_0_posterior_intercostal_T7_R" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.5" name="m_tube_posterior_intercostal_T7_R" public_interface="out" units="dimensionless"/>
+<variable initial_value="0" name="n_tube_posterior_intercostal_T7_R" public_interface="out" units="dimensionless"/>
+<variable initial_value="1" name="I_scale_posterior_intercostal_T7_R" public_interface="out" units="dimensionless"/>
+<variable initial_value="0" name="u_ext_thoracic_aorta_IV" public_interface="out" units="J_per_m3"/>
+<variable initial_value="10000" name="u_0_thoracic_aorta_IV" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0" name="theta_thoracic_aorta_IV" public_interface="out" units="dimensionless"/>
+<variable initial_value="0.005327048648" name="l_thoracic_aorta_IV" public_interface="out" units="metre"/>
+<variable initial_value="0.009872785917" name="r_0_thoracic_aorta_IV" public_interface="out" units="metre"/>
+<variable initial_value="0.5" name="m_tube_thoracic_aorta_IV" public_interface="out" units="dimensionless"/>
+<variable initial_value="0" name="n_tube_thoracic_aorta_IV" public_interface="out" units="dimensionless"/>
+<variable initial_value="1" name="I_scale_thoracic_aorta_IV" public_interface="out" units="dimensionless"/>
+<variable initial_value="0" name="u_ext_posterior_intercostal_T7_L" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0" name="theta_posterior_intercostal_T7_L" public_interface="out" units="dimensionless"/>
+<variable initial_value="0.185176241696" name="l_posterior_intercostal_T7_L" public_interface="out" units="metre"/>
+<variable initial_value="0.00155" name="r_0_posterior_intercostal_T7_L" public_interface="out" units="metre"/>
+<variable initial_value="10000" name="u_0_posterior_intercostal_T7_L" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.5" name="m_tube_posterior_intercostal_T7_L" public_interface="out" units="dimensionless"/>
+<variable initial_value="0" name="n_tube_posterior_intercostal_T7_L" public_interface="out" units="dimensionless"/>
+<variable initial_value="1" name="I_scale_posterior_intercostal_T7_L" public_interface="out" units="dimensionless"/>
+<variable initial_value="0" name="u_ext_thoracic_aorta_V" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0" name="theta_thoracic_aorta_V" public_interface="out" units="dimensionless"/>
+<variable initial_value="0.121560746471" name="l_thoracic_aorta_V" public_interface="out" units="metre"/>
+<variable initial_value="0.0086792083595" name="r_0_thoracic_aorta_V" public_interface="out" units="metre"/>
+<variable initial_value="10000" name="u_0_thoracic_aorta_V" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.5" name="m_tube_thoracic_aorta_V" public_interface="out" units="dimensionless"/>
+<variable initial_value="0" name="n_tube_thoracic_aorta_V" public_interface="out" units="dimensionless"/>
+<variable initial_value="1" name="I_scale_thoracic_aorta_V" public_interface="out" units="dimensionless"/>
+<variable initial_value="0" name="u_ext_thoracic_aorta_VI" public_interface="out" units="J_per_m3"/>
+<variable initial_value="10000" name="u_0_thoracic_aorta_VI" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0" name="theta_thoracic_aorta_VI" public_interface="out" units="dimensionless"/>
+<variable initial_value="0.003247666735" name="l_thoracic_aorta_VI" public_interface="out" units="metre"/>
+<variable initial_value="0.0075153320675" name="r_0_thoracic_aorta_VI" public_interface="out" units="metre"/>
+<variable initial_value="0.5" name="m_tube_thoracic_aorta_VI" public_interface="out" units="dimensionless"/>
+<variable initial_value="0" name="n_tube_thoracic_aorta_VI" public_interface="out" units="dimensionless"/>
+<variable initial_value="1" name="I_scale_thoracic_aorta_VI" public_interface="out" units="dimensionless"/>
+<variable initial_value="0" name="u_ext_celiac_trunk" public_interface="out" units="J_per_m3"/>
+<variable initial_value="10000" name="u_0_celiac_trunk" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0" name="theta_celiac_trunk" public_interface="out" units="dimensionless"/>
+<variable initial_value="0.016823833364" name="l_celiac_trunk" public_interface="out" units="metre"/>
+<variable initial_value="0.00328122" name="r_0_celiac_trunk" public_interface="out" units="metre"/>
+<variable initial_value="0.5" name="m_tube_celiac_trunk" public_interface="out" units="dimensionless"/>
+<variable initial_value="0" name="n_tube_celiac_trunk" public_interface="out" units="dimensionless"/>
+<variable initial_value="1" name="I_scale_celiac_trunk" public_interface="out" units="dimensionless"/>
+<variable initial_value="0" name="u_ext_abdominal_aorta_I" public_interface="out" units="J_per_m3"/>
+<variable initial_value="10000" name="u_0_abdominal_aorta_I" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0" name="theta_abdominal_aorta_I" public_interface="out" units="dimensionless"/>
+<variable initial_value="0.013988434469" name="l_abdominal_aorta_I" public_interface="out" units="metre"/>
+<variable initial_value="0.007407022559" name="r_0_abdominal_aorta_I" public_interface="out" units="metre"/>
+<variable initial_value="0.5" name="m_tube_abdominal_aorta_I" public_interface="out" units="dimensionless"/>
+<variable initial_value="0" name="n_tube_abdominal_aorta_I" public_interface="out" units="dimensionless"/>
+<variable initial_value="1" name="I_scale_abdominal_aorta_I" public_interface="out" units="dimensionless"/>
+<variable initial_value="0" name="u_ext_common_hepatic" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0" name="theta_common_hepatic" public_interface="out" units="dimensionless"/>
+<variable initial_value="0.066554552251" name="l_common_hepatic" public_interface="out" units="metre"/>
+<variable initial_value="0.00268614" name="r_0_common_hepatic" public_interface="out" units="metre"/>
+<variable initial_value="10000" name="u_0_common_hepatic" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.5" name="m_tube_common_hepatic" public_interface="out" units="dimensionless"/>
+<variable initial_value="0" name="n_tube_common_hepatic" public_interface="out" units="dimensionless"/>
+<variable initial_value="1" name="I_scale_common_hepatic" public_interface="out" units="dimensionless"/>
+<variable initial_value="0" name="u_ext_splenic_I" public_interface="out" units="J_per_m3"/>
+<variable initial_value="10000" name="u_0_splenic_I" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0" name="theta_splenic_I" public_interface="out" units="dimensionless"/>
+<variable initial_value="0.003948745048" name="l_splenic_I" public_interface="out" units="metre"/>
+<variable initial_value="0.00216682" name="r_0_splenic_I" public_interface="out" units="metre"/>
+<variable initial_value="0.5" name="m_tube_splenic_I" public_interface="out" units="dimensionless"/>
+<variable initial_value="0" name="n_tube_splenic_I" public_interface="out" units="dimensionless"/>
+<variable initial_value="1" name="I_scale_splenic_I" public_interface="out" units="dimensionless"/>
+<variable initial_value="0" name="u_ext_left_gastric" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0" name="theta_left_gastric" public_interface="out" units="dimensionless"/>
+<variable initial_value="0.092866914136" name="l_left_gastric" public_interface="out" units="metre"/>
+<variable initial_value="0.00150666" name="r_0_left_gastric" public_interface="out" units="metre"/>
+<variable initial_value="10000" name="u_0_left_gastric" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.5" name="m_tube_left_gastric" public_interface="out" units="dimensionless"/>
+<variable initial_value="0" name="n_tube_left_gastric" public_interface="out" units="dimensionless"/>
+<variable initial_value="1" name="I_scale_left_gastric" public_interface="out" units="dimensionless"/>
+<variable initial_value="0" name="u_ext_splenic_II" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0" name="theta_splenic_II" public_interface="out" units="dimensionless"/>
+<variable initial_value="0.064402741833" name="l_splenic_II" public_interface="out" units="metre"/>
+<variable initial_value="0.00216682" name="r_0_splenic_II" public_interface="out" units="metre"/>
+<variable initial_value="10000" name="u_0_splenic_II" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.5" name="m_tube_splenic_II" public_interface="out" units="dimensionless"/>
+<variable initial_value="0" name="n_tube_splenic_II" public_interface="out" units="dimensionless"/>
+<variable initial_value="1" name="I_scale_splenic_II" public_interface="out" units="dimensionless"/>
+<variable initial_value="0" name="u_ext_superior_mesenteric" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0" name="theta_superior_mesenteric" public_interface="out" units="dimensionless"/>
+<variable initial_value="0.216398323794" name="l_superior_mesenteric" public_interface="out" units="metre"/>
+<variable initial_value="0.00392612" name="r_0_superior_mesenteric" public_interface="out" units="metre"/>
+<variable initial_value="10000" name="u_0_superior_mesenteric" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.5" name="m_tube_superior_mesenteric" public_interface="out" units="dimensionless"/>
+<variable initial_value="0" name="n_tube_superior_mesenteric" public_interface="out" units="dimensionless"/>
+<variable initial_value="1" name="I_scale_superior_mesenteric" public_interface="out" units="dimensionless"/>
+<variable initial_value="0" name="u_ext_abdominal_aorta_II" public_interface="out" units="J_per_m3"/>
+<variable initial_value="10000" name="u_0_abdominal_aorta_II" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0" name="theta_abdominal_aorta_II" public_interface="out" units="dimensionless"/>
+<variable initial_value="0.004319125635" name="l_abdominal_aorta_II" public_interface="out" units="metre"/>
+<variable initial_value="0.0072919801365" name="r_0_abdominal_aorta_II" public_interface="out" units="metre"/>
+<variable initial_value="0.5" name="m_tube_abdominal_aorta_II" public_interface="out" units="dimensionless"/>
+<variable initial_value="0" name="n_tube_abdominal_aorta_II" public_interface="out" units="dimensionless"/>
+<variable initial_value="1" name="I_scale_abdominal_aorta_II" public_interface="out" units="dimensionless"/>
+<variable initial_value="0" name="u_ext_renal_L" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0" name="theta_renal_L" public_interface="out" units="dimensionless"/>
+<variable initial_value="0.021836535023" name="l_renal_L" public_interface="out" units="metre"/>
+<variable initial_value="0.0027089" name="r_0_renal_L" public_interface="out" units="metre"/>
+<variable initial_value="10000" name="u_0_renal_L" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.5" name="m_tube_renal_L" public_interface="out" units="dimensionless"/>
+<variable initial_value="0" name="n_tube_renal_L" public_interface="out" units="dimensionless"/>
+<variable initial_value="1" name="I_scale_renal_L" public_interface="out" units="dimensionless"/>
+<variable initial_value="0" name="u_ext_abdominal_aorta_III" public_interface="out" units="J_per_m3"/>
+<variable initial_value="10000" name="u_0_abdominal_aorta_III" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0" name="theta_abdominal_aorta_III" public_interface="out" units="dimensionless"/>
+<variable initial_value="0.011977282679" name="l_abdominal_aorta_III" public_interface="out" units="metre"/>
+<variable initial_value="0.007189575541" name="r_0_abdominal_aorta_III" public_interface="out" units="metre"/>
+<variable initial_value="0.5" name="m_tube_abdominal_aorta_III" public_interface="out" units="dimensionless"/>
+<variable initial_value="0" name="n_tube_abdominal_aorta_III" public_interface="out" units="dimensionless"/>
+<variable initial_value="1" name="I_scale_abdominal_aorta_III" public_interface="out" units="dimensionless"/>
+<variable initial_value="0" name="u_ext_renal_R" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0" name="theta_renal_R" public_interface="out" units="dimensionless"/>
+<variable initial_value="0.037717424902" name="l_renal_R" public_interface="out" units="metre"/>
+<variable initial_value="0.00309737" name="r_0_renal_R" public_interface="out" units="metre"/>
+<variable initial_value="10000" name="u_0_renal_R" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.5" name="m_tube_renal_R" public_interface="out" units="dimensionless"/>
+<variable initial_value="0" name="n_tube_renal_R" public_interface="out" units="dimensionless"/>
+<variable initial_value="1" name="I_scale_renal_R" public_interface="out" units="dimensionless"/>
+<variable initial_value="0" name="u_ext_abdominal_aorta_IV" public_interface="out" units="J_per_m3"/>
+<variable initial_value="10000" name="u_0_abdominal_aorta_IV" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0" name="theta_abdominal_aorta_IV" public_interface="out" units="dimensionless"/>
+<variable initial_value="0.054089376627" name="l_abdominal_aorta_IV" public_interface="out" units="metre"/>
+<variable initial_value="0.006774420903" name="r_0_abdominal_aorta_IV" public_interface="out" units="metre"/>
+<variable initial_value="0.5" name="m_tube_abdominal_aorta_IV" public_interface="out" units="dimensionless"/>
+<variable initial_value="0" name="n_tube_abdominal_aorta_IV" public_interface="out" units="dimensionless"/>
+<variable initial_value="1" name="I_scale_abdominal_aorta_IV" public_interface="out" units="dimensionless"/>
+<variable initial_value="0" name="u_ext_inferior_mesenteric" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0" name="theta_inferior_mesenteric" public_interface="out" units="dimensionless"/>
+<variable initial_value="0.090238543542" name="l_inferior_mesenteric" public_interface="out" units="metre"/>
+<variable initial_value="0.00207748" name="r_0_inferior_mesenteric" public_interface="out" units="metre"/>
+<variable initial_value="10000" name="u_0_inferior_mesenteric" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.5" name="m_tube_inferior_mesenteric" public_interface="out" units="dimensionless"/>
+<variable initial_value="0" name="n_tube_inferior_mesenteric" public_interface="out" units="dimensionless"/>
+<variable initial_value="1" name="I_scale_inferior_mesenteric" public_interface="out" units="dimensionless"/>
+<variable initial_value="0" name="u_ext_abdominal_aorta_V" public_interface="out" units="J_per_m3"/>
+<variable initial_value="10000" name="u_0_abdominal_aorta_V" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0" name="theta_abdominal_aorta_V" public_interface="out" units="dimensionless"/>
+<variable initial_value="0.042224742038" name="l_abdominal_aorta_V" public_interface="out" units="metre"/>
+<variable initial_value="0.006169195007" name="r_0_abdominal_aorta_V" public_interface="out" units="metre"/>
+<variable initial_value="0.5" name="m_tube_abdominal_aorta_V" public_interface="out" units="dimensionless"/>
+<variable initial_value="0" name="n_tube_abdominal_aorta_V" public_interface="out" units="dimensionless"/>
+<variable initial_value="1" name="I_scale_abdominal_aorta_V" public_interface="out" units="dimensionless"/>
+<variable initial_value="0" name="u_ext_common_iliac_R" public_interface="out" units="J_per_m3"/>
+<variable initial_value="10000" name="u_0_common_iliac_R" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0" name="theta_common_iliac_R" public_interface="out" units="dimensionless"/>
+<variable initial_value="0.076428563993" name="l_common_iliac_R" public_interface="out" units="metre"/>
+<variable initial_value="0.004294905" name="r_0_common_iliac_R" public_interface="out" units="metre"/>
+<variable initial_value="0.5" name="m_tube_common_iliac_R" public_interface="out" units="dimensionless"/>
+<variable initial_value="0" name="n_tube_common_iliac_R" public_interface="out" units="dimensionless"/>
+<variable initial_value="1" name="I_scale_common_iliac_R" public_interface="out" units="dimensionless"/>
+<variable initial_value="0" name="u_ext_common_iliac_L" public_interface="out" units="J_per_m3"/>
+<variable initial_value="10000" name="u_0_common_iliac_L" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0" name="theta_common_iliac_L" public_interface="out" units="dimensionless"/>
+<variable initial_value="0.074038018352" name="l_common_iliac_L" public_interface="out" units="metre"/>
+<variable initial_value="0.004294905" name="r_0_common_iliac_L" public_interface="out" units="metre"/>
+<variable initial_value="0.5" name="m_tube_common_iliac_L" public_interface="out" units="dimensionless"/>
+<variable initial_value="0" name="n_tube_common_iliac_L" public_interface="out" units="dimensionless"/>
+<variable initial_value="1" name="I_scale_common_iliac_L" public_interface="out" units="dimensionless"/>
+<variable initial_value="0" name="u_ext_external_iliac_R" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0" name="theta_external_iliac_R" public_interface="out" units="dimensionless"/>
+<variable initial_value="0.102210634017" name="l_external_iliac_R" public_interface="out" units="metre"/>
+<variable initial_value="0.00328329" name="r_0_external_iliac_R" public_interface="out" units="metre"/>
+<variable initial_value="10000" name="u_0_external_iliac_R" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.5" name="m_tube_external_iliac_R" public_interface="out" units="dimensionless"/>
+<variable initial_value="0" name="n_tube_external_iliac_R" public_interface="out" units="dimensionless"/>
+<variable initial_value="1" name="I_scale_external_iliac_R" public_interface="out" units="dimensionless"/>
+<variable initial_value="0" name="u_ext_internal_iliac_R" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0" name="theta_internal_iliac_R" public_interface="out" units="dimensionless"/>
+<variable initial_value="0.07250942087" name="l_internal_iliac_R" public_interface="out" units="metre"/>
+<variable initial_value="0.00281829" name="r_0_internal_iliac_R" public_interface="out" units="metre"/>
+<variable initial_value="10000" name="u_0_internal_iliac_R" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.5" name="m_tube_internal_iliac_R" public_interface="out" units="dimensionless"/>
+<variable initial_value="0" name="n_tube_internal_iliac_R" public_interface="out" units="dimensionless"/>
+<variable initial_value="1" name="I_scale_internal_iliac_R" public_interface="out" units="dimensionless"/>
+<variable initial_value="0" name="u_ext_femoral_R_I" public_interface="out" units="J_per_m3"/>
+<variable initial_value="10000" name="u_0_femoral_R_I" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0" name="theta_femoral_R_I" public_interface="out" units="dimensionless"/>
+<variable initial_value="0.031591224433" name="l_femoral_R_I" public_interface="out" units="metre"/>
+<variable initial_value="0.003166362461" name="r_0_femoral_R_I" public_interface="out" units="metre"/>
+<variable initial_value="0.5" name="m_tube_femoral_R_I" public_interface="out" units="dimensionless"/>
+<variable initial_value="0" name="n_tube_femoral_R_I" public_interface="out" units="dimensionless"/>
+<variable initial_value="1" name="I_scale_femoral_R_I" public_interface="out" units="dimensionless"/>
+<variable initial_value="0" name="u_ext_profunda_femoris_R" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0" name="theta_profunda_femoris_R" public_interface="out" units="dimensionless"/>
+<variable initial_value="0.238393724757" name="l_profunda_femoris_R" public_interface="out" units="metre"/>
+<variable initial_value="0.00214445" name="r_0_profunda_femoris_R" public_interface="out" units="metre"/>
+<variable initial_value="10000" name="u_0_profunda_femoris_R" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.5" name="m_tube_profunda_femoris_R" public_interface="out" units="dimensionless"/>
+<variable initial_value="0" name="n_tube_profunda_femoris_R" public_interface="out" units="dimensionless"/>
+<variable initial_value="1" name="I_scale_profunda_femoris_R" public_interface="out" units="dimensionless"/>
+<variable initial_value="0" name="u_ext_femoral_R_II" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0" name="theta_femoral_R_II" public_interface="out" units="dimensionless"/>
+<variable initial_value="0.319285322895" name="l_femoral_R_II" public_interface="out" units="metre"/>
+<variable initial_value="0.002914932461" name="r_0_femoral_R_II" public_interface="out" units="metre"/>
+<variable initial_value="10000" name="u_0_femoral_R_II" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.5" name="m_tube_femoral_R_II" public_interface="out" units="dimensionless"/>
+<variable initial_value="0" name="n_tube_femoral_R_II" public_interface="out" units="dimensionless"/>
+<variable initial_value="1" name="I_scale_femoral_R_II" public_interface="out" units="dimensionless"/>
+<variable initial_value="0" name="u_ext_popliteal_R_I" public_interface="out" units="J_per_m3"/>
+<variable initial_value="10000" name="u_0_popliteal_R_I" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0" name="theta_popliteal_R_I" public_interface="out" units="dimensionless"/>
+<variable initial_value="0.132029022862" name="l_popliteal_R_I" public_interface="out" units="metre"/>
+<variable initial_value="0.002526909905" name="r_0_popliteal_R_I" public_interface="out" units="metre"/>
+<variable initial_value="0.5" name="m_tube_popliteal_R_I" public_interface="out" units="dimensionless"/>
+<variable initial_value="0" name="n_tube_popliteal_R_I" public_interface="out" units="dimensionless"/>
+<variable initial_value="1" name="I_scale_popliteal_R_I" public_interface="out" units="dimensionless"/>
+<variable initial_value="0" name="u_ext_anterior_tibial_R" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0" name="theta_anterior_tibial_R" public_interface="out" units="dimensionless"/>
+<variable initial_value="0.386215673348" name="l_anterior_tibial_R" public_interface="out" units="metre"/>
+<variable initial_value="0.0011663" name="r_0_anterior_tibial_R" public_interface="out" units="metre"/>
+<variable initial_value="10000" name="u_0_anterior_tibial_R" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.5" name="m_tube_anterior_tibial_R" public_interface="out" units="dimensionless"/>
+<variable initial_value="0" name="n_tube_anterior_tibial_R" public_interface="out" units="dimensionless"/>
+<variable initial_value="1" name="I_scale_anterior_tibial_R" public_interface="out" units="dimensionless"/>
+<variable initial_value="0" name="u_ext_popliteal_R_II" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0" name="theta_popliteal_R_II" public_interface="out" units="dimensionless"/>
+<variable initial_value="0.008797428856" name="l_popliteal_R_II" public_interface="out" units="metre"/>
+<variable initial_value="0.002357069905" name="r_0_popliteal_R_II" public_interface="out" units="metre"/>
+<variable initial_value="10000" name="u_0_popliteal_R_II" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.5" name="m_tube_popliteal_R_II" public_interface="out" units="dimensionless"/>
+<variable initial_value="0" name="n_tube_popliteal_R_II" public_interface="out" units="dimensionless"/>
+<variable initial_value="1" name="I_scale_popliteal_R_II" public_interface="out" units="dimensionless"/>
+<variable initial_value="0" name="u_ext_tibiofibular_trunk_R" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0" name="theta_tibiofibular_trunk_R" public_interface="out" units="dimensionless"/>
+<variable initial_value="0.036162676639" name="l_tibiofibular_trunk_R" public_interface="out" units="metre"/>
+<variable initial_value="0.00234646" name="r_0_tibiofibular_trunk_R" public_interface="out" units="metre"/>
+<variable initial_value="10000" name="u_0_tibiofibular_trunk_R" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.5" name="m_tube_tibiofibular_trunk_R" public_interface="out" units="dimensionless"/>
+<variable initial_value="0" name="n_tube_tibiofibular_trunk_R" public_interface="out" units="dimensionless"/>
+<variable initial_value="1" name="I_scale_tibiofibular_trunk_R" public_interface="out" units="dimensionless"/>
+<variable initial_value="0" name="u_ext_posterior_tibial_R" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0" name="theta_posterior_tibial_R" public_interface="out" units="dimensionless"/>
+<variable initial_value="0.382884851572" name="l_posterior_tibial_R" public_interface="out" units="metre"/>
+<variable initial_value="0.00122936" name="r_0_posterior_tibial_R" public_interface="out" units="metre"/>
+<variable initial_value="10000" name="u_0_posterior_tibial_R" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.5" name="m_tube_posterior_tibial_R" public_interface="out" units="dimensionless"/>
+<variable initial_value="0" name="n_tube_posterior_tibial_R" public_interface="out" units="dimensionless"/>
+<variable initial_value="1" name="I_scale_posterior_tibial_R" public_interface="out" units="dimensionless"/>
+<variable initial_value="0" name="u_ext_external_iliac_L" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0" name="theta_external_iliac_L" public_interface="out" units="dimensionless"/>
+<variable initial_value="0.102210679305" name="l_external_iliac_L" public_interface="out" units="metre"/>
+<variable initial_value="0.00328329" name="r_0_external_iliac_L" public_interface="out" units="metre"/>
+<variable initial_value="10000" name="u_0_external_iliac_L" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.5" name="m_tube_external_iliac_L" public_interface="out" units="dimensionless"/>
+<variable initial_value="0" name="n_tube_external_iliac_L" public_interface="out" units="dimensionless"/>
+<variable initial_value="1" name="I_scale_external_iliac_L" public_interface="out" units="dimensionless"/>
+<variable initial_value="0" name="u_ext_internal_iliac_L" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0" name="theta_internal_iliac_L" public_interface="out" units="dimensionless"/>
+<variable initial_value="0.072509392407" name="l_internal_iliac_L" public_interface="out" units="metre"/>
+<variable initial_value="0.00281829" name="r_0_internal_iliac_L" public_interface="out" units="metre"/>
+<variable initial_value="10000" name="u_0_internal_iliac_L" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.5" name="m_tube_internal_iliac_L" public_interface="out" units="dimensionless"/>
+<variable initial_value="0" name="n_tube_internal_iliac_L" public_interface="out" units="dimensionless"/>
+<variable initial_value="1" name="I_scale_internal_iliac_L" public_interface="out" units="dimensionless"/>
+<variable initial_value="0" name="u_ext_femoral_L_I" public_interface="out" units="J_per_m3"/>
+<variable initial_value="10000" name="u_0_femoral_L_I" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0" name="theta_femoral_L_I" public_interface="out" units="dimensionless"/>
+<variable initial_value="0.031591223553" name="l_femoral_L_I" public_interface="out" units="metre"/>
+<variable initial_value="0.0031663624615" name="r_0_femoral_L_I" public_interface="out" units="metre"/>
+<variable initial_value="0.5" name="m_tube_femoral_L_I" public_interface="out" units="dimensionless"/>
+<variable initial_value="0" name="n_tube_femoral_L_I" public_interface="out" units="dimensionless"/>
+<variable initial_value="1" name="I_scale_femoral_L_I" public_interface="out" units="dimensionless"/>
+<variable initial_value="0" name="u_ext_profunda_femoris_L" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0" name="theta_profunda_femoris_L" public_interface="out" units="dimensionless"/>
+<variable initial_value="0.238393754787" name="l_profunda_femoris_L" public_interface="out" units="metre"/>
+<variable initial_value="0.00214445" name="r_0_profunda_femoris_L" public_interface="out" units="metre"/>
+<variable initial_value="10000" name="u_0_profunda_femoris_L" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.5" name="m_tube_profunda_femoris_L" public_interface="out" units="dimensionless"/>
+<variable initial_value="0" name="n_tube_profunda_femoris_L" public_interface="out" units="dimensionless"/>
+<variable initial_value="1" name="I_scale_profunda_femoris_L" public_interface="out" units="dimensionless"/>
+<variable initial_value="0" name="u_ext_femoral_L_II" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0" name="theta_femoral_L_II" public_interface="out" units="dimensionless"/>
+<variable initial_value="0.319285318272" name="l_femoral_L_II" public_interface="out" units="metre"/>
+<variable initial_value="0.0029149324615" name="r_0_femoral_L_II" public_interface="out" units="metre"/>
+<variable initial_value="10000" name="u_0_femoral_L_II" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.5" name="m_tube_femoral_L_II" public_interface="out" units="dimensionless"/>
+<variable initial_value="0" name="n_tube_femoral_L_II" public_interface="out" units="dimensionless"/>
+<variable initial_value="1" name="I_scale_femoral_L_II" public_interface="out" units="dimensionless"/>
+<variable initial_value="0" name="u_ext_popliteal_L_I" public_interface="out" units="J_per_m3"/>
+<variable initial_value="10000" name="u_0_popliteal_L_I" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0" name="theta_popliteal_L_I" public_interface="out" units="dimensionless"/>
+<variable initial_value="0.132028085435" name="l_popliteal_L_I" public_interface="out" units="metre"/>
+<variable initial_value="0.0025269099235" name="r_0_popliteal_L_I" public_interface="out" units="metre"/>
+<variable initial_value="0.5" name="m_tube_popliteal_L_I" public_interface="out" units="dimensionless"/>
+<variable initial_value="0" name="n_tube_popliteal_L_I" public_interface="out" units="dimensionless"/>
+<variable initial_value="1" name="I_scale_popliteal_L_I" public_interface="out" units="dimensionless"/>
+<variable initial_value="0" name="u_ext_anterior_tibial_L" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0" name="theta_anterior_tibial_L" public_interface="out" units="dimensionless"/>
+<variable initial_value="0.386216405775" name="l_anterior_tibial_L" public_interface="out" units="metre"/>
+<variable initial_value="0.0011663" name="r_0_anterior_tibial_L" public_interface="out" units="metre"/>
+<variable initial_value="10000" name="u_0_anterior_tibial_L" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.5" name="m_tube_anterior_tibial_L" public_interface="out" units="dimensionless"/>
+<variable initial_value="0" name="n_tube_anterior_tibial_L" public_interface="out" units="dimensionless"/>
+<variable initial_value="1" name="I_scale_anterior_tibial_L" public_interface="out" units="dimensionless"/>
+<variable initial_value="0" name="u_ext_popliteal_L_II" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0" name="theta_popliteal_L_II" public_interface="out" units="dimensionless"/>
+<variable initial_value="0.008797382358" name="l_popliteal_L_II" public_interface="out" units="metre"/>
+<variable initial_value="0.0023570699235" name="r_0_popliteal_L_II" public_interface="out" units="metre"/>
+<variable initial_value="10000" name="u_0_popliteal_L_II" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.5" name="m_tube_popliteal_L_II" public_interface="out" units="dimensionless"/>
+<variable initial_value="0" name="n_tube_popliteal_L_II" public_interface="out" units="dimensionless"/>
+<variable initial_value="1" name="I_scale_popliteal_L_II" public_interface="out" units="dimensionless"/>
+<variable initial_value="0" name="u_ext_tibiofibular_trunk_L" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0" name="theta_tibiofibular_trunk_L" public_interface="out" units="dimensionless"/>
+<variable initial_value="0.03616364034" name="l_tibiofibular_trunk_L" public_interface="out" units="metre"/>
+<variable initial_value="0.00234646" name="r_0_tibiofibular_trunk_L" public_interface="out" units="metre"/>
+<variable initial_value="10000" name="u_0_tibiofibular_trunk_L" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.5" name="m_tube_tibiofibular_trunk_L" public_interface="out" units="dimensionless"/>
+<variable initial_value="0" name="n_tube_tibiofibular_trunk_L" public_interface="out" units="dimensionless"/>
+<variable initial_value="1" name="I_scale_tibiofibular_trunk_L" public_interface="out" units="dimensionless"/>
+<variable initial_value="0" name="u_ext_posterior_tibial_L" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0" name="theta_posterior_tibial_L" public_interface="out" units="dimensionless"/>
+<variable initial_value="0.382884647627" name="l_posterior_tibial_L" public_interface="out" units="metre"/>
+<variable initial_value="0.00122936" name="r_0_posterior_tibial_L" public_interface="out" units="metre"/>
+<variable initial_value="10000" name="u_0_posterior_tibial_L" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.5" name="m_tube_posterior_tibial_L" public_interface="out" units="dimensionless"/>
+<variable initial_value="0" name="n_tube_posterior_tibial_L" public_interface="out" units="dimensionless"/>
+<variable initial_value="1" name="I_scale_posterior_tibial_L" public_interface="out" units="dimensionless"/>
+<variable initial_value="4695404759.6" name="R_T_external_carotid_R_T" public_interface="out" units="Js_per_m6"/>
+<variable initial_value="6.031649393e-11" name="C_T_external_carotid_R_T" public_interface="out" units="m6_per_J"/>
+<variable initial_value="0" name="u_ext_external_carotid_R_T" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0" name="q_us_external_carotid_R_T" public_interface="out" units="m3"/>
+<variable initial_value="0" name="q_init_external_carotid_R_T" public_interface="out" units="m3"/>
+<variable initial_value="0" name="u_out_external_carotid_R_T" public_interface="out" units="J_per_m3"/>
+<variable initial_value="2880079816.7" name="R_T_internal_carotid_R_T" public_interface="out" units="Js_per_m6"/>
+<variable initial_value="9.833420276e-11" name="C_T_internal_carotid_R_T" public_interface="out" units="m6_per_J"/>
+<variable initial_value="0" name="u_ext_internal_carotid_R_T" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0" name="q_us_internal_carotid_R_T" public_interface="out" units="m3"/>
+<variable initial_value="0" name="q_init_internal_carotid_R_T" public_interface="out" units="m3"/>
+<variable initial_value="0" name="u_out_internal_carotid_R_T" public_interface="out" units="J_per_m3"/>
+<variable initial_value="9052132312.4" name="R_T_vertebral_R_T" public_interface="out" units="Js_per_m6"/>
+<variable initial_value="3.128659004e-11" name="C_T_vertebral_R_T" public_interface="out" units="m6_per_J"/>
+<variable initial_value="0" name="u_ext_vertebral_R_T" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0" name="q_us_vertebral_R_T" public_interface="out" units="m3"/>
+<variable initial_value="0" name="q_init_vertebral_R_T" public_interface="out" units="m3"/>
+<variable initial_value="0" name="u_out_vertebral_R_T" public_interface="out" units="J_per_m3"/>
+<variable initial_value="5769404600.2" name="R_T_radial_R_T" public_interface="out" units="Js_per_m6"/>
+<variable initial_value="4.90883154e-11" name="C_T_radial_R_T" public_interface="out" units="m6_per_J"/>
+<variable initial_value="0" name="u_ext_radial_R_T" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0" name="q_us_radial_R_T" public_interface="out" units="m3"/>
+<variable initial_value="0" name="q_init_radial_R_T" public_interface="out" units="m3"/>
+<variable initial_value="0" name="u_out_radial_R_T" public_interface="out" units="J_per_m3"/>
+<variable initial_value="23906526401.6" name="R_T_posterior_interosseous_R_T" public_interface="out" units="Js_per_m6"/>
+<variable initial_value="1.184657059e-11" name="C_T_posterior_interosseous_R_T" public_interface="out" units="m6_per_J"/>
+<variable initial_value="0" name="u_ext_posterior_interosseous_R_T" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0" name="q_us_posterior_interosseous_R_T" public_interface="out" units="m3"/>
+<variable initial_value="0" name="q_init_posterior_interosseous_R_T" public_interface="out" units="m3"/>
+<variable initial_value="0" name="u_out_posterior_interosseous_R_T" public_interface="out" units="J_per_m3"/>
+<variable initial_value="5874318883.5" name="R_T_ulnar_R_II_T" public_interface="out" units="Js_per_m6"/>
+<variable initial_value="4.821160687e-11" name="C_T_ulnar_R_II_T" public_interface="out" units="m6_per_J"/>
+<variable initial_value="0" name="u_ext_ulnar_R_II_T" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0" name="q_us_ulnar_R_II_T" public_interface="out" units="m3"/>
+<variable initial_value="0" name="q_init_ulnar_R_II_T" public_interface="out" units="m3"/>
+<variable initial_value="0" name="u_out_ulnar_R_II_T" public_interface="out" units="J_per_m3"/>
+<variable initial_value="4711952132.5" name="R_T_external_carotid_L_T" public_interface="out" units="Js_per_m6"/>
+<variable initial_value="6.010467524e-11" name="C_T_external_carotid_L_T" public_interface="out" units="m6_per_J"/>
+<variable initial_value="0" name="u_ext_external_carotid_L_T" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0" name="q_us_external_carotid_L_T" public_interface="out" units="m3"/>
+<variable initial_value="0" name="q_init_external_carotid_L_T" public_interface="out" units="m3"/>
+<variable initial_value="0" name="u_out_external_carotid_L_T" public_interface="out" units="J_per_m3"/>
+<variable initial_value="2889699353.9" name="R_T_internal_carotid_L_T" public_interface="out" units="Js_per_m6"/>
+<variable initial_value="9.800685746e-11" name="C_T_internal_carotid_L_T" public_interface="out" units="m6_per_J"/>
+<variable initial_value="0" name="u_ext_internal_carotid_L_T" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0" name="q_us_internal_carotid_L_T" public_interface="out" units="m3"/>
+<variable initial_value="0" name="q_init_internal_carotid_L_T" public_interface="out" units="m3"/>
+<variable initial_value="0" name="u_out_internal_carotid_L_T" public_interface="out" units="J_per_m3"/>
+<variable initial_value="9621501502.2" name="R_T_vertebral_L_T" public_interface="out" units="Js_per_m6"/>
+<variable initial_value="2.943515132e-11" name="C_T_vertebral_L_T" public_interface="out" units="m6_per_J"/>
+<variable initial_value="0" name="u_ext_vertebral_L_T" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0" name="q_us_vertebral_L_T" public_interface="out" units="m3"/>
+<variable initial_value="0" name="q_init_vertebral_L_T" public_interface="out" units="m3"/>
+<variable initial_value="0" name="u_out_vertebral_L_T" public_interface="out" units="J_per_m3"/>
+<variable initial_value="5666090236.5" name="R_T_radial_L_T" public_interface="out" units="Js_per_m6"/>
+<variable initial_value="4.998338199e-11" name="C_T_radial_L_T" public_interface="out" units="m6_per_J"/>
+<variable initial_value="0" name="u_ext_radial_L_T" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0" name="q_us_radial_L_T" public_interface="out" units="m3"/>
+<variable initial_value="0" name="q_init_radial_L_T" public_interface="out" units="m3"/>
+<variable initial_value="0" name="u_out_radial_L_T" public_interface="out" units="J_per_m3"/>
+<variable initial_value="23993111146.1" name="R_T_posterior_interosseous_L_T" public_interface="out" units="Js_per_m6"/>
+<variable initial_value="1.180381948e-11" name="C_T_posterior_interosseous_L_T" public_interface="out" units="m6_per_J"/>
+<variable initial_value="0" name="u_ext_posterior_interosseous_L_T" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0" name="q_us_posterior_interosseous_L_T" public_interface="out" units="m3"/>
+<variable initial_value="0" name="q_init_posterior_interosseous_L_T" public_interface="out" units="m3"/>
+<variable initial_value="0" name="u_out_posterior_interosseous_L_T" public_interface="out" units="J_per_m3"/>
+<variable initial_value="5988131335.4" name="R_T_ulnar_L_II_T" public_interface="out" units="Js_per_m6"/>
+<variable initial_value="4.729528075e-11" name="C_T_ulnar_L_II_T" public_interface="out" units="m6_per_J"/>
+<variable initial_value="0" name="u_ext_ulnar_L_II_T" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0" name="q_us_ulnar_L_II_T" public_interface="out" units="m3"/>
+<variable initial_value="0" name="q_init_ulnar_L_II_T" public_interface="out" units="m3"/>
+<variable initial_value="0" name="u_out_ulnar_L_II_T" public_interface="out" units="J_per_m3"/>
+<variable initial_value="124563461039.1" name="R_T_posterior_intercostal_T6_R_T" public_interface="out" units="Js_per_m6"/>
+<variable initial_value="2.27362302e-12" name="C_T_posterior_intercostal_T6_R_T" public_interface="out" units="m6_per_J"/>
+<variable initial_value="0" name="u_ext_posterior_intercostal_T6_R_T" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0" name="q_us_posterior_intercostal_T6_R_T" public_interface="out" units="m3"/>
+<variable initial_value="0" name="q_init_posterior_intercostal_T6_R_T" public_interface="out" units="m3"/>
+<variable initial_value="0" name="u_out_posterior_intercostal_T6_R_T" public_interface="out" units="J_per_m3"/>
+<variable initial_value="127791588033.4" name="R_T_posterior_intercostal_T6_L_T" public_interface="out" units="Js_per_m6"/>
+<variable initial_value="2.21618932e-12" name="C_T_posterior_intercostal_T6_L_T" public_interface="out" units="m6_per_J"/>
+<variable initial_value="0" name="u_ext_posterior_intercostal_T6_L_T" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0" name="q_us_posterior_intercostal_T6_L_T" public_interface="out" units="m3"/>
+<variable initial_value="0" name="q_init_posterior_intercostal_T6_L_T" public_interface="out" units="m3"/>
+<variable initial_value="0" name="u_out_posterior_intercostal_T6_L_T" public_interface="out" units="J_per_m3"/>
+<variable initial_value="116216854276.6" name="R_T_posterior_intercostal_T7_R_T" public_interface="out" units="Js_per_m6"/>
+<variable initial_value="2.43691291e-12" name="C_T_posterior_intercostal_T7_R_T" public_interface="out" units="m6_per_J"/>
+<variable initial_value="0" name="u_ext_posterior_intercostal_T7_R_T" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0" name="q_us_posterior_intercostal_T7_R_T" public_interface="out" units="m3"/>
+<variable initial_value="0" name="q_init_posterior_intercostal_T7_R_T" public_interface="out" units="m3"/>
+<variable initial_value="0" name="u_out_posterior_intercostal_T7_R_T" public_interface="out" units="J_per_m3"/>
+<variable initial_value="117212721362.1" name="R_T_posterior_intercostal_T7_L_T" public_interface="out" units="Js_per_m6"/>
+<variable initial_value="2.41620832e-12" name="C_T_posterior_intercostal_T7_L_T" public_interface="out" units="m6_per_J"/>
+<variable initial_value="0" name="u_ext_posterior_intercostal_T7_L_T" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0" name="q_us_posterior_intercostal_T7_L_T" public_interface="out" units="m3"/>
+<variable initial_value="0" name="q_init_posterior_intercostal_T7_L_T" public_interface="out" units="m3"/>
+<variable initial_value="0" name="u_out_posterior_intercostal_T7_L_T" public_interface="out" units="J_per_m3"/>
+<variable initial_value="1674275481" name="R_T_common_hepatic_T" public_interface="out" units="Js_per_m6"/>
+<variable initial_value="1.6915397489e-10" name="C_T_common_hepatic_T" public_interface="out" units="m6_per_J"/>
+<variable initial_value="0" name="u_ext_common_hepatic_T" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0" name="q_us_common_hepatic_T" public_interface="out" units="m3"/>
+<variable initial_value="0" name="q_init_common_hepatic_T" public_interface="out" units="m3"/>
+<variable initial_value="0" name="u_out_common_hepatic_T" public_interface="out" units="J_per_m3"/>
+<variable initial_value="171696751436.2" name="R_T_left_gastric_T" public_interface="out" units="Js_per_m6"/>
+<variable initial_value="1.64947997e-12" name="C_T_left_gastric_T" public_interface="out" units="m6_per_J"/>
+<variable initial_value="0" name="u_ext_left_gastric_T" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0" name="q_us_left_gastric_T" public_interface="out" units="m3"/>
+<variable initial_value="0" name="q_init_left_gastric_T" public_interface="out" units="m3"/>
+<variable initial_value="0" name="u_out_left_gastric_T" public_interface="out" units="J_per_m3"/>
+<variable initial_value="2366661754.5" name="R_T_splenic_II_T" public_interface="out" units="Js_per_m6"/>
+<variable initial_value="1.1966659457e-10" name="C_T_splenic_II_T" public_interface="out" units="m6_per_J"/>
+<variable initial_value="0" name="u_ext_splenic_II_T" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0" name="q_us_splenic_II_T" public_interface="out" units="m3"/>
+<variable initial_value="0" name="q_init_splenic_II_T" public_interface="out" units="m3"/>
+<variable initial_value="0" name="u_out_splenic_II_T" public_interface="out" units="J_per_m3"/>
+<variable initial_value="1090962664.9" name="R_T_superior_mesenteric_T" public_interface="out" units="Js_per_m6"/>
+<variable initial_value="2.5959674129e-10" name="C_T_superior_mesenteric_T" public_interface="out" units="m6_per_J"/>
+<variable initial_value="0" name="u_ext_superior_mesenteric_T" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0" name="q_us_superior_mesenteric_T" public_interface="out" units="m3"/>
+<variable initial_value="0" name="q_init_superior_mesenteric_T" public_interface="out" units="m3"/>
+<variable initial_value="0" name="u_out_superior_mesenteric_T" public_interface="out" units="J_per_m3"/>
+<variable initial_value="1131408037.7" name="R_T_renal_L_T" public_interface="out" units="Js_per_m6"/>
+<variable initial_value="2.5031672325e-10" name="C_T_renal_L_T" public_interface="out" units="m6_per_J"/>
+<variable initial_value="0" name="u_ext_renal_L_T" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0" name="q_us_renal_L_T" public_interface="out" units="m3"/>
+<variable initial_value="0" name="q_init_renal_L_T" public_interface="out" units="m3"/>
+<variable initial_value="0" name="u_out_renal_L_T" public_interface="out" units="J_per_m3"/>
+<variable initial_value="1135206894.1" name="R_T_renal_R_T" public_interface="out" units="Js_per_m6"/>
+<variable initial_value="2.4947906336e-10" name="C_T_renal_R_T" public_interface="out" units="m6_per_J"/>
+<variable initial_value="0" name="u_ext_renal_R_T" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0" name="q_us_renal_R_T" public_interface="out" units="m3"/>
+<variable initial_value="0" name="q_init_renal_R_T" public_interface="out" units="m3"/>
+<variable initial_value="0" name="u_out_renal_R_T" public_interface="out" units="J_per_m3"/>
+<variable initial_value="11956450359.4" name="R_T_inferior_mesenteric_T" public_interface="out" units="Js_per_m6"/>
+<variable initial_value="2.368682545e-11" name="C_T_inferior_mesenteric_T" public_interface="out" units="m6_per_J"/>
+<variable initial_value="0" name="u_ext_inferior_mesenteric_T" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0" name="q_us_inferior_mesenteric_T" public_interface="out" units="m3"/>
+<variable initial_value="0" name="q_init_inferior_mesenteric_T" public_interface="out" units="m3"/>
+<variable initial_value="0" name="u_out_inferior_mesenteric_T" public_interface="out" units="J_per_m3"/>
+<variable initial_value="2072778133.7" name="R_T_internal_iliac_R_T" public_interface="out" units="Js_per_m6"/>
+<variable initial_value="1.3663322092e-10" name="C_T_internal_iliac_R_T" public_interface="out" units="m6_per_J"/>
+<variable initial_value="0" name="u_ext_internal_iliac_R_T" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0" name="q_us_internal_iliac_R_T" public_interface="out" units="m3"/>
+<variable initial_value="0" name="q_init_internal_iliac_R_T" public_interface="out" units="m3"/>
+<variable initial_value="0" name="u_out_internal_iliac_R_T" public_interface="out" units="J_per_m3"/>
+<variable initial_value="1713436087.6" name="R_T_profunda_femoris_R_T" public_interface="out" units="Js_per_m6"/>
+<variable initial_value="1.6528795833e-10" name="C_T_profunda_femoris_R_T" public_interface="out" units="m6_per_J"/>
+<variable initial_value="0" name="u_ext_profunda_femoris_R_T" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0" name="q_us_profunda_femoris_R_T" public_interface="out" units="m3"/>
+<variable initial_value="0" name="q_init_profunda_femoris_R_T" public_interface="out" units="m3"/>
+<variable initial_value="0" name="u_out_profunda_femoris_R_T" public_interface="out" units="J_per_m3"/>
+<variable initial_value="12262555203.7" name="R_T_anterior_tibial_R_T" public_interface="out" units="Js_per_m6"/>
+<variable initial_value="2.309554151e-11" name="C_T_anterior_tibial_R_T" public_interface="out" units="m6_per_J"/>
+<variable initial_value="0" name="u_ext_anterior_tibial_R_T" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0" name="q_us_anterior_tibial_R_T" public_interface="out" units="m3"/>
+<variable initial_value="0" name="q_init_anterior_tibial_R_T" public_interface="out" units="m3"/>
+<variable initial_value="0" name="u_out_anterior_tibial_R_T" public_interface="out" units="J_per_m3"/>
+<variable initial_value="10578184541.5" name="R_T_posterior_tibial_R_T" public_interface="out" units="Js_per_m6"/>
+<variable initial_value="2.677305842e-11" name="C_T_posterior_tibial_R_T" public_interface="out" units="m6_per_J"/>
+<variable initial_value="0" name="u_ext_posterior_tibial_R_T" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0" name="q_us_posterior_tibial_R_T" public_interface="out" units="m3"/>
+<variable initial_value="0" name="q_init_posterior_tibial_R_T" public_interface="out" units="m3"/>
+<variable initial_value="0" name="u_out_posterior_tibial_R_T" public_interface="out" units="J_per_m3"/>
+<variable initial_value="2078985890.9" name="R_T_internal_iliac_L_T" public_interface="out" units="Js_per_m6"/>
+<variable initial_value="1.3622524035e-10" name="C_T_internal_iliac_L_T" public_interface="out" units="m6_per_J"/>
+<variable initial_value="0" name="u_ext_internal_iliac_L_T" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0" name="q_us_internal_iliac_L_T" public_interface="out" units="m3"/>
+<variable initial_value="0" name="q_init_internal_iliac_L_T" public_interface="out" units="m3"/>
+<variable initial_value="0" name="u_out_internal_iliac_L_T" public_interface="out" units="J_per_m3"/>
+<variable initial_value="1714348117.5" name="R_T_profunda_femoris_L_T" public_interface="out" units="Js_per_m6"/>
+<variable initial_value="1.652e-10" name="C_T_profunda_femoris_L_T" public_interface="out" units="m6_per_J"/>
+<variable initial_value="0" name="u_ext_profunda_femoris_L_T" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0" name="q_us_profunda_femoris_L_T" public_interface="out" units="m3"/>
+<variable initial_value="0" name="q_init_profunda_femoris_L_T" public_interface="out" units="m3"/>
+<variable initial_value="0" name="u_out_profunda_femoris_L_T" public_interface="out" units="J_per_m3"/>
+<variable initial_value="12266412645.1" name="R_T_anterior_tibial_L_T" public_interface="out" units="Js_per_m6"/>
+<variable initial_value="2.308827861e-11" name="C_T_anterior_tibial_L_T" public_interface="out" units="m6_per_J"/>
+<variable initial_value="0" name="u_ext_anterior_tibial_L_T" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0" name="q_us_anterior_tibial_L_T" public_interface="out" units="m3"/>
+<variable initial_value="0" name="q_init_anterior_tibial_L_T" public_interface="out" units="m3"/>
+<variable initial_value="0" name="u_out_anterior_tibial_L_T" public_interface="out" units="J_per_m3"/>
+<variable initial_value="10582795134.9" name="R_T_posterior_tibial_L_T" public_interface="out" units="Js_per_m6"/>
+<variable initial_value="2.676139423e-11" name="C_T_posterior_tibial_L_T" public_interface="out" units="m6_per_J"/>
+<variable initial_value="0" name="u_ext_posterior_tibial_L_T" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0" name="q_us_posterior_tibial_L_T" public_interface="out" units="m3"/>
+<variable initial_value="0" name="q_init_posterior_tibial_L_T" public_interface="out" units="m3"/>
+<variable initial_value="0" name="u_out_posterior_tibial_L_T" public_interface="out" units="J_per_m3"/>
+<variable initial_value="225000" name="E_K_tube_aortic_arch_I" public_interface="out" units="J_per_m3"/>
+<variable initial_value="30000" name="K_m_K_tube_aortic_arch_I" public_interface="out" units="Js_per_m3"/>
+<variable initial_value="225000" name="E_K_tube_brachiocephalic_trunk" public_interface="out" units="J_per_m3"/>
+<variable initial_value="30000" name="K_m_K_tube_brachiocephalic_trunk" public_interface="out" units="Js_per_m3"/>
+<variable initial_value="225000" name="E_K_tube_aortic_arch_II" public_interface="out" units="J_per_m3"/>
+<variable initial_value="30000" name="K_m_K_tube_aortic_arch_II" public_interface="out" units="Js_per_m3"/>
+<variable initial_value="225000" name="E_K_tube_subclavian_R_I" public_interface="out" units="J_per_m3"/>
+<variable initial_value="30000" name="K_m_K_tube_subclavian_R_I" public_interface="out" units="Js_per_m3"/>
+<variable initial_value="225000" name="E_K_tube_common_carotid_R" public_interface="out" units="J_per_m3"/>
+<variable initial_value="30000" name="K_m_K_tube_common_carotid_R" public_interface="out" units="Js_per_m3"/>
+<variable initial_value="225000" name="E_K_tube_vertebral_R" public_interface="out" units="J_per_m3"/>
+<variable initial_value="30000" name="K_m_K_tube_vertebral_R" public_interface="out" units="Js_per_m3"/>
+<variable initial_value="225000" name="E_K_tube_subclavian_R_II" public_interface="out" units="J_per_m3"/>
+<variable initial_value="30000" name="K_m_K_tube_subclavian_R_II" public_interface="out" units="Js_per_m3"/>
+<variable initial_value="225000" name="E_K_tube_axillary_R" public_interface="out" units="J_per_m3"/>
+<variable initial_value="30000" name="K_m_K_tube_axillary_R" public_interface="out" units="Js_per_m3"/>
+<variable initial_value="225000" name="E_K_tube_brachial_R" public_interface="out" units="J_per_m3"/>
+<variable initial_value="30000" name="K_m_K_tube_brachial_R" public_interface="out" units="Js_per_m3"/>
+<variable initial_value="225000" name="E_K_tube_radial_R" public_interface="out" units="J_per_m3"/>
+<variable initial_value="30000" name="K_m_K_tube_radial_R" public_interface="out" units="Js_per_m3"/>
+<variable initial_value="225000" name="E_K_tube_ulnar_R_I" public_interface="out" units="J_per_m3"/>
+<variable initial_value="30000" name="K_m_K_tube_ulnar_R_I" public_interface="out" units="Js_per_m3"/>
+<variable initial_value="225000" name="E_K_tube_common_interosseous_R" public_interface="out" units="J_per_m3"/>
+<variable initial_value="30000" name="K_m_K_tube_common_interosseous_R" public_interface="out" units="Js_per_m3"/>
+<variable initial_value="225000" name="E_K_tube_ulnar_R_II" public_interface="out" units="J_per_m3"/>
+<variable initial_value="30000" name="K_m_K_tube_ulnar_R_II" public_interface="out" units="Js_per_m3"/>
+<variable initial_value="225000" name="E_K_tube_posterior_interosseous_R" public_interface="out" units="J_per_m3"/>
+<variable initial_value="30000" name="K_m_K_tube_posterior_interosseous_R" public_interface="out" units="Js_per_m3"/>
+<variable initial_value="225000" name="E_K_tube_external_carotid_R" public_interface="out" units="J_per_m3"/>
+<variable initial_value="30000" name="K_m_K_tube_external_carotid_R" public_interface="out" units="Js_per_m3"/>
+<variable initial_value="225000" name="E_K_tube_internal_carotid_R" public_interface="out" units="J_per_m3"/>
+<variable initial_value="30000" name="K_m_K_tube_internal_carotid_R" public_interface="out" units="Js_per_m3"/>
+<variable initial_value="225000" name="E_K_tube_common_carotid_L" public_interface="out" units="J_per_m3"/>
+<variable initial_value="30000" name="K_m_K_tube_common_carotid_L" public_interface="out" units="Js_per_m3"/>
+<variable initial_value="225000" name="E_K_tube_aortic_arch_III" public_interface="out" units="J_per_m3"/>
+<variable initial_value="30000" name="K_m_K_tube_aortic_arch_III" public_interface="out" units="Js_per_m3"/>
+<variable initial_value="225000" name="E_K_tube_external_carotid_L" public_interface="out" units="J_per_m3"/>
+<variable initial_value="30000" name="K_m_K_tube_external_carotid_L" public_interface="out" units="Js_per_m3"/>
+<variable initial_value="225000" name="E_K_tube_internal_carotid_L" public_interface="out" units="J_per_m3"/>
+<variable initial_value="30000" name="K_m_K_tube_internal_carotid_L" public_interface="out" units="Js_per_m3"/>
+<variable initial_value="225000" name="E_K_tube_subclavian_L_I" public_interface="out" units="J_per_m3"/>
+<variable initial_value="30000" name="K_m_K_tube_subclavian_L_I" public_interface="out" units="Js_per_m3"/>
+<variable initial_value="225000" name="E_K_tube_aortic_arch_IV" public_interface="out" units="J_per_m3"/>
+<variable initial_value="30000" name="K_m_K_tube_aortic_arch_IV" public_interface="out" units="Js_per_m3"/>
+<variable initial_value="225000" name="E_K_tube_vertebral_L" public_interface="out" units="J_per_m3"/>
+<variable initial_value="30000" name="K_m_K_tube_vertebral_L" public_interface="out" units="Js_per_m3"/>
+<variable initial_value="225000" name="E_K_tube_subclavian_L_II" public_interface="out" units="J_per_m3"/>
+<variable initial_value="30000" name="K_m_K_tube_subclavian_L_II" public_interface="out" units="Js_per_m3"/>
+<variable initial_value="225000" name="E_K_tube_axillary_L" public_interface="out" units="J_per_m3"/>
+<variable initial_value="30000" name="K_m_K_tube_axillary_L" public_interface="out" units="Js_per_m3"/>
+<variable initial_value="225000" name="E_K_tube_brachial_L" public_interface="out" units="J_per_m3"/>
+<variable initial_value="30000" name="K_m_K_tube_brachial_L" public_interface="out" units="Js_per_m3"/>
+<variable initial_value="225000" name="E_K_tube_radial_L" public_interface="out" units="J_per_m3"/>
+<variable initial_value="30000" name="K_m_K_tube_radial_L" public_interface="out" units="Js_per_m3"/>
+<variable initial_value="225000" name="E_K_tube_ulnar_L_I" public_interface="out" units="J_per_m3"/>
+<variable initial_value="30000" name="K_m_K_tube_ulnar_L_I" public_interface="out" units="Js_per_m3"/>
+<variable initial_value="225000" name="E_K_tube_common_interosseous_L" public_interface="out" units="J_per_m3"/>
+<variable initial_value="30000" name="K_m_K_tube_common_interosseous_L" public_interface="out" units="Js_per_m3"/>
+<variable initial_value="225000" name="E_K_tube_ulnar_L_II" public_interface="out" units="J_per_m3"/>
+<variable initial_value="30000" name="K_m_K_tube_ulnar_L_II" public_interface="out" units="Js_per_m3"/>
+<variable initial_value="225000" name="E_K_tube_posterior_interosseous_L" public_interface="out" units="J_per_m3"/>
+<variable initial_value="30000" name="K_m_K_tube_posterior_interosseous_L" public_interface="out" units="Js_per_m3"/>
+<variable initial_value="225000" name="E_K_tube_thoracic_aorta_I" public_interface="out" units="J_per_m3"/>
+<variable initial_value="30000" name="K_m_K_tube_thoracic_aorta_I" public_interface="out" units="Js_per_m3"/>
+<variable initial_value="225000" name="E_K_tube_posterior_intercostal_T6_R" public_interface="out" units="J_per_m3"/>
+<variable initial_value="30000" name="K_m_K_tube_posterior_intercostal_T6_R" public_interface="out" units="Js_per_m3"/>
+<variable initial_value="225000" name="E_K_tube_thoracic_aorta_II" public_interface="out" units="J_per_m3"/>
+<variable initial_value="30000" name="K_m_K_tube_thoracic_aorta_II" public_interface="out" units="Js_per_m3"/>
+<variable initial_value="225000" name="E_K_tube_posterior_intercostal_T6_L" public_interface="out" units="J_per_m3"/>
+<variable initial_value="30000" name="K_m_K_tube_posterior_intercostal_T6_L" public_interface="out" units="Js_per_m3"/>
+<variable initial_value="225000" name="E_K_tube_thoracic_aorta_III" public_interface="out" units="J_per_m3"/>
+<variable initial_value="30000" name="K_m_K_tube_thoracic_aorta_III" public_interface="out" units="Js_per_m3"/>
+<variable initial_value="225000" name="E_K_tube_posterior_intercostal_T7_R" public_interface="out" units="J_per_m3"/>
+<variable initial_value="30000" name="K_m_K_tube_posterior_intercostal_T7_R" public_interface="out" units="Js_per_m3"/>
+<variable initial_value="225000" name="E_K_tube_thoracic_aorta_IV" public_interface="out" units="J_per_m3"/>
+<variable initial_value="30000" name="K_m_K_tube_thoracic_aorta_IV" public_interface="out" units="Js_per_m3"/>
+<variable initial_value="225000" name="E_K_tube_posterior_intercostal_T7_L" public_interface="out" units="J_per_m3"/>
+<variable initial_value="30000" name="K_m_K_tube_posterior_intercostal_T7_L" public_interface="out" units="Js_per_m3"/>
+<variable initial_value="225000" name="E_K_tube_thoracic_aorta_V" public_interface="out" units="J_per_m3"/>
+<variable initial_value="30000" name="K_m_K_tube_thoracic_aorta_V" public_interface="out" units="Js_per_m3"/>
+<variable initial_value="225000" name="E_K_tube_thoracic_aorta_VI" public_interface="out" units="J_per_m3"/>
+<variable initial_value="30000" name="K_m_K_tube_thoracic_aorta_VI" public_interface="out" units="Js_per_m3"/>
+<variable initial_value="225000" name="E_K_tube_celiac_trunk" public_interface="out" units="J_per_m3"/>
+<variable initial_value="30000" name="K_m_K_tube_celiac_trunk" public_interface="out" units="Js_per_m3"/>
+<variable initial_value="225000" name="E_K_tube_abdominal_aorta_I" public_interface="out" units="J_per_m3"/>
+<variable initial_value="30000" name="K_m_K_tube_abdominal_aorta_I" public_interface="out" units="Js_per_m3"/>
+<variable initial_value="225000" name="E_K_tube_common_hepatic" public_interface="out" units="J_per_m3"/>
+<variable initial_value="30000" name="K_m_K_tube_common_hepatic" public_interface="out" units="Js_per_m3"/>
+<variable initial_value="225000" name="E_K_tube_splenic_I" public_interface="out" units="J_per_m3"/>
+<variable initial_value="30000" name="K_m_K_tube_splenic_I" public_interface="out" units="Js_per_m3"/>
+<variable initial_value="225000" name="E_K_tube_left_gastric" public_interface="out" units="J_per_m3"/>
+<variable initial_value="30000" name="K_m_K_tube_left_gastric" public_interface="out" units="Js_per_m3"/>
+<variable initial_value="225000" name="E_K_tube_splenic_II" public_interface="out" units="J_per_m3"/>
+<variable initial_value="30000" name="K_m_K_tube_splenic_II" public_interface="out" units="Js_per_m3"/>
+<variable initial_value="225000" name="E_K_tube_superior_mesenteric" public_interface="out" units="J_per_m3"/>
+<variable initial_value="30000" name="K_m_K_tube_superior_mesenteric" public_interface="out" units="Js_per_m3"/>
+<variable initial_value="225000" name="E_K_tube_abdominal_aorta_II" public_interface="out" units="J_per_m3"/>
+<variable initial_value="30000" name="K_m_K_tube_abdominal_aorta_II" public_interface="out" units="Js_per_m3"/>
+<variable initial_value="225000" name="E_K_tube_renal_L" public_interface="out" units="J_per_m3"/>
+<variable initial_value="30000" name="K_m_K_tube_renal_L" public_interface="out" units="Js_per_m3"/>
+<variable initial_value="225000" name="E_K_tube_abdominal_aorta_III" public_interface="out" units="J_per_m3"/>
+<variable initial_value="30000" name="K_m_K_tube_abdominal_aorta_III" public_interface="out" units="Js_per_m3"/>
+<variable initial_value="225000" name="E_K_tube_renal_R" public_interface="out" units="J_per_m3"/>
+<variable initial_value="30000" name="K_m_K_tube_renal_R" public_interface="out" units="Js_per_m3"/>
+<variable initial_value="225000" name="E_K_tube_abdominal_aorta_IV" public_interface="out" units="J_per_m3"/>
+<variable initial_value="30000" name="K_m_K_tube_abdominal_aorta_IV" public_interface="out" units="Js_per_m3"/>
+<variable initial_value="225000" name="E_K_tube_inferior_mesenteric" public_interface="out" units="J_per_m3"/>
+<variable initial_value="30000" name="K_m_K_tube_inferior_mesenteric" public_interface="out" units="Js_per_m3"/>
+<variable initial_value="225000" name="E_K_tube_abdominal_aorta_V" public_interface="out" units="J_per_m3"/>
+<variable initial_value="30000" name="K_m_K_tube_abdominal_aorta_V" public_interface="out" units="Js_per_m3"/>
+<variable initial_value="225000" name="E_K_tube_common_iliac_R" public_interface="out" units="J_per_m3"/>
+<variable initial_value="30000" name="K_m_K_tube_common_iliac_R" public_interface="out" units="Js_per_m3"/>
+<variable initial_value="225000" name="E_K_tube_common_iliac_L" public_interface="out" units="J_per_m3"/>
+<variable initial_value="30000" name="K_m_K_tube_common_iliac_L" public_interface="out" units="Js_per_m3"/>
+<variable initial_value="225000" name="E_K_tube_external_iliac_R" public_interface="out" units="J_per_m3"/>
+<variable initial_value="30000" name="K_m_K_tube_external_iliac_R" public_interface="out" units="Js_per_m3"/>
+<variable initial_value="225000" name="E_K_tube_internal_iliac_R" public_interface="out" units="J_per_m3"/>
+<variable initial_value="30000" name="K_m_K_tube_internal_iliac_R" public_interface="out" units="Js_per_m3"/>
+<variable initial_value="225000" name="E_K_tube_femoral_R_I" public_interface="out" units="J_per_m3"/>
+<variable initial_value="30000" name="K_m_K_tube_femoral_R_I" public_interface="out" units="Js_per_m3"/>
+<variable initial_value="225000" name="E_K_tube_profunda_femoris_R" public_interface="out" units="J_per_m3"/>
+<variable initial_value="30000" name="K_m_K_tube_profunda_femoris_R" public_interface="out" units="Js_per_m3"/>
+<variable initial_value="225000" name="E_K_tube_femoral_R_II" public_interface="out" units="J_per_m3"/>
+<variable initial_value="30000" name="K_m_K_tube_femoral_R_II" public_interface="out" units="Js_per_m3"/>
+<variable initial_value="225000" name="E_K_tube_popliteal_R_I" public_interface="out" units="J_per_m3"/>
+<variable initial_value="30000" name="K_m_K_tube_popliteal_R_I" public_interface="out" units="Js_per_m3"/>
+<variable initial_value="225000" name="E_K_tube_anterior_tibial_R" public_interface="out" units="J_per_m3"/>
+<variable initial_value="30000" name="K_m_K_tube_anterior_tibial_R" public_interface="out" units="Js_per_m3"/>
+<variable initial_value="225000" name="E_K_tube_popliteal_R_II" public_interface="out" units="J_per_m3"/>
+<variable initial_value="30000" name="K_m_K_tube_popliteal_R_II" public_interface="out" units="Js_per_m3"/>
+<variable initial_value="225000" name="E_K_tube_tibiofibular_trunk_R" public_interface="out" units="J_per_m3"/>
+<variable initial_value="30000" name="K_m_K_tube_tibiofibular_trunk_R" public_interface="out" units="Js_per_m3"/>
+<variable initial_value="225000" name="E_K_tube_posterior_tibial_R" public_interface="out" units="J_per_m3"/>
+<variable initial_value="30000" name="K_m_K_tube_posterior_tibial_R" public_interface="out" units="Js_per_m3"/>
+<variable initial_value="225000" name="E_K_tube_external_iliac_L" public_interface="out" units="J_per_m3"/>
+<variable initial_value="30000" name="K_m_K_tube_external_iliac_L" public_interface="out" units="Js_per_m3"/>
+<variable initial_value="225000" name="E_K_tube_internal_iliac_L" public_interface="out" units="J_per_m3"/>
+<variable initial_value="30000" name="K_m_K_tube_internal_iliac_L" public_interface="out" units="Js_per_m3"/>
+<variable initial_value="225000" name="E_K_tube_femoral_L_I" public_interface="out" units="J_per_m3"/>
+<variable initial_value="30000" name="K_m_K_tube_femoral_L_I" public_interface="out" units="Js_per_m3"/>
+<variable initial_value="225000" name="E_K_tube_profunda_femoris_L" public_interface="out" units="J_per_m3"/>
+<variable initial_value="30000" name="K_m_K_tube_profunda_femoris_L" public_interface="out" units="Js_per_m3"/>
+<variable initial_value="225000" name="E_K_tube_femoral_L_II" public_interface="out" units="J_per_m3"/>
+<variable initial_value="30000" name="K_m_K_tube_femoral_L_II" public_interface="out" units="Js_per_m3"/>
+<variable initial_value="225000" name="E_K_tube_popliteal_L_I" public_interface="out" units="J_per_m3"/>
+<variable initial_value="30000" name="K_m_K_tube_popliteal_L_I" public_interface="out" units="Js_per_m3"/>
+<variable initial_value="225000" name="E_K_tube_anterior_tibial_L" public_interface="out" units="J_per_m3"/>
+<variable initial_value="30000" name="K_m_K_tube_anterior_tibial_L" public_interface="out" units="Js_per_m3"/>
+<variable initial_value="225000" name="E_K_tube_popliteal_L_II" public_interface="out" units="J_per_m3"/>
+<variable initial_value="30000" name="K_m_K_tube_popliteal_L_II" public_interface="out" units="Js_per_m3"/>
+<variable initial_value="225000" name="E_K_tube_tibiofibular_trunk_L" public_interface="out" units="J_per_m3"/>
+<variable initial_value="30000" name="K_m_K_tube_tibiofibular_trunk_L" public_interface="out" units="Js_per_m3"/>
+<variable initial_value="225000" name="E_K_tube_posterior_tibial_L" public_interface="out" units="J_per_m3"/>
+<variable initial_value="30000" name="K_m_K_tube_posterior_tibial_L" public_interface="out" units="Js_per_m3"/>
+</component>
+</model>

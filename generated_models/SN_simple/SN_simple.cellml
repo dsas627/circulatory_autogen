@@ -1,0 +1,1209 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!--#This model was automatically generated with the circulatory_autogen software-->
+<!--# https://github.com/FinbarArgus/circulatory_autogen -->
+<model name="CardiovascularSystem" xmlns="http://www.cellml.org/cellml/1.1#" xmlns:cellml="http://www.cellml.org/cellml/1.1#" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <import xlink:href="SN_simple_parameters.cellml">
+        <component component_ref="parameters" name="parameters"/>
+        <component component_ref="parameters_global" name="parameters_global"/>
+    </import>
+    <component name="environment">
+        <variable name="time" public_interface="out" units="second"/>
+    </component>
+    <!--#STARTGENBELOW-->
+<!--&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;units&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;//-->
+<import xlink:href="SN_simple_units.cellml">
+    <units name="s2" units_ref="s2"/>
+    <units name="Hz" units_ref="Hz"/>
+    <units name="millis" units_ref="millis"/>
+    <units name="per_millis" units_ref="per_millis"/>
+    <units name="mm" units_ref="mm"/>
+    <units name="m2" units_ref="m2"/>
+    <units name="mm2" units_ref="mm2"/>
+    <units name="m3" units_ref="m3"/>
+    <units name="m4" units_ref="m4"/>
+    <units name="mm3" units_ref="mm3"/>
+    <units name="J_per_s" units_ref="J_per_s"/>
+    <units name="mol_per_s" units_ref="mol_per_s"/>
+    <units name="mmol_per_s" units_ref="mmol_per_s"/>
+    <units name="umol_per_s" units_ref="umol_per_s"/>
+    <units name="C_per_s" units_ref="C_per_s"/>
+    <units name="mC_per_s" units_ref="mC_per_s"/>
+    <units name="uC_per_s" units_ref="uC_per_s"/>
+    <units name="nC_per_s" units_ref="nC_per_s"/>
+    <units name="Cm_per_millis" units_ref="Cm_per_millis"/>
+    <units name="m_per_s" units_ref="m_per_s"/>
+    <units name="mm_per_s" units_ref="mm_per_s"/>
+    <units name="um_per_s" units_ref="um_per_s"/>
+    <units name="rad_per_s" units_ref="rad_per_s"/>
+    <units name="m3_per_s" units_ref="m3_per_s"/>
+    <units name="mL" units_ref="mL"/>
+    <units name="per_milliL_s" units_ref="per_milliL_s"/>
+    <units name="s_per_m3" units_ref="s_per_m3"/>
+    <units name="s_per_milliV" units_ref="s_per_milliV"/>
+    <units name="s_per_millis" units_ref="s_per_millis"/>
+    <units name="millis_per_s" units_ref="millis_per_s"/>
+    <units name="mm3_per_s" units_ref="mm3_per_s"/>
+    <units name="l_per_s" units_ref="l_per_s"/>
+    <units name="per_ml_s" units_ref="per_ml_s"/>
+    <units name="per_m3_s" units_ref="per_m3_s"/>
+    <units name="J_per_mol" units_ref="J_per_mol"/>
+    <units name="J_per_kmol_K" units_ref="J_per_kmol_K"/>
+    <units name="J_per_M" units_ref="J_per_M"/>
+    <units name="J_per_C" units_ref="J_per_C"/>
+    <units name="J_per_C_s" units_ref="J_per_C_s"/>
+    <units name="J_per_m" units_ref="J_per_m"/>
+    <units name="J_per_m3" units_ref="J_per_m3"/>
+    <units name="mmHg" units_ref="mmHg"/>
+    <units name="per_mmHg" units_ref="per_mmHg"/>
+    <units name="mmHg2" units_ref="mmHg2"/>
+    <units name="Pa_per_mmHg" units_ref="Pa_per_mmHg"/>
+    <units name="m3_per_J" units_ref="m3_per_J"/>
+    <units name="J_per_m3s" units_ref="J_per_m3s"/>
+    <units name="m3_per_Js" units_ref="m3_per_Js"/>
+    <units name="J2_per_m6" units_ref="J2_per_m6"/>
+    <units name="Js2_per_C2" units_ref="Js2_per_C2"/>
+    <units name="Js2_per_mol2" units_ref="Js2_per_mol2"/>
+    <units name="Js_per_mol2" units_ref="Js_per_mol2"/>
+    <units name="Js_per_C2" units_ref="Js_per_C2"/>
+    <units name="J_per_mol2" units_ref="J_per_mol2"/>
+    <units name="C2_per_J_s" units_ref="C2_per_J_s"/>
+    <units name="J_per_C2" units_ref="J_per_C2"/>
+    <units name="C2_per_J" units_ref="C2_per_J"/>
+    <units name="mol_per_m3" units_ref="mol_per_m3"/>
+    <units name="M" units_ref="M"/>
+    <units name="mM" units_ref="mM"/>
+    <units name="milliM" units_ref="milliM"/>
+    <units name="uM" units_ref="uM"/>
+    <units name="kg_per_m3" units_ref="kg_per_m3"/>
+    <units name="m3_per_kg" units_ref="m3_per_kg"/>
+    <units name="per_m3" units_ref="per_m3"/>
+    <units name="mol_per_m2_s" units_ref="mol_per_m2_s"/>
+    <units name="mM_m_per_s" units_ref="mM_m_per_s"/>
+    <units name="J_per_m2_s" units_ref="J_per_m2_s"/>
+    <units name="Js_per_m4" units_ref="Js_per_m4"/>
+    <units name="mM_per_s" units_ref="mM_per_s"/>
+    <units name="per_s" units_ref="per_s"/>
+    <units name="per_s2" units_ref="per_s2"/>
+    <units name="per_mM_s" units_ref="per_mM_s"/>
+    <units name="m6_per_mol2_s" units_ref="m6_per_mol2_s"/>
+    <units name="m3_per_mol" units_ref="m3_per_mol"/>
+    <units name="mol_per_m3_s" units_ref="mol_per_m3_s"/>
+    <units name="per_mol" units_ref="per_mol"/>
+    <units name="J_per_mol_K" units_ref="J_per_mol_K"/>
+    <units name="m2_per_s" units_ref="m2_per_s"/>
+    <units name="per_C" units_ref="per_C"/>
+    <units name="per_m" units_ref="per_m"/>
+    <units name="per_mM" units_ref="per_mM"/>
+    <units name="Js2_per_m2" units_ref="Js2_per_m2"/>
+    <units name="Js_per_m2" units_ref="Js_per_m2"/>
+    <units name="J_per_m2" units_ref="J_per_m2"/>
+    <units name="m_per_s2" units_ref="m_per_s2"/>
+    <units name="rad_per_s2" units_ref="rad_per_s2"/>
+    <units name="Js_per_m3" units_ref="Js_per_m3"/>
+    <units name="Js2_per_m5" units_ref="Js2_per_m5"/>
+    <units name="m5_per_Js2" units_ref="m5_per_Js2"/>
+    <units name="J_per_m6" units_ref="J_per_m6"/>
+    <units name="m6_per_J" units_ref="m6_per_J"/>
+    <units name="m6_per_Js" units_ref="m6_per_Js"/>
+    <units name="mm6_per_J" units_ref="mm6_per_J"/>
+    <units name="Js2_per_m9" units_ref="Js2_per_m9"/>
+    <units name="m6s_per_J" units_ref="m6s_per_J"/>
+    <units name="Js_per_m6" units_ref="Js_per_m6"/>
+    <units name="Js2_per_m6" units_ref="Js2_per_m6"/>
+    <units name="m3_per_s2" units_ref="m3_per_s2"/>
+    <units name="mm3_per_s2" units_ref="mm3_per_s2"/>
+    <units name="per_mm3" units_ref="per_mm3"/>
+    <units name="UnitValve" units_ref="UnitValve"/>
+    <units name="J_per_m9" units_ref="J_per_m9"/>
+    <units name="milliV" units_ref="milliV"/>
+    <units name="per_milliV" units_ref="per_milliV"/>
+    <units name="millis_per_milliV" units_ref="millis_per_milliV"/>
+    <units name="per_V" units_ref="per_V"/>
+    <units name="milliV_per_V" units_ref="milliV_per_V"/>
+    <units name="V_per_milliV" units_ref="V_per_milliV"/>
+    <units name="V_per_s" units_ref="V_per_s"/>
+    <units name="milliV_per_kiloV" units_ref="milliV_per_kiloV"/>
+    <units name="V2" units_ref="V2"/>
+    <units name="milliV2" units_ref="milliV2"/>
+    <units name="millimol" units_ref="millimol"/>
+    <units name="millimolar" units_ref="millimolar"/>
+    <units name="per_millimolar" units_ref="per_millimolar"/>
+    <units name="per_millimolar_s" units_ref="per_millimolar_s"/>
+    <units name="per_millimolar2_s" units_ref="per_millimolar2_s"/>
+    <units name="millimolar_per_s" units_ref="millimolar_per_s"/>
+    <units name="millimolar_per_megamolar" units_ref="millimolar_per_megamolar"/>
+    <units name="per_millimol_milliS" units_ref="per_millimol_milliS"/>
+    <units name="per_millimol_millis" units_ref="per_millimol_millis"/>
+    <units name="per_millimol_s" units_ref="per_millimol_s"/>
+    <units name="microm" units_ref="microm"/>
+    <units name="microS" units_ref="microS"/>
+    <units name="microm3" units_ref="microm3"/>
+    <units name="m3_per_microm3" units_ref="m3_per_microm3"/>
+    <units name="picoF" units_ref="picoF"/>
+    <units name="S_per_F" units_ref="S_per_F"/>
+    <units name="m3_per_Fs" units_ref="m3_per_Fs"/>
+    <units name="A_per_F" units_ref="A_per_F"/>
+    <units name="megaOhm" units_ref="megaOhm"/>
+    <units name="nanoA" units_ref="nanoA"/>
+    <units name="nanoA_per_milliA" units_ref="nanoA_per_milliA"/>
+    <units name="nanoA_per_A" units_ref="nanoA_per_A"/>
+    <units name="A_per_nanoA" units_ref="A_per_nanoA"/>
+    <units name="C_per_mol" units_ref="C_per_mol"/>
+    <units name="m3_per_J_millis" units_ref="m3_per_J_millis"/>
+    <units name="m3_per_mol_millis" units_ref="m3_per_mol_millis"/>
+    <units name="m3_per_millimol_s" units_ref="m3_per_millimol_s"/>
+    <units name="millimol_per_m3" units_ref="millimol_per_m3"/>
+    <units name="mmol_per_l" units_ref="mmol_per_l"/>
+    <units name="l_per_mmol" units_ref="l_per_mmol"/>
+    <units name="l_per_mmol_per_s" units_ref="l_per_mmol_per_s"/>
+    <units name="l2_per_mmol_per_s" units_ref="l2_per_mmol_per_s"/>
+    <units name="mmol_per_s2" units_ref="mmol_per_s2"/>
+    <units name="mmol" units_ref="mmol"/>
+    <units name="mmol_per_l_per_s" units_ref="mmol_per_l_per_s"/>
+    <units name="Hz2" units_ref="Hz2"/>
+    <units name="cm" units_ref="cm"/>
+    <units name="J_per_m4_s" units_ref="J_per_m4_s"/>
+    <units name="m3_per_mol_per_sec" units_ref="m3_per_mol_per_sec"/>
+    <units name="mol_per_m3_per_kPa" units_ref="mol_per_m3_per_kPa"/>
+    <units name="mol_per_m3_per_Pa" units_ref="mol_per_m3_per_Pa"/>
+    <units name="m3_per_mol_per_s" units_ref="m3_per_mol_per_s"/>
+    <units name="mol_per_m3_per_s" units_ref="mol_per_m3_per_s"/>
+    <units name="dim" units_ref="dim"/>
+    <units name="fmol" units_ref="fmol"/>
+    <units name="per_fmol" units_ref="per_fmol"/>
+    <units name="nJ_per_s" units_ref="nJ_per_s"/>
+    <units name="fmol_per_s" units_ref="fmol_per_s"/>
+    <units name="nC_per_fmol" units_ref="nC_per_fmol"/>
+    <units name="nC" units_ref="nC"/>
+    <units name="nJ_per_fmol" units_ref="nJ_per_fmol"/>
+    <units name="nJ_per_nC" units_ref="nJ_per_nC"/>
+    <units name="fC" units_ref="fC"/>
+    <units name="fF" units_ref="fF"/>
+    <units name="volt_per_sec" units_ref="volt_per_sec"/>
+    <units name="J_per_K_per_mol" units_ref="J_per_K_per_mol"/>
+    <units name="nS" units_ref="nS"/>
+    <units name="nSmV" units_ref="nSmV"/>
+    <units name="per_ms" units_ref="per_ms"/>
+    <units name="mM4" units_ref="mM4"/>
+    <units name="mM_per_ms" units_ref="mM_per_ms"/>
+    <units name="mMms" units_ref="mMms"/>
+    <units name="per_mMms" units_ref="per_mMms"/>
+    <units name="molar" units_ref="molar"/>
+    <units name="micromolar" units_ref="micromolar"/>
+    <units name="nanomolar" units_ref="nanomolar"/>
+    <units name="ms" units_ref="ms"/>
+    <units name="m_cubed" units_ref="m_cubed"/>
+    <units name="mV" units_ref="mV"/>
+    <units name="m_cubed_per_second" units_ref="m_cubed_per_second"/>
+    <units name="micromolar_m_cubed" units_ref="micromolar_m_cubed"/>
+    <units name="C" units_ref="C"/>
+    <units name="C_per_millimol" units_ref="C_per_millimol"/>
+    <units name="picoA" units_ref="picoA"/>
+    <units name="picoA_per_picoFarad" units_ref="picoA_per_picoFarad"/>
+    <units name="microL" units_ref="microL"/>
+    <units name="picoFarad" units_ref="picoFarad"/>
+    <units name="cm3_per_second" units_ref="cm3_per_second"/>
+    <units name="um3_per_second" units_ref="um3_per_second"/>
+    <units name="m3mM" units_ref="m3mM"/>
+    <units name="ms2" units_ref="ms2"/>
+    <units name="nM3_per_ps" units_ref="nM3_per_ps"/>
+    <units name="per_s_squared_m_cubed" units_ref="per_s_squared_m_cubed"/>
+    <units name="per_meters_cubed" units_ref="per_meters_cubed"/>
+    <units name="umeter3" units_ref="umeter3"/>
+    <units name="mill1" units_ref="mill1"/>
+    <units name="picoV" units_ref="picoV"/>
+    <units name="pic0" units_ref="pic0"/>
+    <units name="nanoV" units_ref="nanoV"/>
+    <units name="nan0" units_ref="nan0"/>
+    <units name="kPa" units_ref="kPa"/>
+    <units name="L_per_s" units_ref="L_per_s"/>
+    <units name="L_per_s_per_kPa" units_ref="L_per_s_per_kPa"/>
+    <units name="kPa_per_L" units_ref="kPa_per_L"/>
+    <units name="L_per_kPa" units_ref="L_per_kPa"/>
+    <units name="kPa_s_per_L" units_ref="kPa_s_per_L"/>
+</import>
+<!--&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;imports&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;//-->
+<import xlink:href="SN_simple_modules.cellml">
+    <component component_ref="SN_soma" name="soma_SN_module"/>
+</import>
+<import xlink:href="SN_simple_modules.cellml">
+    <component component_ref="SN_axon" name="axon_SN_module"/>
+</import>
+<import xlink:href="SN_simple_modules.cellml">
+    <component component_ref="SN_varicosity" name="var_SN_module"/>
+</import>
+<!--&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;vessel mappings&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;//-->
+<connection>
+   <map_components component_1="soma_SN_module" component_2="axon_SN_module"/>
+   <map_variables variable_1="V" variable_2="V_in"/>
+   <map_variables variable_1="I_out" variable_2="I"/>
+</connection>
+<connection>
+   <map_components component_1="axon_SN_module" component_2="var_SN_module"/>
+   <map_variables variable_1="V" variable_2="V"/>
+</connection>
+<!--&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;terminal venous connection&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;//-->
+<component name="terminal_venous_connection">
+</component>
+<!--&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;generic junction connection&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;//-->
+<component name="generic_junction_connection">
+</component>
+<!--&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;applying multiport operations for ports&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;//-->
+<component name="sum_blood_volume">
+</component>
+<!--&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;access_variables&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;//-->
+<component name="soma_SN">
+   <variable name="i_Na" public_interface="in" units="nanoA"/>
+   <variable name="i_Na1_6" public_interface="in" units="nanoA"/>
+   <variable name="i_Ca_L" public_interface="in" units="nanoA"/>
+   <variable name="i_Kv2" public_interface="in" units="nanoA"/>
+   <variable name="i_Kv1_5" public_interface="in" units="nanoA"/>
+   <variable name="i_Kv4_2" public_interface="in" units="nanoA"/>
+   <variable name="i_KCa_BK" public_interface="in" units="nanoA"/>
+   <variable name="i_KCa_SK" public_interface="in" units="nanoA"/>
+   <variable name="V" public_interface="in" units="milliV"/>
+   <variable name="V_rest_approx" public_interface="in" units="milliV"/>
+   <variable name="m" public_interface="in" units="dimensionless"/>
+   <variable name="m_inf" public_interface="in" units="dimensionless"/>
+   <variable name="m_init" public_interface="in" units="dimensionless"/>
+   <variable name="h" public_interface="in" units="dimensionless"/>
+   <variable name="h_inf" public_interface="in" units="dimensionless"/>
+   <variable name="h_init" public_interface="in" units="dimensionless"/>
+   <variable name="m_Na1_6" public_interface="in" units="dimensionless"/>
+   <variable name="m_Na1_6_inf" public_interface="in" units="dimensionless"/>
+   <variable name="m_Na1_6_init" public_interface="in" units="dimensionless"/>
+   <variable name="h_Na1_6" public_interface="in" units="dimensionless"/>
+   <variable name="h_Na1_6_inf" public_interface="in" units="dimensionless"/>
+   <variable name="h_Na1_6_init" public_interface="in" units="dimensionless"/>
+   <variable name="c" public_interface="in" units="dimensionless"/>
+   <variable name="c_inf" public_interface="in" units="dimensionless"/>
+   <variable name="c_init" public_interface="in" units="dimensionless"/>
+   <variable name="hc" public_interface="in" units="dimensionless"/>
+   <variable name="hc_inf" public_interface="in" units="dimensionless"/>
+   <variable name="hc_init" public_interface="in" units="dimensionless"/>
+   <variable name="m_Kv2" public_interface="in" units="dimensionless"/>
+   <variable name="m_Kv2_init" public_interface="in" units="dimensionless"/>
+   <variable name="m_Kv2_inf" public_interface="in" units="dimensionless"/>
+   <variable name="m_Kv1_5" public_interface="in" units="dimensionless"/>
+   <variable name="m_Kv1_5_init" public_interface="in" units="dimensionless"/>
+   <variable name="m_Kv1_5_inf" public_interface="in" units="dimensionless"/>
+   <variable name="h_Kv1_5" public_interface="in" units="dimensionless"/>
+   <variable name="h_Kv1_5_init" public_interface="in" units="dimensionless"/>
+   <variable name="h_Kv1_5_inf" public_interface="in" units="dimensionless"/>
+   <variable name="m_Kv4_2" public_interface="in" units="dimensionless"/>
+   <variable name="m_Kv4_2_init" public_interface="in" units="dimensionless"/>
+   <variable name="m_Kv4_2_inf" public_interface="in" units="dimensionless"/>
+   <variable name="h_Kv4_2" public_interface="in" units="dimensionless"/>
+   <variable name="h_Kv4_2_init" public_interface="in" units="dimensionless"/>
+   <variable name="h_Kv4_2_inf" public_interface="in" units="dimensionless"/>
+   <variable name="m_BK" public_interface="in" units="dimensionless"/>
+   <variable name="m_BK_inf" public_interface="in" units="dimensionless"/>
+   <variable name="m_BK_init" public_interface="in" units="dimensionless"/>
+   <variable name="h_BK" public_interface="in" units="dimensionless"/>
+   <variable name="h_BK_inf" public_interface="in" units="dimensionless"/>
+   <variable name="h_BK_init" public_interface="in" units="dimensionless"/>
+   <variable name="h_BK_min" public_interface="in" units="dimensionless"/>
+   <variable name="z_BK" public_interface="in" units="dimensionless"/>
+   <variable name="z_BK_inf" public_interface="in" units="dimensionless"/>
+   <variable name="z_BK_init" public_interface="in" units="dimensionless"/>
+   <variable name="z_BK_coeff" public_interface="in" units="millimolar"/>
+   <variable name="m_SK" public_interface="in" units="dimensionless"/>
+   <variable name="m_SK_inf" public_interface="in" units="dimensionless"/>
+   <variable name="m_SK_init" public_interface="in" units="dimensionless"/>
+   <variable name="V_mid_m" public_interface="in" units="milliV"/>
+   <variable name="V_mid_h" public_interface="in" units="milliV"/>
+   <variable name="V_den_m" public_interface="in" units="milliV"/>
+   <variable name="V_den_h" public_interface="in" units="milliV"/>
+   <variable name="V_mid_m_Na1_6" public_interface="in" units="milliV"/>
+   <variable name="V_mid_h_Na1_6" public_interface="in" units="milliV"/>
+   <variable name="V_den_m_Na1_6" public_interface="in" units="milliV"/>
+   <variable name="V_den_h_Na1_6" public_interface="in" units="milliV"/>
+   <variable name="V_mid_c" public_interface="in" units="milliV"/>
+   <variable name="V_den_c" public_interface="in" units="milliV"/>
+   <variable name="V_mid_hc" public_interface="in" units="milliV"/>
+   <variable name="V_den_hc" public_interface="in" units="milliV"/>
+   <variable name="V_mid_m_Kv1_5" public_interface="in" units="milliV"/>
+   <variable name="V_den_m_Kv1_5" public_interface="in" units="milliV"/>
+   <variable name="V_mid_h_Kv1_5" public_interface="in" units="milliV"/>
+   <variable name="V_den_h_Kv1_5" public_interface="in" units="milliV"/>
+   <variable name="V_mid_m_Kv4_2" public_interface="in" units="milliV"/>
+   <variable name="V_den_m_Kv4_2" public_interface="in" units="milliV"/>
+   <variable name="V_mid_h_Kv4_2" public_interface="in" units="milliV"/>
+   <variable name="V_den_h_Kv4_2" public_interface="in" units="milliV"/>
+   <variable name="V_mid_m_Kv2" public_interface="in" units="milliV"/>
+   <variable name="V_den_m_Kv2" public_interface="in" units="milliV"/>
+   <variable name="V_mid_w" public_interface="in" units="milliV"/>
+   <variable name="Delta_V_mid_w" public_interface="in" units="milliV"/>
+   <variable name="V_den_w" public_interface="in" units="milliV"/>
+   <variable name="V_mid_m_BK" public_interface="in" units="milliV"/>
+   <variable name="V_den_m_BK" public_interface="in" units="milliV"/>
+   <variable name="V_mid_h_BK" public_interface="in" units="milliV"/>
+   <variable name="V_den_h_BK" public_interface="in" units="milliV"/>
+   <variable name="k_thresh_m" public_interface="in" units="milliV"/>
+   <variable name="k_thresh_h" public_interface="in" units="milliV"/>
+   <variable name="tau_m" public_interface="in" units="millis"/>
+   <variable name="tau_h" public_interface="in" units="millis"/>
+   <variable name="tau_h_min" public_interface="in" units="millis"/>
+   <variable name="tau_h_max" public_interface="in" units="millis"/>
+   <variable name="tau_m_Na1_6" public_interface="in" units="millis"/>
+   <variable name="tau_h_Na1_6" public_interface="in" units="millis"/>
+   <variable name="tau_h_Na1_6_min" public_interface="in" units="millis"/>
+   <variable name="tau_h_Na1_6_max" public_interface="in" units="millis"/>
+   <variable name="tau_w_min" public_interface="in" units="millis"/>
+   <variable name="tau_c" public_interface="in" units="millis"/>
+   <variable name="tau_c_min" public_interface="in" units="millis"/>
+   <variable name="tau_c_max" public_interface="in" units="millis"/>
+   <variable name="tau_hc" public_interface="in" units="millis"/>
+   <variable name="tau_m_Kv2" public_interface="in" units="millis"/>
+   <variable name="tau_m_Kv1_5" public_interface="in" units="millis"/>
+   <variable name="tau_h_Kv1_5" public_interface="in" units="millis"/>
+   <variable name="tau_m_Kv4_2" public_interface="in" units="millis"/>
+   <variable name="tau_h_Kv4_2" public_interface="in" units="millis"/>
+   <variable name="tau_m_BK" public_interface="in" units="millis"/>
+   <variable name="tau_h_BK" public_interface="in" units="millis"/>
+   <variable name="tau_z_BK" public_interface="in" units="millis"/>
+   <variable name="tau_m_SK" public_interface="in" units="millis"/>
+   <variable name="R_diffSensed" public_interface="in" units="megaOhm"/>
+   <variable name="V_sensed" public_interface="in" units="milliV"/>
+   <variable name="C_sensed" public_interface="in" units="picoF"/>
+   <variable name="p_SK" public_interface="in" units="dimensionless"/>
+   <variable name="Cai" public_interface="in" units="millimolar"/>
+   <variable name="Cai_init" public_interface="in" units="millimolar"/>
+   <variable name="Ca_mid_m_SK" public_interface="in" units="millimolar"/>
+   <variable name="B_Cai" public_interface="in" units="millimolar"/>
+   <variable name="B_Ca_init" public_interface="in" units="millimolar"/>
+   <variable name="B_Ca_total" public_interface="in" units="millimolar"/>
+   <variable name="CaB_Cai" public_interface="in" units="millimolar"/>
+   <variable name="B_Ca_bulk" public_interface="in" units="millimolar"/>
+   <variable name="CaB_Ca_bulk" public_interface="in" units="millimolar"/>
+   <variable name="B_Ca_ER_pre" public_interface="in" units="millimolar"/>
+   <variable name="CaB_Ca_ER_pre" public_interface="in" units="millimolar"/>
+   <variable name="k_bind_Ca" public_interface="in" units="per_millimolar_s"/>
+   <variable name="k_unbind_Ca" public_interface="in" units="per_s"/>
+   <variable name="k_bind_Ca_ER" public_interface="in" units="per_millimolar_s"/>
+   <variable name="k_unbind_Ca_ER" public_interface="in" units="per_s"/>
+   <variable name="Nai" public_interface="in" units="millimolar"/>
+   <variable name="Nai_init" public_interface="in" units="millimolar"/>
+   <variable name="Ki" public_interface="in" units="millimolar"/>
+   <variable name="Ki_init" public_interface="in" units="millimolar"/>
+   <variable name="R" public_interface="in" units="J_per_mol_K"/>
+   <variable name="F" public_interface="in" units="C_per_mol"/>
+   <variable name="T" public_interface="in" units="kelvin"/>
+   <variable name="g_Na" public_interface="in" units="microS"/>
+   <variable name="g_Na_mod" public_interface="in" units="dimensionless"/>
+   <variable name="g_Na1_6" public_interface="in" units="microS"/>
+   <variable name="g_Na1_6_mod" public_interface="in" units="dimensionless"/>
+   <variable name="Cm" public_interface="in" units="picoF"/>
+   <variable name="E_K" public_interface="in" units="milliV"/>
+   <variable name="E_Na" public_interface="in" units="milliV"/>
+   <variable name="E_K_init" public_interface="in" units="milliV"/>
+   <variable name="E_Na_init" public_interface="in" units="milliV"/>
+   <variable name="p_Ca" public_interface="in" units="m3_per_s"/>
+   <variable name="g_Kv1_5" public_interface="in" units="microS"/>
+   <variable name="g_Kv4_2" public_interface="in" units="microS"/>
+   <variable name="g_Kv2" public_interface="in" units="microS"/>
+   <variable name="g_KCa_BK" public_interface="in" units="microS"/>
+   <variable name="g_KCa_SK" public_interface="in" units="microS"/>
+   <variable name="g_KCa_SK_mod" public_interface="in" units="dimensionless"/>
+   <variable name="Vol" public_interface="in" units="m3"/>
+   <variable name="Cao" public_interface="in" units="millimolar"/>
+   <variable name="Ko" public_interface="in" units="millimolar"/>
+   <variable name="Nao" public_interface="in" units="millimolar"/>
+   <variable name="i_M" public_interface="in" units="nanoA"/>
+   <variable name="g_M" public_interface="in" units="microS"/>
+   <variable name="g_M_mod" public_interface="in" units="dimensionless"/>
+   <variable name="g_leak_Na" public_interface="in" units="microS"/>
+   <variable name="g_leak_K" public_interface="in" units="microS"/>
+   <variable name="delta_gM" public_interface="in" units="microS"/>
+   <variable name="w" public_interface="in" units="dimensionless"/>
+   <variable name="w_inf" public_interface="in" units="dimensionless"/>
+   <variable name="w_init" public_interface="in" units="dimensionless"/>
+   <variable name="tau_w" public_interface="in" units="millis"/>
+   <variable name="tau_w_num" public_interface="in" units="millis"/>
+   <variable name="cAMP" public_interface="in" units="dimensionless"/>
+   <variable name="i_leak_K" public_interface="in" units="nanoA"/>
+   <variable name="i_leak_Na" public_interface="in" units="nanoA"/>
+   <variable name="I_in" public_interface="in" units="nanoA"/>
+   <variable name="I_in_delayed" public_interface="in" units="nanoA"/>
+   <variable name="i_NaCa" public_interface="in" units="nanoA"/>
+   <variable name="k_NaCa" public_interface="in" units="nanoA"/>
+   <variable name="alpha_NaCa" public_interface="in" units="dimensionless"/>
+   <variable name="gamma_NaCa" public_interface="in" units="dimensionless"/>
+   <variable name="Ksat" public_interface="in" units="dimensionless"/>
+   <variable name="KmCa" public_interface="in" units="millimolar"/>
+   <variable name="KmNai" public_interface="in" units="millimolar"/>
+   <variable name="i_NaK" public_interface="in" units="nanoA"/>
+   <variable name="k_NaK" public_interface="in" units="nanoA"/>
+   <variable name="Nai_mid_NaK" public_interface="in" units="millimolar"/>
+   <variable name="Nai_power_NaK" public_interface="in" units="dimensionless"/>
+   <variable name="Ko_mid_NaK" public_interface="in" units="millimolar"/>
+   <variable name="Ca_ER" public_interface="in" units="millimolar"/>
+   <variable name="Ca_ER_init" public_interface="in" units="millimolar"/>
+   <variable name="j_Na" public_interface="in" units="mol_per_s"/>
+   <variable name="j_Na1_6" public_interface="in" units="mol_per_s"/>
+   <variable name="j_Kv1_5" public_interface="in" units="mol_per_s"/>
+   <variable name="j_Kv4_2" public_interface="in" units="mol_per_s"/>
+   <variable name="j_Kv2" public_interface="in" units="mol_per_s"/>
+   <variable name="j_KCa_BK" public_interface="in" units="mol_per_s"/>
+   <variable name="j_KCa_SK" public_interface="in" units="mol_per_s"/>
+   <variable name="j_KM" public_interface="in" units="mol_per_s"/>
+   <variable name="j_Ca_L" public_interface="in" units="mol_per_s"/>
+   <variable name="j_NaCa_Na" public_interface="in" units="mol_per_s"/>
+   <variable name="j_NaCa_Ca" public_interface="in" units="mol_per_s"/>
+   <variable name="j_NaK_Na" public_interface="in" units="mol_per_s"/>
+   <variable name="j_NaK_K" public_interface="in" units="mol_per_s"/>
+   <variable name="j_leak_Na" public_interface="in" units="mol_per_s"/>
+   <variable name="j_leak_K" public_interface="in" units="mol_per_s"/>
+   <variable name="j_IP3" public_interface="in" units="mol_per_s"/>
+   <variable name="j_leak_Ca" public_interface="in" units="mol_per_s"/>
+   <variable name="j_SERCA" public_interface="in" units="mol_per_s"/>
+   <variable name="K_mf" public_interface="in" units="millimolar"/>
+   <variable name="K_mr" public_interface="in" units="millimolar"/>
+   <variable name="k_SERCA" public_interface="in" units="mol_per_s"/>
+   <variable name="H_SERCA" public_interface="in" units="dimensionless"/>
+   <variable name="j_RyR" public_interface="in" units="mol_per_s"/>
+   <variable name="k_RyR" public_interface="in" units="m3_per_s"/>
+   <variable name="c_RyR" public_interface="in" units="dimensionless"/>
+   <variable name="hc_RyR" public_interface="in" units="dimensionless"/>
+   <variable name="c_RyR_inf" public_interface="in" units="dimensionless"/>
+   <variable name="hc_RyR_inf" public_interface="in" units="dimensionless"/>
+   <variable name="tau_c_RyR" public_interface="in" units="millis"/>
+   <variable name="tau_hc_RyR" public_interface="in" units="millis"/>
+   <variable name="Cai_RyR_mid" public_interface="in" units="millimolar"/>
+   <variable name="Cai_RyR_den" public_interface="in" units="millimolar"/>
+   <variable name="Ca_ER_RyR_mid" public_interface="in" units="millimolar"/>
+   <variable name="Ca_ER_RyR_den" public_interface="in" units="millimolar"/>
+   <variable name="Ca_ER_RyR_tau_mid" public_interface="in" units="millimolar"/>
+   <variable name="Ca_ER_RyR_tau_den" public_interface="in" units="millimolar"/>
+   <variable name="c_ER" public_interface="in" units="dimensionless"/>
+   <variable name="c_SL" public_interface="in" units="dimensionless"/>
+   <variable name="c_bulk" public_interface="in" units="dimensionless"/>
+   <variable name="k_IP3" public_interface="in" units="m3_per_s"/>
+   <variable name="k_leak_Ca" public_interface="in" units="m3_per_s"/>
+   <variable name="m_IP3_inf" public_interface="in" units="dimensionless"/>
+   <variable name="h_IP3_init" public_interface="in" units="dimensionless"/>
+   <variable name="h_IP3" public_interface="in" units="dimensionless"/>
+   <variable name="h_IP3_inf" public_interface="in" units="dimensionless"/>
+   <variable name="tau_hIP3" public_interface="in" units="millis"/>
+   <variable name="IP3" public_interface="in" units="millimolar"/>
+   <variable name="a_2" public_interface="in" units="per_millimolar"/>
+   <variable name="d_1" public_interface="in" units="millimolar"/>
+   <variable name="d_2" public_interface="in" units="millimolar"/>
+   <variable name="d_3" public_interface="in" units="millimolar"/>
+   <variable name="d_5" public_interface="in" units="millimolar"/>
+   <variable name="Q_2" public_interface="in" units="millimolar"/>
+   <variable name="Ca_bulk" public_interface="in" units="millimolar"/>
+   <variable name="j_diffCa" public_interface="in" units="mol_per_s"/>
+   <variable name="D_Ca" public_interface="in" units="m3_per_s"/>
+   <variable name="c_ER_pre" public_interface="in" units="dimensionless"/>
+   <variable name="Ca_ER_pre" public_interface="in" units="millimolar"/>
+   <variable name="j_diffCa_ER" public_interface="in" units="mol_per_s"/>
+   <variable name="D_Ca_ER" public_interface="in" units="m3_per_s"/>
+</component>
+<component name="axon_SN">
+   <variable name="I" public_interface="in" units="nanoA"/>
+   <variable name="I_channels" public_interface="in" units="nanoA"/>
+   <variable name="channel_ratio" public_interface="in" units="dimensionless"/>
+   <variable name="C" public_interface="in" units="picoF"/>
+   <variable name="R" public_interface="in" units="megaOhm"/>
+   <variable name="V_rest_approx" public_interface="in" units="milliV"/>
+   <variable name="V" public_interface="in" units="milliV"/>
+</component>
+<component name="var_SN">
+   <variable name="i_Ca_N" public_interface="in" units="nanoA"/>
+   <variable name="c" public_interface="in" units="dimensionless"/>
+   <variable name="c_init" public_interface="in" units="dimensionless"/>
+   <variable name="c_inf" public_interface="in" units="dimensionless"/>
+   <variable name="hc" public_interface="in" units="dimensionless"/>
+   <variable name="hc_inf" public_interface="in" units="dimensionless"/>
+   <variable name="hc_init" public_interface="in" units="dimensionless"/>
+   <variable name="V_mid_c" public_interface="in" units="milliV"/>
+   <variable name="V_den_c" public_interface="in" units="milliV"/>
+   <variable name="V_mid_hc" public_interface="in" units="milliV"/>
+   <variable name="V_den_hc" public_interface="in" units="milliV"/>
+   <variable name="tau_c" public_interface="in" units="millis"/>
+   <variable name="tau_c_min" public_interface="in" units="millis"/>
+   <variable name="tau_c_max" public_interface="in" units="millis"/>
+   <variable name="tau_hc" public_interface="in" units="millis"/>
+   <variable name="Cai" public_interface="in" units="millimolar"/>
+   <variable name="Cai_init" public_interface="in" units="millimolar"/>
+   <variable name="B_Cai" public_interface="in" units="millimolar"/>
+   <variable name="B_Ca_init" public_interface="in" units="millimolar"/>
+   <variable name="B_Ca_total" public_interface="in" units="millimolar"/>
+   <variable name="CaB_Cai" public_interface="in" units="millimolar"/>
+   <variable name="B_Ca_bulk" public_interface="in" units="millimolar"/>
+   <variable name="CaB_Ca_bulk" public_interface="in" units="millimolar"/>
+   <variable name="B_Ca_ER_pre" public_interface="in" units="millimolar"/>
+   <variable name="CaB_Ca_ER_pre" public_interface="in" units="millimolar"/>
+   <variable name="k_bind_Ca" public_interface="in" units="per_millimolar_s"/>
+   <variable name="k_unbind_Ca" public_interface="in" units="per_s"/>
+   <variable name="k_bind_Ca_ER" public_interface="in" units="per_millimolar_s"/>
+   <variable name="k_unbind_Ca_ER" public_interface="in" units="per_s"/>
+   <variable name="Nai" public_interface="in" units="millimolar"/>
+   <variable name="Nao" public_interface="in" units="millimolar"/>
+   <variable name="NE" public_interface="in" units="millimolar"/>
+   <variable name="NE_init" public_interface="in" units="millimolar"/>
+   <variable name="Cai_NE_base" public_interface="in" units="millimolar"/>
+   <variable name="k_NE" public_interface="in" units="per_s"/>
+   <variable name="k_NET" public_interface="in" units="per_s"/>
+   <variable name="N_avo" public_interface="in" units="per_mol"/>
+   <variable name="R" public_interface="in" units="J_per_mol_K"/>
+   <variable name="F" public_interface="in" units="C_per_mol"/>
+   <variable name="T" public_interface="in" units="kelvin"/>
+   <variable name="E_Ca" public_interface="in" units="milliV"/>
+   <variable name="g_CaN" public_interface="in" units="microS"/>
+   <variable name="Vol" public_interface="in" units="m3"/>
+   <variable name="Cao" public_interface="in" units="millimolar"/>
+   <variable name="cAMP" public_interface="in" units="dimensionless"/>
+   <variable name="i_NaCa" public_interface="in" units="nanoA"/>
+   <variable name="k_NaCa" public_interface="in" units="nanoA"/>
+   <variable name="alpha_NaCa" public_interface="in" units="dimensionless"/>
+   <variable name="gamma_NaCa" public_interface="in" units="dimensionless"/>
+   <variable name="Ksat" public_interface="in" units="dimensionless"/>
+   <variable name="KmCa" public_interface="in" units="millimolar"/>
+   <variable name="KmNai" public_interface="in" units="millimolar"/>
+   <variable name="Ca_ER" public_interface="in" units="millimolar"/>
+   <variable name="Ca_ER_init" public_interface="in" units="millimolar"/>
+   <variable name="j_Ca_N" public_interface="in" units="mol_per_s"/>
+   <variable name="j_NaCa_Ca" public_interface="in" units="mol_per_s"/>
+   <variable name="j_IP3" public_interface="in" units="mol_per_s"/>
+   <variable name="j_leak_Ca" public_interface="in" units="mol_per_s"/>
+   <variable name="j_SERCA" public_interface="in" units="mol_per_s"/>
+   <variable name="K_mf" public_interface="in" units="millimolar"/>
+   <variable name="K_mr" public_interface="in" units="millimolar"/>
+   <variable name="k_SERCA" public_interface="in" units="mol_per_s"/>
+   <variable name="H_SERCA" public_interface="in" units="dimensionless"/>
+   <variable name="j_RyR" public_interface="in" units="mol_per_s"/>
+   <variable name="c_RyR" public_interface="in" units="dimensionless"/>
+   <variable name="hc_RyR" public_interface="in" units="dimensionless"/>
+   <variable name="c_RyR_inf" public_interface="in" units="dimensionless"/>
+   <variable name="hc_RyR_inf" public_interface="in" units="dimensionless"/>
+   <variable name="tau_c_RyR" public_interface="in" units="millis"/>
+   <variable name="tau_hc_RyR" public_interface="in" units="millis"/>
+   <variable name="k_RyR" public_interface="in" units="m3_per_s"/>
+   <variable name="Cai_RyR_mid" public_interface="in" units="millimolar"/>
+   <variable name="Cai_RyR_den" public_interface="in" units="millimolar"/>
+   <variable name="Ca_ER_RyR_mid" public_interface="in" units="millimolar"/>
+   <variable name="Ca_ER_RyR_den" public_interface="in" units="millimolar"/>
+   <variable name="Ca_ER_RyR_tau_mid" public_interface="in" units="millimolar"/>
+   <variable name="Ca_ER_RyR_tau_den" public_interface="in" units="millimolar"/>
+   <variable name="k_IP3" public_interface="in" units="m3_per_s"/>
+   <variable name="k_leak_Ca" public_interface="in" units="m3_per_s"/>
+   <variable name="m_IP3_inf" public_interface="in" units="dimensionless"/>
+   <variable name="h_IP3_init" public_interface="in" units="dimensionless"/>
+   <variable name="h_IP3" public_interface="in" units="dimensionless"/>
+   <variable name="h_IP3_inf" public_interface="in" units="dimensionless"/>
+   <variable name="tau_hIP3" public_interface="in" units="millis"/>
+   <variable name="IP3" public_interface="in" units="millimolar"/>
+   <variable name="a_2" public_interface="in" units="per_millimolar"/>
+   <variable name="d_1" public_interface="in" units="millimolar"/>
+   <variable name="d_2" public_interface="in" units="millimolar"/>
+   <variable name="d_3" public_interface="in" units="millimolar"/>
+   <variable name="d_5" public_interface="in" units="millimolar"/>
+   <variable name="Q_2" public_interface="in" units="millimolar"/>
+   <variable name="c_ER" public_interface="in" units="dimensionless"/>
+   <variable name="c_SL" public_interface="in" units="dimensionless"/>
+   <variable name="c_bulk" public_interface="in" units="dimensionless"/>
+   <variable name="Ca_bulk" public_interface="in" units="millimolar"/>
+   <variable name="j_diffCa" public_interface="in" units="mol_per_s"/>
+   <variable name="D_Ca" public_interface="in" units="m3_per_s"/>
+   <variable name="c_ER_pre" public_interface="in" units="dimensionless"/>
+   <variable name="Ca_ER_pre" public_interface="in" units="millimolar"/>
+   <variable name="j_diffCa_ER" public_interface="in" units="mol_per_s"/>
+   <variable name="D_Ca_ER" public_interface="in" units="m3_per_s"/>
+</component>
+<!--&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;global_parameters_access&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;//-->
+<component name="global">
+   <variable name="R" public_interface="in" units="J_per_mol_K"/>
+   <variable name="F" public_interface="in" units="C_per_mol"/>
+   <variable name="T" public_interface="in" units="kelvin"/>
+   <variable name="N_avo" public_interface="in" units="per_mol"/>
+</component>
+<!--&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;own vessel mappings&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;//-->
+<connection>
+   <map_components component_1="soma_SN" component_2="soma_SN_module"/>
+   <map_variables variable_1="i_Na" variable_2="i_Na"/>
+   <map_variables variable_1="i_Na1_6" variable_2="i_Na1_6"/>
+   <map_variables variable_1="i_Ca_L" variable_2="i_Ca_L"/>
+   <map_variables variable_1="i_Kv2" variable_2="i_Kv2"/>
+   <map_variables variable_1="i_Kv1_5" variable_2="i_Kv1_5"/>
+   <map_variables variable_1="i_Kv4_2" variable_2="i_Kv4_2"/>
+   <map_variables variable_1="i_KCa_BK" variable_2="i_KCa_BK"/>
+   <map_variables variable_1="i_KCa_SK" variable_2="i_KCa_SK"/>
+   <map_variables variable_1="V" variable_2="V"/>
+   <map_variables variable_1="V_rest_approx" variable_2="V_rest_approx"/>
+   <map_variables variable_1="m" variable_2="m"/>
+   <map_variables variable_1="m_inf" variable_2="m_inf"/>
+   <map_variables variable_1="m_init" variable_2="m_init"/>
+   <map_variables variable_1="h" variable_2="h"/>
+   <map_variables variable_1="h_inf" variable_2="h_inf"/>
+   <map_variables variable_1="h_init" variable_2="h_init"/>
+   <map_variables variable_1="m_Na1_6" variable_2="m_Na1_6"/>
+   <map_variables variable_1="m_Na1_6_inf" variable_2="m_Na1_6_inf"/>
+   <map_variables variable_1="m_Na1_6_init" variable_2="m_Na1_6_init"/>
+   <map_variables variable_1="h_Na1_6" variable_2="h_Na1_6"/>
+   <map_variables variable_1="h_Na1_6_inf" variable_2="h_Na1_6_inf"/>
+   <map_variables variable_1="h_Na1_6_init" variable_2="h_Na1_6_init"/>
+   <map_variables variable_1="c" variable_2="c"/>
+   <map_variables variable_1="c_inf" variable_2="c_inf"/>
+   <map_variables variable_1="c_init" variable_2="c_init"/>
+   <map_variables variable_1="hc" variable_2="hc"/>
+   <map_variables variable_1="hc_inf" variable_2="hc_inf"/>
+   <map_variables variable_1="hc_init" variable_2="hc_init"/>
+   <map_variables variable_1="m_Kv2" variable_2="m_Kv2"/>
+   <map_variables variable_1="m_Kv2_init" variable_2="m_Kv2_init"/>
+   <map_variables variable_1="m_Kv2_inf" variable_2="m_Kv2_inf"/>
+   <map_variables variable_1="m_Kv1_5" variable_2="m_Kv1_5"/>
+   <map_variables variable_1="m_Kv1_5_init" variable_2="m_Kv1_5_init"/>
+   <map_variables variable_1="m_Kv1_5_inf" variable_2="m_Kv1_5_inf"/>
+   <map_variables variable_1="h_Kv1_5" variable_2="h_Kv1_5"/>
+   <map_variables variable_1="h_Kv1_5_init" variable_2="h_Kv1_5_init"/>
+   <map_variables variable_1="h_Kv1_5_inf" variable_2="h_Kv1_5_inf"/>
+   <map_variables variable_1="m_Kv4_2" variable_2="m_Kv4_2"/>
+   <map_variables variable_1="m_Kv4_2_init" variable_2="m_Kv4_2_init"/>
+   <map_variables variable_1="m_Kv4_2_inf" variable_2="m_Kv4_2_inf"/>
+   <map_variables variable_1="h_Kv4_2" variable_2="h_Kv4_2"/>
+   <map_variables variable_1="h_Kv4_2_init" variable_2="h_Kv4_2_init"/>
+   <map_variables variable_1="h_Kv4_2_inf" variable_2="h_Kv4_2_inf"/>
+   <map_variables variable_1="m_BK" variable_2="m_BK"/>
+   <map_variables variable_1="m_BK_inf" variable_2="m_BK_inf"/>
+   <map_variables variable_1="m_BK_init" variable_2="m_BK_init"/>
+   <map_variables variable_1="h_BK" variable_2="h_BK"/>
+   <map_variables variable_1="h_BK_inf" variable_2="h_BK_inf"/>
+   <map_variables variable_1="h_BK_init" variable_2="h_BK_init"/>
+   <map_variables variable_1="h_BK_min" variable_2="h_BK_min"/>
+   <map_variables variable_1="z_BK" variable_2="z_BK"/>
+   <map_variables variable_1="z_BK_inf" variable_2="z_BK_inf"/>
+   <map_variables variable_1="z_BK_init" variable_2="z_BK_init"/>
+   <map_variables variable_1="z_BK_coeff" variable_2="z_BK_coeff"/>
+   <map_variables variable_1="m_SK" variable_2="m_SK"/>
+   <map_variables variable_1="m_SK_inf" variable_2="m_SK_inf"/>
+   <map_variables variable_1="m_SK_init" variable_2="m_SK_init"/>
+   <map_variables variable_1="V_mid_m" variable_2="V_mid_m"/>
+   <map_variables variable_1="V_mid_h" variable_2="V_mid_h"/>
+   <map_variables variable_1="V_den_m" variable_2="V_den_m"/>
+   <map_variables variable_1="V_den_h" variable_2="V_den_h"/>
+   <map_variables variable_1="V_mid_m_Na1_6" variable_2="V_mid_m_Na1_6"/>
+   <map_variables variable_1="V_mid_h_Na1_6" variable_2="V_mid_h_Na1_6"/>
+   <map_variables variable_1="V_den_m_Na1_6" variable_2="V_den_m_Na1_6"/>
+   <map_variables variable_1="V_den_h_Na1_6" variable_2="V_den_h_Na1_6"/>
+   <map_variables variable_1="V_mid_c" variable_2="V_mid_c"/>
+   <map_variables variable_1="V_den_c" variable_2="V_den_c"/>
+   <map_variables variable_1="V_mid_hc" variable_2="V_mid_hc"/>
+   <map_variables variable_1="V_den_hc" variable_2="V_den_hc"/>
+   <map_variables variable_1="V_mid_m_Kv1_5" variable_2="V_mid_m_Kv1_5"/>
+   <map_variables variable_1="V_den_m_Kv1_5" variable_2="V_den_m_Kv1_5"/>
+   <map_variables variable_1="V_mid_h_Kv1_5" variable_2="V_mid_h_Kv1_5"/>
+   <map_variables variable_1="V_den_h_Kv1_5" variable_2="V_den_h_Kv1_5"/>
+   <map_variables variable_1="V_mid_m_Kv4_2" variable_2="V_mid_m_Kv4_2"/>
+   <map_variables variable_1="V_den_m_Kv4_2" variable_2="V_den_m_Kv4_2"/>
+   <map_variables variable_1="V_mid_h_Kv4_2" variable_2="V_mid_h_Kv4_2"/>
+   <map_variables variable_1="V_den_h_Kv4_2" variable_2="V_den_h_Kv4_2"/>
+   <map_variables variable_1="V_mid_m_Kv2" variable_2="V_mid_m_Kv2"/>
+   <map_variables variable_1="V_den_m_Kv2" variable_2="V_den_m_Kv2"/>
+   <map_variables variable_1="V_mid_w" variable_2="V_mid_w"/>
+   <map_variables variable_1="Delta_V_mid_w" variable_2="Delta_V_mid_w"/>
+   <map_variables variable_1="V_den_w" variable_2="V_den_w"/>
+   <map_variables variable_1="V_mid_m_BK" variable_2="V_mid_m_BK"/>
+   <map_variables variable_1="V_den_m_BK" variable_2="V_den_m_BK"/>
+   <map_variables variable_1="V_mid_h_BK" variable_2="V_mid_h_BK"/>
+   <map_variables variable_1="V_den_h_BK" variable_2="V_den_h_BK"/>
+   <map_variables variable_1="k_thresh_m" variable_2="k_thresh_m"/>
+   <map_variables variable_1="k_thresh_h" variable_2="k_thresh_h"/>
+   <map_variables variable_1="tau_m" variable_2="tau_m"/>
+   <map_variables variable_1="tau_h" variable_2="tau_h"/>
+   <map_variables variable_1="tau_h_min" variable_2="tau_h_min"/>
+   <map_variables variable_1="tau_h_max" variable_2="tau_h_max"/>
+   <map_variables variable_1="tau_m_Na1_6" variable_2="tau_m_Na1_6"/>
+   <map_variables variable_1="tau_h_Na1_6" variable_2="tau_h_Na1_6"/>
+   <map_variables variable_1="tau_h_Na1_6_min" variable_2="tau_h_Na1_6_min"/>
+   <map_variables variable_1="tau_h_Na1_6_max" variable_2="tau_h_Na1_6_max"/>
+   <map_variables variable_1="tau_w_min" variable_2="tau_w_min"/>
+   <map_variables variable_1="tau_c" variable_2="tau_c"/>
+   <map_variables variable_1="tau_c_min" variable_2="tau_c_min"/>
+   <map_variables variable_1="tau_c_max" variable_2="tau_c_max"/>
+   <map_variables variable_1="tau_hc" variable_2="tau_hc"/>
+   <map_variables variable_1="tau_m_Kv2" variable_2="tau_m_Kv2"/>
+   <map_variables variable_1="tau_m_Kv1_5" variable_2="tau_m_Kv1_5"/>
+   <map_variables variable_1="tau_h_Kv1_5" variable_2="tau_h_Kv1_5"/>
+   <map_variables variable_1="tau_m_Kv4_2" variable_2="tau_m_Kv4_2"/>
+   <map_variables variable_1="tau_h_Kv4_2" variable_2="tau_h_Kv4_2"/>
+   <map_variables variable_1="tau_m_BK" variable_2="tau_m_BK"/>
+   <map_variables variable_1="tau_h_BK" variable_2="tau_h_BK"/>
+   <map_variables variable_1="tau_z_BK" variable_2="tau_z_BK"/>
+   <map_variables variable_1="tau_m_SK" variable_2="tau_m_SK"/>
+   <map_variables variable_1="R_diffSensed" variable_2="R_diffSensed"/>
+   <map_variables variable_1="V_sensed" variable_2="V_sensed"/>
+   <map_variables variable_1="C_sensed" variable_2="C_sensed"/>
+   <map_variables variable_1="p_SK" variable_2="p_SK"/>
+   <map_variables variable_1="Cai" variable_2="Cai"/>
+   <map_variables variable_1="Cai_init" variable_2="Cai_init"/>
+   <map_variables variable_1="Ca_mid_m_SK" variable_2="Ca_mid_m_SK"/>
+   <map_variables variable_1="B_Cai" variable_2="B_Cai"/>
+   <map_variables variable_1="B_Ca_init" variable_2="B_Ca_init"/>
+   <map_variables variable_1="B_Ca_total" variable_2="B_Ca_total"/>
+   <map_variables variable_1="CaB_Cai" variable_2="CaB_Cai"/>
+   <map_variables variable_1="B_Ca_bulk" variable_2="B_Ca_bulk"/>
+   <map_variables variable_1="CaB_Ca_bulk" variable_2="CaB_Ca_bulk"/>
+   <map_variables variable_1="B_Ca_ER_pre" variable_2="B_Ca_ER_pre"/>
+   <map_variables variable_1="CaB_Ca_ER_pre" variable_2="CaB_Ca_ER_pre"/>
+   <map_variables variable_1="k_bind_Ca" variable_2="k_bind_Ca"/>
+   <map_variables variable_1="k_unbind_Ca" variable_2="k_unbind_Ca"/>
+   <map_variables variable_1="k_bind_Ca_ER" variable_2="k_bind_Ca_ER"/>
+   <map_variables variable_1="k_unbind_Ca_ER" variable_2="k_unbind_Ca_ER"/>
+   <map_variables variable_1="Nai" variable_2="Nai"/>
+   <map_variables variable_1="Nai_init" variable_2="Nai_init"/>
+   <map_variables variable_1="Ki" variable_2="Ki"/>
+   <map_variables variable_1="Ki_init" variable_2="Ki_init"/>
+   <map_variables variable_1="R" variable_2="R"/>
+   <map_variables variable_1="F" variable_2="F"/>
+   <map_variables variable_1="T" variable_2="T"/>
+   <map_variables variable_1="g_Na" variable_2="g_Na"/>
+   <map_variables variable_1="g_Na_mod" variable_2="g_Na_mod"/>
+   <map_variables variable_1="g_Na1_6" variable_2="g_Na1_6"/>
+   <map_variables variable_1="g_Na1_6_mod" variable_2="g_Na1_6_mod"/>
+   <map_variables variable_1="Cm" variable_2="Cm"/>
+   <map_variables variable_1="E_K" variable_2="E_K"/>
+   <map_variables variable_1="E_Na" variable_2="E_Na"/>
+   <map_variables variable_1="E_K_init" variable_2="E_K_init"/>
+   <map_variables variable_1="E_Na_init" variable_2="E_Na_init"/>
+   <map_variables variable_1="p_Ca" variable_2="p_Ca"/>
+   <map_variables variable_1="g_Kv1_5" variable_2="g_Kv1_5"/>
+   <map_variables variable_1="g_Kv4_2" variable_2="g_Kv4_2"/>
+   <map_variables variable_1="g_Kv2" variable_2="g_Kv2"/>
+   <map_variables variable_1="g_KCa_BK" variable_2="g_KCa_BK"/>
+   <map_variables variable_1="g_KCa_SK" variable_2="g_KCa_SK"/>
+   <map_variables variable_1="g_KCa_SK_mod" variable_2="g_KCa_SK_mod"/>
+   <map_variables variable_1="Vol" variable_2="Vol"/>
+   <map_variables variable_1="Cao" variable_2="Cao"/>
+   <map_variables variable_1="Ko" variable_2="Ko"/>
+   <map_variables variable_1="Nao" variable_2="Nao"/>
+   <map_variables variable_1="i_M" variable_2="i_M"/>
+   <map_variables variable_1="g_M" variable_2="g_M"/>
+   <map_variables variable_1="g_M_mod" variable_2="g_M_mod"/>
+   <map_variables variable_1="g_leak_Na" variable_2="g_leak_Na"/>
+   <map_variables variable_1="g_leak_K" variable_2="g_leak_K"/>
+   <map_variables variable_1="delta_gM" variable_2="delta_gM"/>
+   <map_variables variable_1="w" variable_2="w"/>
+   <map_variables variable_1="w_inf" variable_2="w_inf"/>
+   <map_variables variable_1="w_init" variable_2="w_init"/>
+   <map_variables variable_1="tau_w" variable_2="tau_w"/>
+   <map_variables variable_1="tau_w_num" variable_2="tau_w_num"/>
+   <map_variables variable_1="cAMP" variable_2="cAMP"/>
+   <map_variables variable_1="i_leak_K" variable_2="i_leak_K"/>
+   <map_variables variable_1="i_leak_Na" variable_2="i_leak_Na"/>
+   <map_variables variable_1="I_in" variable_2="I_in"/>
+   <map_variables variable_1="I_in_delayed" variable_2="I_in_delayed"/>
+   <map_variables variable_1="i_NaCa" variable_2="i_NaCa"/>
+   <map_variables variable_1="k_NaCa" variable_2="k_NaCa"/>
+   <map_variables variable_1="alpha_NaCa" variable_2="alpha_NaCa"/>
+   <map_variables variable_1="gamma_NaCa" variable_2="gamma_NaCa"/>
+   <map_variables variable_1="Ksat" variable_2="Ksat"/>
+   <map_variables variable_1="KmCa" variable_2="KmCa"/>
+   <map_variables variable_1="KmNai" variable_2="KmNai"/>
+   <map_variables variable_1="i_NaK" variable_2="i_NaK"/>
+   <map_variables variable_1="k_NaK" variable_2="k_NaK"/>
+   <map_variables variable_1="Nai_mid_NaK" variable_2="Nai_mid_NaK"/>
+   <map_variables variable_1="Nai_power_NaK" variable_2="Nai_power_NaK"/>
+   <map_variables variable_1="Ko_mid_NaK" variable_2="Ko_mid_NaK"/>
+   <map_variables variable_1="Ca_ER" variable_2="Ca_ER"/>
+   <map_variables variable_1="Ca_ER_init" variable_2="Ca_ER_init"/>
+   <map_variables variable_1="j_Na" variable_2="j_Na"/>
+   <map_variables variable_1="j_Na1_6" variable_2="j_Na1_6"/>
+   <map_variables variable_1="j_Kv1_5" variable_2="j_Kv1_5"/>
+   <map_variables variable_1="j_Kv4_2" variable_2="j_Kv4_2"/>
+   <map_variables variable_1="j_Kv2" variable_2="j_Kv2"/>
+   <map_variables variable_1="j_KCa_BK" variable_2="j_KCa_BK"/>
+   <map_variables variable_1="j_KCa_SK" variable_2="j_KCa_SK"/>
+   <map_variables variable_1="j_KM" variable_2="j_KM"/>
+   <map_variables variable_1="j_Ca_L" variable_2="j_Ca_L"/>
+   <map_variables variable_1="j_NaCa_Na" variable_2="j_NaCa_Na"/>
+   <map_variables variable_1="j_NaCa_Ca" variable_2="j_NaCa_Ca"/>
+   <map_variables variable_1="j_NaK_Na" variable_2="j_NaK_Na"/>
+   <map_variables variable_1="j_NaK_K" variable_2="j_NaK_K"/>
+   <map_variables variable_1="j_leak_Na" variable_2="j_leak_Na"/>
+   <map_variables variable_1="j_leak_K" variable_2="j_leak_K"/>
+   <map_variables variable_1="j_IP3" variable_2="j_IP3"/>
+   <map_variables variable_1="j_leak_Ca" variable_2="j_leak_Ca"/>
+   <map_variables variable_1="j_SERCA" variable_2="j_SERCA"/>
+   <map_variables variable_1="K_mf" variable_2="K_mf"/>
+   <map_variables variable_1="K_mr" variable_2="K_mr"/>
+   <map_variables variable_1="k_SERCA" variable_2="k_SERCA"/>
+   <map_variables variable_1="H_SERCA" variable_2="H_SERCA"/>
+   <map_variables variable_1="j_RyR" variable_2="j_RyR"/>
+   <map_variables variable_1="k_RyR" variable_2="k_RyR"/>
+   <map_variables variable_1="c_RyR" variable_2="c_RyR"/>
+   <map_variables variable_1="hc_RyR" variable_2="hc_RyR"/>
+   <map_variables variable_1="c_RyR_inf" variable_2="c_RyR_inf"/>
+   <map_variables variable_1="hc_RyR_inf" variable_2="hc_RyR_inf"/>
+   <map_variables variable_1="tau_c_RyR" variable_2="tau_c_RyR"/>
+   <map_variables variable_1="tau_hc_RyR" variable_2="tau_hc_RyR"/>
+   <map_variables variable_1="Cai_RyR_mid" variable_2="Cai_RyR_mid"/>
+   <map_variables variable_1="Cai_RyR_den" variable_2="Cai_RyR_den"/>
+   <map_variables variable_1="Ca_ER_RyR_mid" variable_2="Ca_ER_RyR_mid"/>
+   <map_variables variable_1="Ca_ER_RyR_den" variable_2="Ca_ER_RyR_den"/>
+   <map_variables variable_1="Ca_ER_RyR_tau_mid" variable_2="Ca_ER_RyR_tau_mid"/>
+   <map_variables variable_1="Ca_ER_RyR_tau_den" variable_2="Ca_ER_RyR_tau_den"/>
+   <map_variables variable_1="c_ER" variable_2="c_ER"/>
+   <map_variables variable_1="c_SL" variable_2="c_SL"/>
+   <map_variables variable_1="c_bulk" variable_2="c_bulk"/>
+   <map_variables variable_1="k_IP3" variable_2="k_IP3"/>
+   <map_variables variable_1="k_leak_Ca" variable_2="k_leak_Ca"/>
+   <map_variables variable_1="m_IP3_inf" variable_2="m_IP3_inf"/>
+   <map_variables variable_1="h_IP3_init" variable_2="h_IP3_init"/>
+   <map_variables variable_1="h_IP3" variable_2="h_IP3"/>
+   <map_variables variable_1="h_IP3_inf" variable_2="h_IP3_inf"/>
+   <map_variables variable_1="tau_hIP3" variable_2="tau_hIP3"/>
+   <map_variables variable_1="IP3" variable_2="IP3"/>
+   <map_variables variable_1="a_2" variable_2="a_2"/>
+   <map_variables variable_1="d_1" variable_2="d_1"/>
+   <map_variables variable_1="d_2" variable_2="d_2"/>
+   <map_variables variable_1="d_3" variable_2="d_3"/>
+   <map_variables variable_1="d_5" variable_2="d_5"/>
+   <map_variables variable_1="Q_2" variable_2="Q_2"/>
+   <map_variables variable_1="Ca_bulk" variable_2="Ca_bulk"/>
+   <map_variables variable_1="j_diffCa" variable_2="j_diffCa"/>
+   <map_variables variable_1="D_Ca" variable_2="D_Ca"/>
+   <map_variables variable_1="c_ER_pre" variable_2="c_ER_pre"/>
+   <map_variables variable_1="Ca_ER_pre" variable_2="Ca_ER_pre"/>
+   <map_variables variable_1="j_diffCa_ER" variable_2="j_diffCa_ER"/>
+   <map_variables variable_1="D_Ca_ER" variable_2="D_Ca_ER"/>
+</connection>
+<connection>
+   <map_components component_1="axon_SN" component_2="axon_SN_module"/>
+   <map_variables variable_1="I" variable_2="I"/>
+   <map_variables variable_1="I_channels" variable_2="I_channels"/>
+   <map_variables variable_1="channel_ratio" variable_2="channel_ratio"/>
+   <map_variables variable_1="C" variable_2="C"/>
+   <map_variables variable_1="R" variable_2="R"/>
+   <map_variables variable_1="V_rest_approx" variable_2="V_rest_approx"/>
+   <map_variables variable_1="V" variable_2="V"/>
+</connection>
+<connection>
+   <map_components component_1="var_SN" component_2="var_SN_module"/>
+   <map_variables variable_1="i_Ca_N" variable_2="i_Ca_N"/>
+   <map_variables variable_1="c" variable_2="c"/>
+   <map_variables variable_1="c_init" variable_2="c_init"/>
+   <map_variables variable_1="c_inf" variable_2="c_inf"/>
+   <map_variables variable_1="hc" variable_2="hc"/>
+   <map_variables variable_1="hc_inf" variable_2="hc_inf"/>
+   <map_variables variable_1="hc_init" variable_2="hc_init"/>
+   <map_variables variable_1="V_mid_c" variable_2="V_mid_c"/>
+   <map_variables variable_1="V_den_c" variable_2="V_den_c"/>
+   <map_variables variable_1="V_mid_hc" variable_2="V_mid_hc"/>
+   <map_variables variable_1="V_den_hc" variable_2="V_den_hc"/>
+   <map_variables variable_1="tau_c" variable_2="tau_c"/>
+   <map_variables variable_1="tau_c_min" variable_2="tau_c_min"/>
+   <map_variables variable_1="tau_c_max" variable_2="tau_c_max"/>
+   <map_variables variable_1="tau_hc" variable_2="tau_hc"/>
+   <map_variables variable_1="Cai" variable_2="Cai"/>
+   <map_variables variable_1="Cai_init" variable_2="Cai_init"/>
+   <map_variables variable_1="B_Cai" variable_2="B_Cai"/>
+   <map_variables variable_1="B_Ca_init" variable_2="B_Ca_init"/>
+   <map_variables variable_1="B_Ca_total" variable_2="B_Ca_total"/>
+   <map_variables variable_1="CaB_Cai" variable_2="CaB_Cai"/>
+   <map_variables variable_1="B_Ca_bulk" variable_2="B_Ca_bulk"/>
+   <map_variables variable_1="CaB_Ca_bulk" variable_2="CaB_Ca_bulk"/>
+   <map_variables variable_1="B_Ca_ER_pre" variable_2="B_Ca_ER_pre"/>
+   <map_variables variable_1="CaB_Ca_ER_pre" variable_2="CaB_Ca_ER_pre"/>
+   <map_variables variable_1="k_bind_Ca" variable_2="k_bind_Ca"/>
+   <map_variables variable_1="k_unbind_Ca" variable_2="k_unbind_Ca"/>
+   <map_variables variable_1="k_bind_Ca_ER" variable_2="k_bind_Ca_ER"/>
+   <map_variables variable_1="k_unbind_Ca_ER" variable_2="k_unbind_Ca_ER"/>
+   <map_variables variable_1="Nai" variable_2="Nai"/>
+   <map_variables variable_1="Nao" variable_2="Nao"/>
+   <map_variables variable_1="NE" variable_2="NE"/>
+   <map_variables variable_1="NE_init" variable_2="NE_init"/>
+   <map_variables variable_1="Cai_NE_base" variable_2="Cai_NE_base"/>
+   <map_variables variable_1="k_NE" variable_2="k_NE"/>
+   <map_variables variable_1="k_NET" variable_2="k_NET"/>
+   <map_variables variable_1="N_avo" variable_2="N_avo"/>
+   <map_variables variable_1="R" variable_2="R"/>
+   <map_variables variable_1="F" variable_2="F"/>
+   <map_variables variable_1="T" variable_2="T"/>
+   <map_variables variable_1="E_Ca" variable_2="E_Ca"/>
+   <map_variables variable_1="g_CaN" variable_2="g_CaN"/>
+   <map_variables variable_1="Vol" variable_2="Vol"/>
+   <map_variables variable_1="Cao" variable_2="Cao"/>
+   <map_variables variable_1="cAMP" variable_2="cAMP"/>
+   <map_variables variable_1="i_NaCa" variable_2="i_NaCa"/>
+   <map_variables variable_1="k_NaCa" variable_2="k_NaCa"/>
+   <map_variables variable_1="alpha_NaCa" variable_2="alpha_NaCa"/>
+   <map_variables variable_1="gamma_NaCa" variable_2="gamma_NaCa"/>
+   <map_variables variable_1="Ksat" variable_2="Ksat"/>
+   <map_variables variable_1="KmCa" variable_2="KmCa"/>
+   <map_variables variable_1="KmNai" variable_2="KmNai"/>
+   <map_variables variable_1="Ca_ER" variable_2="Ca_ER"/>
+   <map_variables variable_1="Ca_ER_init" variable_2="Ca_ER_init"/>
+   <map_variables variable_1="j_Ca_N" variable_2="j_Ca_N"/>
+   <map_variables variable_1="j_NaCa_Ca" variable_2="j_NaCa_Ca"/>
+   <map_variables variable_1="j_IP3" variable_2="j_IP3"/>
+   <map_variables variable_1="j_leak_Ca" variable_2="j_leak_Ca"/>
+   <map_variables variable_1="j_SERCA" variable_2="j_SERCA"/>
+   <map_variables variable_1="K_mf" variable_2="K_mf"/>
+   <map_variables variable_1="K_mr" variable_2="K_mr"/>
+   <map_variables variable_1="k_SERCA" variable_2="k_SERCA"/>
+   <map_variables variable_1="H_SERCA" variable_2="H_SERCA"/>
+   <map_variables variable_1="j_RyR" variable_2="j_RyR"/>
+   <map_variables variable_1="c_RyR" variable_2="c_RyR"/>
+   <map_variables variable_1="hc_RyR" variable_2="hc_RyR"/>
+   <map_variables variable_1="c_RyR_inf" variable_2="c_RyR_inf"/>
+   <map_variables variable_1="hc_RyR_inf" variable_2="hc_RyR_inf"/>
+   <map_variables variable_1="tau_c_RyR" variable_2="tau_c_RyR"/>
+   <map_variables variable_1="tau_hc_RyR" variable_2="tau_hc_RyR"/>
+   <map_variables variable_1="k_RyR" variable_2="k_RyR"/>
+   <map_variables variable_1="Cai_RyR_mid" variable_2="Cai_RyR_mid"/>
+   <map_variables variable_1="Cai_RyR_den" variable_2="Cai_RyR_den"/>
+   <map_variables variable_1="Ca_ER_RyR_mid" variable_2="Ca_ER_RyR_mid"/>
+   <map_variables variable_1="Ca_ER_RyR_den" variable_2="Ca_ER_RyR_den"/>
+   <map_variables variable_1="Ca_ER_RyR_tau_mid" variable_2="Ca_ER_RyR_tau_mid"/>
+   <map_variables variable_1="Ca_ER_RyR_tau_den" variable_2="Ca_ER_RyR_tau_den"/>
+   <map_variables variable_1="k_IP3" variable_2="k_IP3"/>
+   <map_variables variable_1="k_leak_Ca" variable_2="k_leak_Ca"/>
+   <map_variables variable_1="m_IP3_inf" variable_2="m_IP3_inf"/>
+   <map_variables variable_1="h_IP3_init" variable_2="h_IP3_init"/>
+   <map_variables variable_1="h_IP3" variable_2="h_IP3"/>
+   <map_variables variable_1="h_IP3_inf" variable_2="h_IP3_inf"/>
+   <map_variables variable_1="tau_hIP3" variable_2="tau_hIP3"/>
+   <map_variables variable_1="IP3" variable_2="IP3"/>
+   <map_variables variable_1="a_2" variable_2="a_2"/>
+   <map_variables variable_1="d_1" variable_2="d_1"/>
+   <map_variables variable_1="d_2" variable_2="d_2"/>
+   <map_variables variable_1="d_3" variable_2="d_3"/>
+   <map_variables variable_1="d_5" variable_2="d_5"/>
+   <map_variables variable_1="Q_2" variable_2="Q_2"/>
+   <map_variables variable_1="c_ER" variable_2="c_ER"/>
+   <map_variables variable_1="c_SL" variable_2="c_SL"/>
+   <map_variables variable_1="c_bulk" variable_2="c_bulk"/>
+   <map_variables variable_1="Ca_bulk" variable_2="Ca_bulk"/>
+   <map_variables variable_1="j_diffCa" variable_2="j_diffCa"/>
+   <map_variables variable_1="D_Ca" variable_2="D_Ca"/>
+   <map_variables variable_1="c_ER_pre" variable_2="c_ER_pre"/>
+   <map_variables variable_1="Ca_ER_pre" variable_2="Ca_ER_pre"/>
+   <map_variables variable_1="j_diffCa_ER" variable_2="j_diffCa_ER"/>
+   <map_variables variable_1="D_Ca_ER" variable_2="D_Ca_ER"/>
+</connection>
+<!--&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;own global parameters mapping&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;//-->
+<connection>
+   <map_components component_1="global" component_2="parameters_global"/>
+   <map_variables variable_1="R" variable_2="R"/>
+   <map_variables variable_1="F" variable_2="F"/>
+   <map_variables variable_1="T" variable_2="T"/>
+   <map_variables variable_1="N_avo" variable_2="N_avo"/>
+</connection>
+<!--&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;parameters mapping to modules&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;//-->
+<connection>
+   <map_components component_1="parameters" component_2="soma_SN_module"/>
+   <map_variables variable_1="V_rest_approx_soma_SN" variable_2="V_rest_approx"/>
+   <map_variables variable_1="h_BK_min_soma_SN" variable_2="h_BK_min"/>
+   <map_variables variable_1="z_BK_coeff_soma_SN" variable_2="z_BK_coeff"/>
+   <map_variables variable_1="V_mid_m_soma_SN" variable_2="V_mid_m"/>
+   <map_variables variable_1="V_mid_h_soma_SN" variable_2="V_mid_h"/>
+   <map_variables variable_1="V_den_m_soma_SN" variable_2="V_den_m"/>
+   <map_variables variable_1="V_den_h_soma_SN" variable_2="V_den_h"/>
+   <map_variables variable_1="V_mid_m_Na1_6_soma_SN" variable_2="V_mid_m_Na1_6"/>
+   <map_variables variable_1="V_mid_h_Na1_6_soma_SN" variable_2="V_mid_h_Na1_6"/>
+   <map_variables variable_1="V_den_m_Na1_6_soma_SN" variable_2="V_den_m_Na1_6"/>
+   <map_variables variable_1="V_den_h_Na1_6_soma_SN" variable_2="V_den_h_Na1_6"/>
+   <map_variables variable_1="V_mid_c_soma_SN" variable_2="V_mid_c"/>
+   <map_variables variable_1="V_den_c_soma_SN" variable_2="V_den_c"/>
+   <map_variables variable_1="V_mid_m_Kv1_5_soma_SN" variable_2="V_mid_m_Kv1_5"/>
+   <map_variables variable_1="V_den_m_Kv1_5_soma_SN" variable_2="V_den_m_Kv1_5"/>
+   <map_variables variable_1="V_mid_h_Kv1_5_soma_SN" variable_2="V_mid_h_Kv1_5"/>
+   <map_variables variable_1="V_den_h_Kv1_5_soma_SN" variable_2="V_den_h_Kv1_5"/>
+   <map_variables variable_1="V_mid_m_Kv4_2_soma_SN" variable_2="V_mid_m_Kv4_2"/>
+   <map_variables variable_1="V_den_m_Kv4_2_soma_SN" variable_2="V_den_m_Kv4_2"/>
+   <map_variables variable_1="V_mid_h_Kv4_2_soma_SN" variable_2="V_mid_h_Kv4_2"/>
+   <map_variables variable_1="V_den_h_Kv4_2_soma_SN" variable_2="V_den_h_Kv4_2"/>
+   <map_variables variable_1="V_mid_m_Kv2_soma_SN" variable_2="V_mid_m_Kv2"/>
+   <map_variables variable_1="V_den_m_Kv2_soma_SN" variable_2="V_den_m_Kv2"/>
+   <map_variables variable_1="V_mid_w_soma_SN" variable_2="V_mid_w"/>
+   <map_variables variable_1="Delta_V_mid_w_soma_SN" variable_2="Delta_V_mid_w"/>
+   <map_variables variable_1="V_den_w_soma_SN" variable_2="V_den_w"/>
+   <map_variables variable_1="V_den_m_BK_soma_SN" variable_2="V_den_m_BK"/>
+   <map_variables variable_1="V_mid_h_BK_soma_SN" variable_2="V_mid_h_BK"/>
+   <map_variables variable_1="V_den_h_BK_soma_SN" variable_2="V_den_h_BK"/>
+   <map_variables variable_1="k_thresh_m_soma_SN" variable_2="k_thresh_m"/>
+   <map_variables variable_1="k_thresh_h_soma_SN" variable_2="k_thresh_h"/>
+   <map_variables variable_1="tau_h_min_soma_SN" variable_2="tau_h_min"/>
+   <map_variables variable_1="tau_h_max_soma_SN" variable_2="tau_h_max"/>
+   <map_variables variable_1="tau_h_Na1_6_min_soma_SN" variable_2="tau_h_Na1_6_min"/>
+   <map_variables variable_1="tau_h_Na1_6_max_soma_SN" variable_2="tau_h_Na1_6_max"/>
+   <map_variables variable_1="tau_w_min_soma_SN" variable_2="tau_w_min"/>
+   <map_variables variable_1="tau_c_min_soma_SN" variable_2="tau_c_min"/>
+   <map_variables variable_1="tau_c_max_soma_SN" variable_2="tau_c_max"/>
+   <map_variables variable_1="tau_hc_soma_SN" variable_2="tau_hc"/>
+   <map_variables variable_1="tau_h_Kv4_2_soma_SN" variable_2="tau_h_Kv4_2"/>
+   <map_variables variable_1="tau_z_BK_soma_SN" variable_2="tau_z_BK"/>
+   <map_variables variable_1="tau_m_SK_soma_SN" variable_2="tau_m_SK"/>
+   <map_variables variable_1="R_diffSensed_soma_SN" variable_2="R_diffSensed"/>
+   <map_variables variable_1="C_sensed_soma_SN" variable_2="C_sensed"/>
+   <map_variables variable_1="p_SK_soma_SN" variable_2="p_SK"/>
+   <map_variables variable_1="Cai_init_soma_SN" variable_2="Cai_init"/>
+   <map_variables variable_1="Ca_mid_m_SK_soma_SN" variable_2="Ca_mid_m_SK"/>
+   <map_variables variable_1="B_Ca_init_soma_SN" variable_2="B_Ca_init"/>
+   <map_variables variable_1="B_Ca_total_soma_SN" variable_2="B_Ca_total"/>
+   <map_variables variable_1="k_bind_Ca_soma_SN" variable_2="k_bind_Ca"/>
+   <map_variables variable_1="k_unbind_Ca_soma_SN" variable_2="k_unbind_Ca"/>
+   <map_variables variable_1="k_bind_Ca_ER_soma_SN" variable_2="k_bind_Ca_ER"/>
+   <map_variables variable_1="k_unbind_Ca_ER_soma_SN" variable_2="k_unbind_Ca_ER"/>
+   <map_variables variable_1="Nai_init_soma_SN" variable_2="Nai_init"/>
+   <map_variables variable_1="Ki_init_soma_SN" variable_2="Ki_init"/>
+   <map_variables variable_1="g_Na_soma_SN" variable_2="g_Na"/>
+   <map_variables variable_1="g_Na_mod_soma_SN" variable_2="g_Na_mod"/>
+   <map_variables variable_1="g_Na1_6_soma_SN" variable_2="g_Na1_6"/>
+   <map_variables variable_1="g_Na1_6_mod_soma_SN" variable_2="g_Na1_6_mod"/>
+   <map_variables variable_1="Cm_soma_SN" variable_2="Cm"/>
+   <map_variables variable_1="p_Ca_soma_SN" variable_2="p_Ca"/>
+   <map_variables variable_1="g_Kv1_5_soma_SN" variable_2="g_Kv1_5"/>
+   <map_variables variable_1="g_Kv4_2_soma_SN" variable_2="g_Kv4_2"/>
+   <map_variables variable_1="g_Kv2_soma_SN" variable_2="g_Kv2"/>
+   <map_variables variable_1="g_KCa_BK_soma_SN" variable_2="g_KCa_BK"/>
+   <map_variables variable_1="g_KCa_SK_soma_SN" variable_2="g_KCa_SK"/>
+   <map_variables variable_1="g_KCa_SK_mod_soma_SN" variable_2="g_KCa_SK_mod"/>
+   <map_variables variable_1="Vol_soma_SN" variable_2="Vol"/>
+   <map_variables variable_1="Cao_soma_SN" variable_2="Cao"/>
+   <map_variables variable_1="Ko_soma_SN" variable_2="Ko"/>
+   <map_variables variable_1="Nao_soma_SN" variable_2="Nao"/>
+   <map_variables variable_1="g_M_soma_SN" variable_2="g_M"/>
+   <map_variables variable_1="g_M_mod_soma_SN" variable_2="g_M_mod"/>
+   <map_variables variable_1="g_leak_Na_soma_SN" variable_2="g_leak_Na"/>
+   <map_variables variable_1="g_leak_K_soma_SN" variable_2="g_leak_K"/>
+   <map_variables variable_1="delta_gM_soma_SN" variable_2="delta_gM"/>
+   <map_variables variable_1="tau_w_num_soma_SN" variable_2="tau_w_num"/>
+   <map_variables variable_1="cAMP_soma_SN" variable_2="cAMP"/>
+   <map_variables variable_1="I_in_soma_SN" variable_2="I_in"/>
+   <map_variables variable_1="k_NaCa_soma_SN" variable_2="k_NaCa"/>
+   <map_variables variable_1="alpha_NaCa_soma_SN" variable_2="alpha_NaCa"/>
+   <map_variables variable_1="gamma_NaCa_soma_SN" variable_2="gamma_NaCa"/>
+   <map_variables variable_1="Ksat_soma_SN" variable_2="Ksat"/>
+   <map_variables variable_1="KmCa_soma_SN" variable_2="KmCa"/>
+   <map_variables variable_1="KmNai_soma_SN" variable_2="KmNai"/>
+   <map_variables variable_1="k_NaK_soma_SN" variable_2="k_NaK"/>
+   <map_variables variable_1="Nai_mid_NaK_soma_SN" variable_2="Nai_mid_NaK"/>
+   <map_variables variable_1="Nai_power_NaK_soma_SN" variable_2="Nai_power_NaK"/>
+   <map_variables variable_1="Ko_mid_NaK_soma_SN" variable_2="Ko_mid_NaK"/>
+   <map_variables variable_1="Ca_ER_init_soma_SN" variable_2="Ca_ER_init"/>
+   <map_variables variable_1="K_mf_soma_SN" variable_2="K_mf"/>
+   <map_variables variable_1="K_mr_soma_SN" variable_2="K_mr"/>
+   <map_variables variable_1="k_SERCA_soma_SN" variable_2="k_SERCA"/>
+   <map_variables variable_1="H_SERCA_soma_SN" variable_2="H_SERCA"/>
+   <map_variables variable_1="k_RyR_soma_SN" variable_2="k_RyR"/>
+   <map_variables variable_1="tau_c_RyR_soma_SN" variable_2="tau_c_RyR"/>
+   <map_variables variable_1="tau_hc_RyR_soma_SN" variable_2="tau_hc_RyR"/>
+   <map_variables variable_1="Cai_RyR_mid_soma_SN" variable_2="Cai_RyR_mid"/>
+   <map_variables variable_1="Cai_RyR_den_soma_SN" variable_2="Cai_RyR_den"/>
+   <map_variables variable_1="Ca_ER_RyR_mid_soma_SN" variable_2="Ca_ER_RyR_mid"/>
+   <map_variables variable_1="Ca_ER_RyR_den_soma_SN" variable_2="Ca_ER_RyR_den"/>
+   <map_variables variable_1="Ca_ER_RyR_tau_mid_soma_SN" variable_2="Ca_ER_RyR_tau_mid"/>
+   <map_variables variable_1="Ca_ER_RyR_tau_den_soma_SN" variable_2="Ca_ER_RyR_tau_den"/>
+   <map_variables variable_1="c_ER_soma_SN" variable_2="c_ER"/>
+   <map_variables variable_1="c_SL_soma_SN" variable_2="c_SL"/>
+   <map_variables variable_1="k_IP3_soma_SN" variable_2="k_IP3"/>
+   <map_variables variable_1="k_leak_Ca_soma_SN" variable_2="k_leak_Ca"/>
+   <map_variables variable_1="h_IP3_init_soma_SN" variable_2="h_IP3_init"/>
+   <map_variables variable_1="IP3_soma_SN" variable_2="IP3"/>
+   <map_variables variable_1="a_2_soma_SN" variable_2="a_2"/>
+   <map_variables variable_1="d_1_soma_SN" variable_2="d_1"/>
+   <map_variables variable_1="d_2_soma_SN" variable_2="d_2"/>
+   <map_variables variable_1="d_3_soma_SN" variable_2="d_3"/>
+   <map_variables variable_1="d_5_soma_SN" variable_2="d_5"/>
+   <map_variables variable_1="D_Ca_soma_SN" variable_2="D_Ca"/>
+   <map_variables variable_1="c_ER_pre_soma_SN" variable_2="c_ER_pre"/>
+   <map_variables variable_1="D_Ca_ER_soma_SN" variable_2="D_Ca_ER"/>
+</connection>
+<connection>
+   <map_components component_1="parameters_global" component_2="soma_SN_module"/>
+   <map_variables variable_1="R" variable_2="R"/>
+   <map_variables variable_1="F" variable_2="F"/>
+   <map_variables variable_1="T" variable_2="T"/>
+</connection>
+<connection>
+   <map_components component_1="parameters" component_2="axon_SN_module"/>
+   <map_variables variable_1="channel_ratio_axon_SN" variable_2="channel_ratio"/>
+   <map_variables variable_1="C_axon_SN" variable_2="C"/>
+   <map_variables variable_1="R_axon_SN" variable_2="R"/>
+   <map_variables variable_1="V_rest_approx_axon_SN" variable_2="V_rest_approx"/>
+</connection>
+<connection>
+   <map_components component_1="parameters" component_2="var_SN_module"/>
+   <map_variables variable_1="c_init_var_SN" variable_2="c_init"/>
+   <map_variables variable_1="hc_init_var_SN" variable_2="hc_init"/>
+   <map_variables variable_1="V_mid_c_var_SN" variable_2="V_mid_c"/>
+   <map_variables variable_1="V_den_c_var_SN" variable_2="V_den_c"/>
+   <map_variables variable_1="tau_c_min_var_SN" variable_2="tau_c_min"/>
+   <map_variables variable_1="tau_c_max_var_SN" variable_2="tau_c_max"/>
+   <map_variables variable_1="tau_hc_var_SN" variable_2="tau_hc"/>
+   <map_variables variable_1="Cai_init_var_SN" variable_2="Cai_init"/>
+   <map_variables variable_1="B_Ca_init_var_SN" variable_2="B_Ca_init"/>
+   <map_variables variable_1="B_Ca_total_var_SN" variable_2="B_Ca_total"/>
+   <map_variables variable_1="k_bind_Ca_var_SN" variable_2="k_bind_Ca"/>
+   <map_variables variable_1="k_unbind_Ca_var_SN" variable_2="k_unbind_Ca"/>
+   <map_variables variable_1="k_bind_Ca_ER_var_SN" variable_2="k_bind_Ca_ER"/>
+   <map_variables variable_1="k_unbind_Ca_ER_var_SN" variable_2="k_unbind_Ca_ER"/>
+   <map_variables variable_1="Nai_var_SN" variable_2="Nai"/>
+   <map_variables variable_1="Nao_var_SN" variable_2="Nao"/>
+   <map_variables variable_1="NE_init_var_SN" variable_2="NE_init"/>
+   <map_variables variable_1="Cai_NE_base_var_SN" variable_2="Cai_NE_base"/>
+   <map_variables variable_1="k_NE_var_SN" variable_2="k_NE"/>
+   <map_variables variable_1="k_NET_var_SN" variable_2="k_NET"/>
+   <map_variables variable_1="g_CaN_var_SN" variable_2="g_CaN"/>
+   <map_variables variable_1="Vol_var_SN" variable_2="Vol"/>
+   <map_variables variable_1="Cao_var_SN" variable_2="Cao"/>
+   <map_variables variable_1="cAMP_var_SN" variable_2="cAMP"/>
+   <map_variables variable_1="k_NaCa_var_SN" variable_2="k_NaCa"/>
+   <map_variables variable_1="alpha_NaCa_var_SN" variable_2="alpha_NaCa"/>
+   <map_variables variable_1="gamma_NaCa_var_SN" variable_2="gamma_NaCa"/>
+   <map_variables variable_1="Ksat_var_SN" variable_2="Ksat"/>
+   <map_variables variable_1="KmCa_var_SN" variable_2="KmCa"/>
+   <map_variables variable_1="KmNai_var_SN" variable_2="KmNai"/>
+   <map_variables variable_1="Ca_ER_init_var_SN" variable_2="Ca_ER_init"/>
+   <map_variables variable_1="K_mf_var_SN" variable_2="K_mf"/>
+   <map_variables variable_1="K_mr_var_SN" variable_2="K_mr"/>
+   <map_variables variable_1="k_SERCA_var_SN" variable_2="k_SERCA"/>
+   <map_variables variable_1="H_SERCA_var_SN" variable_2="H_SERCA"/>
+   <map_variables variable_1="tau_c_RyR_var_SN" variable_2="tau_c_RyR"/>
+   <map_variables variable_1="tau_hc_RyR_var_SN" variable_2="tau_hc_RyR"/>
+   <map_variables variable_1="k_RyR_var_SN" variable_2="k_RyR"/>
+   <map_variables variable_1="Cai_RyR_mid_var_SN" variable_2="Cai_RyR_mid"/>
+   <map_variables variable_1="Cai_RyR_den_var_SN" variable_2="Cai_RyR_den"/>
+   <map_variables variable_1="Ca_ER_RyR_mid_var_SN" variable_2="Ca_ER_RyR_mid"/>
+   <map_variables variable_1="Ca_ER_RyR_den_var_SN" variable_2="Ca_ER_RyR_den"/>
+   <map_variables variable_1="Ca_ER_RyR_tau_mid_var_SN" variable_2="Ca_ER_RyR_tau_mid"/>
+   <map_variables variable_1="Ca_ER_RyR_tau_den_var_SN" variable_2="Ca_ER_RyR_tau_den"/>
+   <map_variables variable_1="k_IP3_var_SN" variable_2="k_IP3"/>
+   <map_variables variable_1="k_leak_Ca_var_SN" variable_2="k_leak_Ca"/>
+   <map_variables variable_1="h_IP3_init_var_SN" variable_2="h_IP3_init"/>
+   <map_variables variable_1="IP3_var_SN" variable_2="IP3"/>
+   <map_variables variable_1="a_2_var_SN" variable_2="a_2"/>
+   <map_variables variable_1="d_1_var_SN" variable_2="d_1"/>
+   <map_variables variable_1="d_2_var_SN" variable_2="d_2"/>
+   <map_variables variable_1="d_3_var_SN" variable_2="d_3"/>
+   <map_variables variable_1="d_5_var_SN" variable_2="d_5"/>
+   <map_variables variable_1="c_ER_var_SN" variable_2="c_ER"/>
+   <map_variables variable_1="c_SL_var_SN" variable_2="c_SL"/>
+   <map_variables variable_1="D_Ca_var_SN" variable_2="D_Ca"/>
+   <map_variables variable_1="c_ER_pre_var_SN" variable_2="c_ER_pre"/>
+   <map_variables variable_1="D_Ca_ER_var_SN" variable_2="D_Ca_ER"/>
+</connection>
+<connection>
+   <map_components component_1="parameters_global" component_2="var_SN_module"/>
+   <map_variables variable_1="N_avo" variable_2="N_avo"/>
+   <map_variables variable_1="R" variable_2="R"/>
+   <map_variables variable_1="F" variable_2="F"/>
+   <map_variables variable_1="T" variable_2="T"/>
+</connection>
+<!--&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;time mapping&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;//-->
+<connection>
+   <map_components component_1="environment" component_2="soma_SN_module"/>
+   <map_variables variable_1="time" variable_2="t"/>
+</connection>
+<connection>
+   <map_components component_1="environment" component_2="axon_SN_module"/>
+   <map_variables variable_1="time" variable_2="t"/>
+</connection>
+<connection>
+   <map_components component_1="environment" component_2="var_SN_module"/>
+   <map_variables variable_1="time" variable_2="t"/>
+</connection>
+</model>

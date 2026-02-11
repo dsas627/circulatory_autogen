@@ -1,0 +1,813 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<model name="Parameters" xmlns="http://www.cellml.org/cellml/1.1#" xmlns:cellml="http://www.cellml.org/cellml/1.1#" xmlns:xlink="http://www.w3.org/1999/xlink">
+<!--&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;parameter_units&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;//-->
+<import xlink:href="image_to_model_units.cellml">
+    <units name="s2" units_ref="s2"/>
+    <units name="Hz" units_ref="Hz"/>
+    <units name="millis" units_ref="millis"/>
+    <units name="per_millis" units_ref="per_millis"/>
+    <units name="mm" units_ref="mm"/>
+    <units name="m2" units_ref="m2"/>
+    <units name="mm2" units_ref="mm2"/>
+    <units name="m3" units_ref="m3"/>
+    <units name="m4" units_ref="m4"/>
+    <units name="mm3" units_ref="mm3"/>
+    <units name="J_per_s" units_ref="J_per_s"/>
+    <units name="mol_per_s" units_ref="mol_per_s"/>
+    <units name="mmol_per_s" units_ref="mmol_per_s"/>
+    <units name="umol_per_s" units_ref="umol_per_s"/>
+    <units name="C_per_s" units_ref="C_per_s"/>
+    <units name="mC_per_s" units_ref="mC_per_s"/>
+    <units name="uC_per_s" units_ref="uC_per_s"/>
+    <units name="nC_per_s" units_ref="nC_per_s"/>
+    <units name="Cm_per_millis" units_ref="Cm_per_millis"/>
+    <units name="m_per_s" units_ref="m_per_s"/>
+    <units name="mm_per_s" units_ref="mm_per_s"/>
+    <units name="um_per_s" units_ref="um_per_s"/>
+    <units name="rad_per_s" units_ref="rad_per_s"/>
+    <units name="m3_per_s" units_ref="m3_per_s"/>
+    <units name="mL" units_ref="mL"/>
+    <units name="per_milliL_s" units_ref="per_milliL_s"/>
+    <units name="s_per_m3" units_ref="s_per_m3"/>
+    <units name="s_per_milliV" units_ref="s_per_milliV"/>
+    <units name="s_per_millis" units_ref="s_per_millis"/>
+    <units name="millis_per_s" units_ref="millis_per_s"/>
+    <units name="mm3_per_s" units_ref="mm3_per_s"/>
+    <units name="l_per_s" units_ref="l_per_s"/>
+    <units name="per_ml_s" units_ref="per_ml_s"/>
+    <units name="per_m3_s" units_ref="per_m3_s"/>
+    <units name="J_per_mol" units_ref="J_per_mol"/>
+    <units name="J_per_kmol_K" units_ref="J_per_kmol_K"/>
+    <units name="J_per_M" units_ref="J_per_M"/>
+    <units name="J_per_C" units_ref="J_per_C"/>
+    <units name="J_per_C_s" units_ref="J_per_C_s"/>
+    <units name="J_per_m" units_ref="J_per_m"/>
+    <units name="J_per_m3" units_ref="J_per_m3"/>
+    <units name="mmHg" units_ref="mmHg"/>
+    <units name="per_mmHg" units_ref="per_mmHg"/>
+    <units name="mmHg2" units_ref="mmHg2"/>
+    <units name="Pa_per_mmHg" units_ref="Pa_per_mmHg"/>
+    <units name="m3_per_J" units_ref="m3_per_J"/>
+    <units name="J_per_m3s" units_ref="J_per_m3s"/>
+    <units name="m3_per_Js" units_ref="m3_per_Js"/>
+    <units name="J2_per_m6" units_ref="J2_per_m6"/>
+    <units name="Js2_per_C2" units_ref="Js2_per_C2"/>
+    <units name="Js2_per_mol2" units_ref="Js2_per_mol2"/>
+    <units name="Js_per_mol2" units_ref="Js_per_mol2"/>
+    <units name="Js_per_C2" units_ref="Js_per_C2"/>
+    <units name="J_per_mol2" units_ref="J_per_mol2"/>
+    <units name="C2_per_J_s" units_ref="C2_per_J_s"/>
+    <units name="J_per_C2" units_ref="J_per_C2"/>
+    <units name="C2_per_J" units_ref="C2_per_J"/>
+    <units name="mol_per_m3" units_ref="mol_per_m3"/>
+    <units name="M" units_ref="M"/>
+    <units name="mM" units_ref="mM"/>
+    <units name="milliM" units_ref="milliM"/>
+    <units name="uM" units_ref="uM"/>
+    <units name="kg_per_m3" units_ref="kg_per_m3"/>
+    <units name="m3_per_kg" units_ref="m3_per_kg"/>
+    <units name="per_m3" units_ref="per_m3"/>
+    <units name="mol_per_m2_s" units_ref="mol_per_m2_s"/>
+    <units name="mM_m_per_s" units_ref="mM_m_per_s"/>
+    <units name="J_per_m2_s" units_ref="J_per_m2_s"/>
+    <units name="Js_per_m4" units_ref="Js_per_m4"/>
+    <units name="mM_per_s" units_ref="mM_per_s"/>
+    <units name="per_s" units_ref="per_s"/>
+    <units name="per_s2" units_ref="per_s2"/>
+    <units name="per_mM_s" units_ref="per_mM_s"/>
+    <units name="m6_per_mol2_s" units_ref="m6_per_mol2_s"/>
+    <units name="m3_per_mol" units_ref="m3_per_mol"/>
+    <units name="mol_per_m3_s" units_ref="mol_per_m3_s"/>
+    <units name="per_mol" units_ref="per_mol"/>
+    <units name="J_per_mol_K" units_ref="J_per_mol_K"/>
+    <units name="m2_per_s" units_ref="m2_per_s"/>
+    <units name="per_C" units_ref="per_C"/>
+    <units name="per_m" units_ref="per_m"/>
+    <units name="per_mM" units_ref="per_mM"/>
+    <units name="Js2_per_m2" units_ref="Js2_per_m2"/>
+    <units name="Js_per_m2" units_ref="Js_per_m2"/>
+    <units name="J_per_m2" units_ref="J_per_m2"/>
+    <units name="m_per_s2" units_ref="m_per_s2"/>
+    <units name="rad_per_s2" units_ref="rad_per_s2"/>
+    <units name="Js_per_m3" units_ref="Js_per_m3"/>
+    <units name="Js2_per_m5" units_ref="Js2_per_m5"/>
+    <units name="m5_per_Js2" units_ref="m5_per_Js2"/>
+    <units name="J_per_m6" units_ref="J_per_m6"/>
+    <units name="m6_per_J" units_ref="m6_per_J"/>
+    <units name="m6_per_Js" units_ref="m6_per_Js"/>
+    <units name="mm6_per_J" units_ref="mm6_per_J"/>
+    <units name="Js2_per_m9" units_ref="Js2_per_m9"/>
+    <units name="m6s_per_J" units_ref="m6s_per_J"/>
+    <units name="Js_per_m6" units_ref="Js_per_m6"/>
+    <units name="Js2_per_m6" units_ref="Js2_per_m6"/>
+    <units name="m3_per_s2" units_ref="m3_per_s2"/>
+    <units name="mm3_per_s2" units_ref="mm3_per_s2"/>
+    <units name="per_mm3" units_ref="per_mm3"/>
+    <units name="UnitValve" units_ref="UnitValve"/>
+    <units name="J_per_m9" units_ref="J_per_m9"/>
+    <units name="milliV" units_ref="milliV"/>
+    <units name="per_milliV" units_ref="per_milliV"/>
+    <units name="millis_per_milliV" units_ref="millis_per_milliV"/>
+    <units name="per_V" units_ref="per_V"/>
+    <units name="milliV_per_V" units_ref="milliV_per_V"/>
+    <units name="V_per_milliV" units_ref="V_per_milliV"/>
+    <units name="V_per_s" units_ref="V_per_s"/>
+    <units name="milliV_per_kiloV" units_ref="milliV_per_kiloV"/>
+    <units name="V2" units_ref="V2"/>
+    <units name="milliV2" units_ref="milliV2"/>
+    <units name="millimol" units_ref="millimol"/>
+    <units name="millimolar" units_ref="millimolar"/>
+    <units name="per_millimolar" units_ref="per_millimolar"/>
+    <units name="per_millimolar_s" units_ref="per_millimolar_s"/>
+    <units name="per_millimolar2_s" units_ref="per_millimolar2_s"/>
+    <units name="millimolar_per_s" units_ref="millimolar_per_s"/>
+    <units name="millimolar_per_megamolar" units_ref="millimolar_per_megamolar"/>
+    <units name="per_millimol_milliS" units_ref="per_millimol_milliS"/>
+    <units name="per_millimol_millis" units_ref="per_millimol_millis"/>
+    <units name="per_millimol_s" units_ref="per_millimol_s"/>
+    <units name="microm" units_ref="microm"/>
+    <units name="microS" units_ref="microS"/>
+    <units name="microm3" units_ref="microm3"/>
+    <units name="m3_per_microm3" units_ref="m3_per_microm3"/>
+    <units name="picoF" units_ref="picoF"/>
+    <units name="S_per_F" units_ref="S_per_F"/>
+    <units name="m3_per_Fs" units_ref="m3_per_Fs"/>
+    <units name="A_per_F" units_ref="A_per_F"/>
+    <units name="megaOhm" units_ref="megaOhm"/>
+    <units name="nanoA" units_ref="nanoA"/>
+    <units name="nanoA_per_milliA" units_ref="nanoA_per_milliA"/>
+    <units name="nanoA_per_A" units_ref="nanoA_per_A"/>
+    <units name="A_per_nanoA" units_ref="A_per_nanoA"/>
+    <units name="C_per_mol" units_ref="C_per_mol"/>
+    <units name="m3_per_J_millis" units_ref="m3_per_J_millis"/>
+    <units name="m3_per_mol_millis" units_ref="m3_per_mol_millis"/>
+    <units name="m3_per_millimol_s" units_ref="m3_per_millimol_s"/>
+    <units name="millimol_per_m3" units_ref="millimol_per_m3"/>
+    <units name="mmol_per_l" units_ref="mmol_per_l"/>
+    <units name="l_per_mmol" units_ref="l_per_mmol"/>
+    <units name="l_per_mmol_per_s" units_ref="l_per_mmol_per_s"/>
+    <units name="l2_per_mmol_per_s" units_ref="l2_per_mmol_per_s"/>
+    <units name="mmol_per_s2" units_ref="mmol_per_s2"/>
+    <units name="mmol" units_ref="mmol"/>
+    <units name="mmol_per_l_per_s" units_ref="mmol_per_l_per_s"/>
+    <units name="Hz2" units_ref="Hz2"/>
+    <units name="cm" units_ref="cm"/>
+    <units name="J_per_m4_s" units_ref="J_per_m4_s"/>
+    <units name="m3_per_mol_per_sec" units_ref="m3_per_mol_per_sec"/>
+    <units name="mol_per_m3_per_kPa" units_ref="mol_per_m3_per_kPa"/>
+    <units name="mol_per_m3_per_Pa" units_ref="mol_per_m3_per_Pa"/>
+    <units name="m3_per_mol_per_s" units_ref="m3_per_mol_per_s"/>
+    <units name="mol_per_m3_per_s" units_ref="mol_per_m3_per_s"/>
+    <units name="dim" units_ref="dim"/>
+    <units name="fmol" units_ref="fmol"/>
+    <units name="per_fmol" units_ref="per_fmol"/>
+    <units name="nJ_per_s" units_ref="nJ_per_s"/>
+    <units name="fmol_per_s" units_ref="fmol_per_s"/>
+    <units name="nC_per_fmol" units_ref="nC_per_fmol"/>
+    <units name="nC" units_ref="nC"/>
+    <units name="nJ_per_fmol" units_ref="nJ_per_fmol"/>
+    <units name="nJ_per_nC" units_ref="nJ_per_nC"/>
+    <units name="fC" units_ref="fC"/>
+    <units name="fF" units_ref="fF"/>
+    <units name="volt_per_sec" units_ref="volt_per_sec"/>
+    <units name="J_per_K_per_mol" units_ref="J_per_K_per_mol"/>
+    <units name="nS" units_ref="nS"/>
+    <units name="nSmV" units_ref="nSmV"/>
+    <units name="per_ms" units_ref="per_ms"/>
+    <units name="mM4" units_ref="mM4"/>
+    <units name="mM_per_ms" units_ref="mM_per_ms"/>
+    <units name="mMms" units_ref="mMms"/>
+    <units name="per_mMms" units_ref="per_mMms"/>
+    <units name="molar" units_ref="molar"/>
+    <units name="micromolar" units_ref="micromolar"/>
+    <units name="nanomolar" units_ref="nanomolar"/>
+    <units name="ms" units_ref="ms"/>
+    <units name="m_cubed" units_ref="m_cubed"/>
+    <units name="mV" units_ref="mV"/>
+    <units name="m_cubed_per_second" units_ref="m_cubed_per_second"/>
+    <units name="micromolar_m_cubed" units_ref="micromolar_m_cubed"/>
+    <units name="C" units_ref="C"/>
+    <units name="C_per_millimol" units_ref="C_per_millimol"/>
+    <units name="picoA" units_ref="picoA"/>
+    <units name="picoA_per_picoFarad" units_ref="picoA_per_picoFarad"/>
+    <units name="microL" units_ref="microL"/>
+    <units name="picoFarad" units_ref="picoFarad"/>
+    <units name="cm3_per_second" units_ref="cm3_per_second"/>
+    <units name="um3_per_second" units_ref="um3_per_second"/>
+    <units name="m3mM" units_ref="m3mM"/>
+    <units name="ms2" units_ref="ms2"/>
+    <units name="nM3_per_ps" units_ref="nM3_per_ps"/>
+    <units name="per_s_squared_m_cubed" units_ref="per_s_squared_m_cubed"/>
+    <units name="per_meters_cubed" units_ref="per_meters_cubed"/>
+    <units name="umeter3" units_ref="umeter3"/>
+    <units name="mill1" units_ref="mill1"/>
+    <units name="picoV" units_ref="picoV"/>
+    <units name="pic0" units_ref="pic0"/>
+    <units name="nanoV" units_ref="nanoV"/>
+    <units name="nan0" units_ref="nan0"/>
+    <units name="kPa" units_ref="kPa"/>
+    <units name="L_per_s" units_ref="L_per_s"/>
+    <units name="L_per_s_per_kPa" units_ref="L_per_s_per_kPa"/>
+    <units name="kPa_per_L" units_ref="kPa_per_L"/>
+    <units name="L_per_kPa" units_ref="L_per_kPa"/>
+    <units name="kPa_s_per_L" units_ref="kPa_s_per_L"/>
+</import>
+<component name="parameters_global">
+<variable initial_value="0.0" name="beta_g" public_interface="out" units="dimensionless"/>
+<variable initial_value="1040.0" name="rho" public_interface="out" units="Js2_per_m5"/>
+<variable initial_value="0.004" name="mu" public_interface="out" units="Js_per_m3"/>
+<variable initial_value="9.81" name="g" public_interface="out" units="m_per_s2"/>
+<variable initial_value="0.2802" name="a_vessel" public_interface="out" units="dimensionless"/>
+<variable initial_value="-505.3" name="b_vessel" public_interface="out" units="per_m"/>
+<variable initial_value="0.1324" name="c_vessel" public_interface="out" units="dimensionless"/>
+<variable initial_value="-11.14" name="d_vessel" public_interface="out" units="per_m"/>
+</component>
+<component name="parameters">
+<variable initial_value="180977.76812575106" name="E_L2_E0" public_interface="out" units="J_per_m3"/>
+<variable initial_value="3.6394e-06" name="l_L2_E0" public_interface="out" units="metre"/>
+<variable initial_value="8.536e-07" name="r_0_L2_E0" public_interface="out" units="metre"/>
+<variable initial_value="1.3839703899780944e-12" name="u_0_L2_E0" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="u_ext_L2_E0" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="theta_L2_E0" public_interface="out" units="dimensionless"/>
+<variable initial_value="0.0" name="u_ext_L2_E1" public_interface="out" units="J_per_m3"/>
+<variable initial_value="-2.982844794885348e-13" name="u_0_L2_E1" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="theta_L2_E1" public_interface="out" units="dimensionless"/>
+<variable initial_value="179513.96360683476" name="E_L2_E1" public_interface="out" units="J_per_m3"/>
+<variable initial_value="2.1252e-06" name="l_L2_E1" public_interface="out" units="metre"/>
+<variable initial_value="4.1679999999999997e-07" name="r_0_L2_E1" public_interface="out" units="metre"/>
+<variable initial_value="182228.2866058121" name="E_L2_E2" public_interface="out" units="J_per_m3"/>
+<variable initial_value="1.0537800000000001e-05" name="l_L2_E2" public_interface="out" units="metre"/>
+<variable initial_value="2.0923e-06" name="r_0_L2_E2" public_interface="out" units="metre"/>
+<variable initial_value="4.5323380465367435e-13" name="u_0_L2_E2" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="u_ext_L2_E2" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="theta_L2_E2" public_interface="out" units="dimensionless"/>
+<variable initial_value="162953.2880989014" name="E_L2_E3" public_interface="out" units="J_per_m3"/>
+<variable initial_value="8.892200000000001e-06" name="l_L2_E3" public_interface="out" units="metre"/>
+<variable initial_value="9.268999999999999e-07" name="r_0_L2_E3" public_interface="out" units="metre"/>
+<variable initial_value="2.4590017522196916e-12" name="u_0_L2_E3" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="u_ext_L2_E3" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="theta_L2_E3" public_interface="out" units="dimensionless"/>
+<variable initial_value="181652.12541447987" name="E_L2_E4" public_interface="out" units="J_per_m3"/>
+<variable initial_value="5.4477e-06" name="l_L2_E4" public_interface="out" units="metre"/>
+<variable initial_value="1.973e-06" name="r_0_L2_E4" public_interface="out" units="metre"/>
+<variable initial_value="4.367569793462583e-08" name="u_0_L2_E4" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="u_ext_L2_E4" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="theta_L2_E4" public_interface="out" units="dimensionless"/>
+<variable initial_value="198831.27427073303" name="E_L2_E5" public_interface="out" units="J_per_m3"/>
+<variable initial_value="8.066599999999998e-06" name="l_L2_E5" public_interface="out" units="metre"/>
+<variable initial_value="1.4761e-06" name="r_0_L2_E5" public_interface="out" units="metre"/>
+<variable initial_value="1.1071463738854259e-08" name="u_0_L2_E5" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="u_ext_L2_E5" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="theta_L2_E5" public_interface="out" units="dimensionless"/>
+<variable initial_value="159287.76659072776" name="E_L2_E6" public_interface="out" units="J_per_m3"/>
+<variable initial_value="5.4995e-06" name="l_L2_E6" public_interface="out" units="metre"/>
+<variable initial_value="1.7974e-06" name="r_0_L2_E6" public_interface="out" units="metre"/>
+<variable initial_value="4.952156018589449e-07" name="u_0_L2_E6" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="u_ext_L2_E6" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="theta_L2_E6" public_interface="out" units="dimensionless"/>
+<variable initial_value="126905.1498798032" name="E_L2_E7" public_interface="out" units="J_per_m3"/>
+<variable initial_value="2.182e-06" name="l_L2_E7" public_interface="out" units="metre"/>
+<variable initial_value="3.6398e-06" name="r_0_L2_E7" public_interface="out" units="metre"/>
+<variable initial_value="2.0579498993811285e-08" name="u_0_L2_E7" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="u_ext_L2_E7" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="theta_L2_E7" public_interface="out" units="dimensionless"/>
+<variable initial_value="108671.50084308271" name="E_L2_E8" public_interface="out" units="J_per_m3"/>
+<variable initial_value="2.0977999999999996e-06" name="l_L2_E8" public_interface="out" units="metre"/>
+<variable initial_value="3.6398e-06" name="r_0_L2_E8" public_interface="out" units="metre"/>
+<variable initial_value="5.027089855502709e-12" name="u_0_L2_E8" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="u_ext_L2_E8" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="theta_L2_E8" public_interface="out" units="dimensionless"/>
+<variable initial_value="94853.28552830071" name="E_L2_E9" public_interface="out" units="J_per_m3"/>
+<variable initial_value="3.5365e-06" name="l_L2_E9" public_interface="out" units="metre"/>
+<variable initial_value="8.8138e-06" name="r_0_L2_E9" public_interface="out" units="metre"/>
+<variable initial_value="97.65024199458983" name="u_0_L2_E9" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="u_ext_L2_E9" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="theta_L2_E9" public_interface="out" units="dimensionless"/>
+<variable initial_value="176766.0999021258" name="E_L2_E10" public_interface="out" units="J_per_m3"/>
+<variable initial_value="4.3762e-06" name="l_L2_E10" public_interface="out" units="metre"/>
+<variable initial_value="7.8418e-06" name="r_0_L2_E10" public_interface="out" units="metre"/>
+<variable initial_value="10.008100276736224" name="u_0_L2_E10" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="u_ext_L2_E10" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="theta_L2_E10" public_interface="out" units="dimensionless"/>
+<variable initial_value="0.0" name="u_ext_L2_E11" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.006822082944406782" name="u_0_L2_E11" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="theta_L2_E11" public_interface="out" units="dimensionless"/>
+<variable initial_value="117763.94342497666" name="E_L2_E11" public_interface="out" units="J_per_m3"/>
+<variable initial_value="5.1768999999999995e-06" name="l_L2_E11" public_interface="out" units="metre"/>
+<variable initial_value="1.11957e-05" name="r_0_L2_E11" public_interface="out" units="metre"/>
+<variable initial_value="144020.12223157764" name="E_L2_E12" public_interface="out" units="J_per_m3"/>
+<variable initial_value="6.949999999999999e-07" name="l_L2_E12" public_interface="out" units="metre"/>
+<variable initial_value="1.09064e-05" name="r_0_L2_E12" public_interface="out" units="metre"/>
+<variable initial_value="6.652226244100612" name="u_0_L2_E12" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="u_ext_L2_E12" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="theta_L2_E12" public_interface="out" units="dimensionless"/>
+<variable initial_value="138056.9683803144" name="E_L2_E13" public_interface="out" units="J_per_m3"/>
+<variable initial_value="3.683e-07" name="l_L2_E13" public_interface="out" units="metre"/>
+<variable initial_value="3.5889999999999996e-07" name="r_0_L2_E13" public_interface="out" units="metre"/>
+<variable initial_value="0.0035064412993506267" name="u_0_L2_E13" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="u_ext_L2_E13" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="theta_L2_E13" public_interface="out" units="dimensionless"/>
+<variable initial_value="0.0" name="u_ext_L2_E14" public_interface="out" units="J_per_m3"/>
+<variable initial_value="8.824428294918306" name="u_0_L2_E14" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="theta_L2_E14" public_interface="out" units="dimensionless"/>
+<variable initial_value="138938.24212093896" name="E_L2_E14" public_interface="out" units="J_per_m3"/>
+<variable initial_value="2.6956e-06" name="l_L2_E14" public_interface="out" units="metre"/>
+<variable initial_value="1.28443e-05" name="r_0_L2_E14" public_interface="out" units="metre"/>
+<variable initial_value="215458.42029938017" name="E_L2_E15" public_interface="out" units="J_per_m3"/>
+<variable initial_value="2.7313e-06" name="l_L2_E15" public_interface="out" units="metre"/>
+<variable initial_value="7.8501e-06" name="r_0_L2_E15" public_interface="out" units="metre"/>
+<variable initial_value="1.7173327905888414" name="u_0_L2_E15" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="u_ext_L2_E15" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="theta_L2_E15" public_interface="out" units="dimensionless"/>
+<variable initial_value="166826.02472763287" name="E_L2_E16" public_interface="out" units="J_per_m3"/>
+<variable initial_value="2.1908e-06" name="l_L2_E16" public_interface="out" units="metre"/>
+<variable initial_value="7.6926e-06" name="r_0_L2_E16" public_interface="out" units="metre"/>
+<variable initial_value="88.76665773346362" name="u_0_L2_E16" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="u_ext_L2_E16" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="theta_L2_E16" public_interface="out" units="dimensionless"/>
+<variable initial_value="117383.07626858386" name="E_L2_E17" public_interface="out" units="J_per_m3"/>
+<variable initial_value="4.359600000000001e-06" name="l_L2_E17" public_interface="out" units="metre"/>
+<variable initial_value="9.351100000000001e-06" name="r_0_L2_E17" public_interface="out" units="metre"/>
+<variable initial_value="0.0424610851913485" name="u_0_L2_E17" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="u_ext_L2_E17" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="theta_L2_E17" public_interface="out" units="dimensionless"/>
+<variable initial_value="133915.30196938684" name="E_L2_E18" public_interface="out" units="J_per_m3"/>
+<variable initial_value="5.725299999999999e-06" name="l_L2_E18" public_interface="out" units="metre"/>
+<variable initial_value="1.04593e-05" name="r_0_L2_E18" public_interface="out" units="metre"/>
+<variable initial_value="2.170141883144325" name="u_0_L2_E18" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="u_ext_L2_E18" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="theta_L2_E18" public_interface="out" units="dimensionless"/>
+<variable initial_value="155247.7140776121" name="E_L2_E19" public_interface="out" units="J_per_m3"/>
+<variable initial_value="1.3041e-06" name="l_L2_E19" public_interface="out" units="metre"/>
+<variable initial_value="7.5609e-06" name="r_0_L2_E19" public_interface="out" units="metre"/>
+<variable initial_value="0.23535613417777768" name="u_0_L2_E19" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="theta_L2_E19" public_interface="out" units="dimensionless"/>
+<variable initial_value="0.0" name="u_ext_L2_E19" public_interface="out" units="J_per_m3"/>
+<variable initial_value="163445.44885521877" name="E_L2_E20" public_interface="out" units="J_per_m3"/>
+<variable initial_value="5.57e-07" name="l_L2_E20" public_interface="out" units="metre"/>
+<variable initial_value="1.54474e-05" name="r_0_L2_E20" public_interface="out" units="metre"/>
+<variable initial_value="552.4470020938865" name="u_0_L2_E20" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="u_ext_L2_E20" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="theta_L2_E20" public_interface="out" units="dimensionless"/>
+<variable initial_value="125287.18425295711" name="E_L2_E21" public_interface="out" units="J_per_m3"/>
+<variable initial_value="6.524999999999999e-07" name="l_L2_E21" public_interface="out" units="metre"/>
+<variable initial_value="7.4963e-06" name="r_0_L2_E21" public_interface="out" units="metre"/>
+<variable initial_value="0.06605121192892227" name="u_0_L2_E21" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="u_ext_L2_E21" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="theta_L2_E21" public_interface="out" units="dimensionless"/>
+<variable initial_value="244377.56453289665" name="E_L2_E22" public_interface="out" units="J_per_m3"/>
+<variable initial_value="3.3665e-06" name="l_L2_E22" public_interface="out" units="metre"/>
+<variable initial_value="6.6032e-06" name="r_0_L2_E22" public_interface="out" units="metre"/>
+<variable initial_value="0.005618985330517745" name="u_0_L2_E22" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="u_ext_L2_E22" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="theta_L2_E22" public_interface="out" units="dimensionless"/>
+<variable initial_value="136289.51672211266" name="E_L2_E23" public_interface="out" units="J_per_m3"/>
+<variable initial_value="3.5863e-06" name="l_L2_E23" public_interface="out" units="metre"/>
+<variable initial_value="1.7169899999999996e-05" name="r_0_L2_E23" public_interface="out" units="metre"/>
+<variable initial_value="81.15073648998391" name="u_0_L2_E23" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="u_ext_L2_E23" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="theta_L2_E23" public_interface="out" units="dimensionless"/>
+<variable initial_value="126695.44288346832" name="E_L2_E24" public_interface="out" units="J_per_m3"/>
+<variable initial_value="2.8405999999999995e-06" name="l_L2_E24" public_interface="out" units="metre"/>
+<variable initial_value="1.7297999999999996e-05" name="r_0_L2_E24" public_interface="out" units="metre"/>
+<variable initial_value="30.926392409520986" name="u_0_L2_E24" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="u_ext_L2_E24" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="theta_L2_E24" public_interface="out" units="dimensionless"/>
+<variable initial_value="124244.75616516356" name="E_L2_E25" public_interface="out" units="J_per_m3"/>
+<variable initial_value="1.2675e-06" name="l_L2_E25" public_interface="out" units="metre"/>
+<variable initial_value="4.9291e-06" name="r_0_L2_E25" public_interface="out" units="metre"/>
+<variable initial_value="1.9938715964118447e-05" name="u_0_L2_E25" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="u_ext_L2_E25" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="theta_L2_E25" public_interface="out" units="dimensionless"/>
+<variable initial_value="171177.3359162358" name="E_L2_E26" public_interface="out" units="J_per_m3"/>
+<variable initial_value="6.286e-07" name="l_L2_E26" public_interface="out" units="metre"/>
+<variable initial_value="4.9291e-06" name="r_0_L2_E26" public_interface="out" units="metre"/>
+<variable initial_value="2.7170102672502416e-05" name="u_0_L2_E26" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="u_ext_L2_E26" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="theta_L2_E26" public_interface="out" units="dimensionless"/>
+<variable initial_value="227758.57979520183" name="E_L2_E27" public_interface="out" units="J_per_m3"/>
+<variable initial_value="1.9112e-06" name="l_L2_E27" public_interface="out" units="metre"/>
+<variable initial_value="1.4794399999999998e-05" name="r_0_L2_E27" public_interface="out" units="metre"/>
+<variable initial_value="384.8621307572446" name="u_0_L2_E27" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="u_ext_L2_E27" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="theta_L2_E27" public_interface="out" units="dimensionless"/>
+<variable initial_value="0.0" name="u_ext_L2_E28" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.01874829475653428" name="u_0_L2_E28" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="theta_L2_E28" public_interface="out" units="dimensionless"/>
+<variable initial_value="120115.90417569342" name="E_L2_E28" public_interface="out" units="J_per_m3"/>
+<variable initial_value="5.4614e-06" name="l_L2_E28" public_interface="out" units="metre"/>
+<variable initial_value="7.7575e-06" name="r_0_L2_E28" public_interface="out" units="metre"/>
+<variable initial_value="124957.2576118419" name="E_L2_E29" public_interface="out" units="J_per_m3"/>
+<variable initial_value="6.7270999999999995e-06" name="l_L2_E29" public_interface="out" units="metre"/>
+<variable initial_value="6.5134999999999996e-06" name="r_0_L2_E29" public_interface="out" units="metre"/>
+<variable initial_value="9.046087257047475e-08" name="u_0_L2_E29" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="u_ext_L2_E29" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="theta_L2_E29" public_interface="out" units="dimensionless"/>
+<variable initial_value="130786.48808235755" name="E_L2_E30" public_interface="out" units="J_per_m3"/>
+<variable initial_value="4.4894e-06" name="l_L2_E30" public_interface="out" units="metre"/>
+<variable initial_value="6.3723e-06" name="r_0_L2_E30" public_interface="out" units="metre"/>
+<variable initial_value="0.00013108065414257908" name="u_0_L2_E30" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="u_ext_L2_E30" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="theta_L2_E30" public_interface="out" units="dimensionless"/>
+<variable initial_value="158511.61111500883" name="E_L2_E31" public_interface="out" units="J_per_m3"/>
+<variable initial_value="4.597699999999999e-06" name="l_L2_E31" public_interface="out" units="metre"/>
+<variable initial_value="1.5422599999999997e-05" name="r_0_L2_E31" public_interface="out" units="metre"/>
+<variable initial_value="183.92661830592021" name="u_0_L2_E31" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="theta_L2_E31" public_interface="out" units="dimensionless"/>
+<variable initial_value="0.0" name="u_ext_L2_E31" public_interface="out" units="J_per_m3"/>
+<variable initial_value="83224.95388217257" name="E_L2_E32" public_interface="out" units="J_per_m3"/>
+<variable initial_value="2.5615e-06" name="l_L2_E32" public_interface="out" units="metre"/>
+<variable initial_value="4.8034e-06" name="r_0_L2_E32" public_interface="out" units="metre"/>
+<variable initial_value="3.69911076347762e-06" name="u_0_L2_E32" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="theta_L2_E32" public_interface="out" units="dimensionless"/>
+<variable initial_value="0.0" name="u_ext_L2_E32" public_interface="out" units="J_per_m3"/>
+<variable initial_value="187772.8629481747" name="E_L2_E33" public_interface="out" units="J_per_m3"/>
+<variable initial_value="2.0506e-06" name="l_L2_E33" public_interface="out" units="metre"/>
+<variable initial_value="6.8989999999999995e-06" name="r_0_L2_E33" public_interface="out" units="metre"/>
+<variable initial_value="2.849720264387493e-05" name="u_0_L2_E33" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="u_ext_L2_E33" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="theta_L2_E33" public_interface="out" units="dimensionless"/>
+<variable initial_value="183168.76731345337" name="E_L2_E34" public_interface="out" units="J_per_m3"/>
+<variable initial_value="5.7819e-06" name="l_L2_E34" public_interface="out" units="metre"/>
+<variable initial_value="6.132799999999999e-06" name="r_0_L2_E34" public_interface="out" units="metre"/>
+<variable initial_value="1.3726015587851794e-07" name="u_0_L2_E34" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="u_ext_L2_E34" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="theta_L2_E34" public_interface="out" units="dimensionless"/>
+<variable initial_value="194901.52192779034" name="E_L2_E35" public_interface="out" units="J_per_m3"/>
+<variable initial_value="1.4516e-06" name="l_L2_E35" public_interface="out" units="metre"/>
+<variable initial_value="9.549899999999998e-06" name="r_0_L2_E35" public_interface="out" units="metre"/>
+<variable initial_value="0.00030018609336934787" name="u_0_L2_E35" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="u_ext_L2_E35" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="theta_L2_E35" public_interface="out" units="dimensionless"/>
+<variable initial_value="126902.23714810297" name="E_L2_E36" public_interface="out" units="J_per_m3"/>
+<variable initial_value="7.726899999999999e-06" name="l_L2_E36" public_interface="out" units="metre"/>
+<variable initial_value="3.6197e-06" name="r_0_L2_E36" public_interface="out" units="metre"/>
+<variable initial_value="4.851488326293789e-05" name="u_0_L2_E36" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="u_ext_L2_E36" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="theta_L2_E36" public_interface="out" units="dimensionless"/>
+<variable initial_value="0.0" name="u_ext_L2_E37" public_interface="out" units="J_per_m3"/>
+<variable initial_value="769.0520370232543" name="u_0_L2_E37" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="theta_L2_E37" public_interface="out" units="dimensionless"/>
+<variable initial_value="146557.1173638545" name="E_L2_E37" public_interface="out" units="J_per_m3"/>
+<variable initial_value="3.0485e-06" name="l_L2_E37" public_interface="out" units="metre"/>
+<variable initial_value="8.6773e-06" name="r_0_L2_E37" public_interface="out" units="metre"/>
+<variable initial_value="0.0" name="u_ext_L2_E38" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.4372220626080262" name="u_0_L2_E38" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="theta_L2_E38" public_interface="out" units="dimensionless"/>
+<variable initial_value="119156.66301562765" name="E_L2_E38" public_interface="out" units="J_per_m3"/>
+<variable initial_value="3.3469e-06" name="l_L2_E38" public_interface="out" units="metre"/>
+<variable initial_value="3.8119e-06" name="r_0_L2_E38" public_interface="out" units="metre"/>
+<variable initial_value="242821.6263467157" name="E_L2_E39" public_interface="out" units="J_per_m3"/>
+<variable initial_value="4.964e-06" name="l_L2_E39" public_interface="out" units="metre"/>
+<variable initial_value="6.687e-06" name="r_0_L2_E39" public_interface="out" units="metre"/>
+<variable initial_value="53.1373642263337" name="u_0_L2_E39" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="u_ext_L2_E39" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="theta_L2_E39" public_interface="out" units="dimensionless"/>
+<variable initial_value="126971.07458663464" name="E_L2_E40" public_interface="out" units="J_per_m3"/>
+<variable initial_value="2.7038000000000003e-06" name="l_L2_E40" public_interface="out" units="metre"/>
+<variable initial_value="5.2353e-06" name="r_0_L2_E40" public_interface="out" units="metre"/>
+<variable initial_value="19.587207786759542" name="u_0_L2_E40" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="u_ext_L2_E40" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="theta_L2_E40" public_interface="out" units="dimensionless"/>
+<variable initial_value="172411.41313736312" name="E_L2_E41" public_interface="out" units="J_per_m3"/>
+<variable initial_value="3.0407e-06" name="l_L2_E41" public_interface="out" units="metre"/>
+<variable initial_value="4.9821e-06" name="r_0_L2_E41" public_interface="out" units="metre"/>
+<variable initial_value="0.013565048396166901" name="u_0_L2_E41" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="u_ext_L2_E41" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="theta_L2_E41" public_interface="out" units="dimensionless"/>
+<variable initial_value="183514.64553211178" name="E_L2_E42" public_interface="out" units="J_per_m3"/>
+<variable initial_value="6.6947e-06" name="l_L2_E42" public_interface="out" units="metre"/>
+<variable initial_value="9.411e-07" name="r_0_L2_E42" public_interface="out" units="metre"/>
+<variable initial_value="2.2543780246142576e-12" name="u_0_L2_E42" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="u_ext_L2_E42" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="theta_L2_E42" public_interface="out" units="dimensionless"/>
+<variable initial_value="151169.10780426534" name="E_L2_E43" public_interface="out" units="J_per_m3"/>
+<variable initial_value="9.4402e-06" name="l_L2_E43" public_interface="out" units="metre"/>
+<variable initial_value="4.250499999999999e-06" name="r_0_L2_E43" public_interface="out" units="metre"/>
+<variable initial_value="1.6358312890929483e-06" name="u_0_L2_E43" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="u_ext_L2_E43" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="theta_L2_E43" public_interface="out" units="dimensionless"/>
+<variable initial_value="204408.69298741146" name="E_L2_E44" public_interface="out" units="J_per_m3"/>
+<variable initial_value="9.944e-06" name="l_L2_E44" public_interface="out" units="metre"/>
+<variable initial_value="1.6003e-06" name="r_0_L2_E44" public_interface="out" units="metre"/>
+<variable initial_value="1.2432952934760336e-08" name="u_0_L2_E44" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="u_ext_L2_E44" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="theta_L2_E44" public_interface="out" units="dimensionless"/>
+<variable initial_value="170061.33939766994" name="E_L2_E45" public_interface="out" units="J_per_m3"/>
+<variable initial_value="1.0651899999999999e-05" name="l_L2_E45" public_interface="out" units="metre"/>
+<variable initial_value="2.2414e-06" name="r_0_L2_E45" public_interface="out" units="metre"/>
+<variable initial_value="0.17708758754131448" name="u_0_L2_E45" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="u_ext_L2_E45" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="theta_L2_E45" public_interface="out" units="dimensionless"/>
+<variable initial_value="0.0" name="u_ext_L2_E46" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.03487402853707105" name="u_0_L2_E46" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="theta_L2_E46" public_interface="out" units="dimensionless"/>
+<variable initial_value="173457.74310916598" name="E_L2_E46" public_interface="out" units="J_per_m3"/>
+<variable initial_value="3.6499999999999998e-06" name="l_L2_E46" public_interface="out" units="metre"/>
+<variable initial_value="1.1422e-06" name="r_0_L2_E46" public_interface="out" units="metre"/>
+<variable initial_value="134977.765333183" name="E_L2_E47" public_interface="out" units="J_per_m3"/>
+<variable initial_value="7.197e-06" name="l_L2_E47" public_interface="out" units="metre"/>
+<variable initial_value="3.0725e-06" name="r_0_L2_E47" public_interface="out" units="metre"/>
+<variable initial_value="9.225449406146623" name="u_0_L2_E47" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="u_ext_L2_E47" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="theta_L2_E47" public_interface="out" units="dimensionless"/>
+<variable initial_value="134760.9117217377" name="E_L2_E48" public_interface="out" units="J_per_m3"/>
+<variable initial_value="4.021799999999999e-06" name="l_L2_E48" public_interface="out" units="metre"/>
+<variable initial_value="4.1952999999999995e-06" name="r_0_L2_E48" public_interface="out" units="metre"/>
+<variable initial_value="56.682254057469514" name="u_0_L2_E48" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="u_ext_L2_E48" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="theta_L2_E48" public_interface="out" units="dimensionless"/>
+<variable initial_value="108066.37188149" name="E_L2_E49" public_interface="out" units="J_per_m3"/>
+<variable initial_value="2.2926999999999997e-06" name="l_L2_E49" public_interface="out" units="metre"/>
+<variable initial_value="5.7122e-06" name="r_0_L2_E49" public_interface="out" units="metre"/>
+<variable initial_value="1.1217561601828407e-11" name="u_0_L2_E49" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="theta_L2_E49" public_interface="out" units="dimensionless"/>
+<variable initial_value="0.0" name="u_ext_L2_E49" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="u_ext_L2_E50" public_interface="out" units="J_per_m3"/>
+<variable initial_value="4.261266894900473e-10" name="u_0_L2_E50" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="theta_L2_E50" public_interface="out" units="dimensionless"/>
+<variable initial_value="216000.36619504436" name="E_L2_E50" public_interface="out" units="J_per_m3"/>
+<variable initial_value="2.891e-06" name="l_L2_E50" public_interface="out" units="metre"/>
+<variable initial_value="4.5162e-06" name="r_0_L2_E50" public_interface="out" units="metre"/>
+<variable initial_value="150668.54093944433" name="E_L2_E51" public_interface="out" units="J_per_m3"/>
+<variable initial_value="1.2394e-06" name="l_L2_E51" public_interface="out" units="metre"/>
+<variable initial_value="3.0179e-06" name="r_0_L2_E51" public_interface="out" units="metre"/>
+<variable initial_value="8.018802333253916e-08" name="u_0_L2_E51" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="u_ext_L2_E51" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="theta_L2_E51" public_interface="out" units="dimensionless"/>
+<variable initial_value="114324.39657239977" name="E_L2_E52" public_interface="out" units="J_per_m3"/>
+<variable initial_value="2.1227e-06" name="l_L2_E52" public_interface="out" units="metre"/>
+<variable initial_value="3.7945999999999996e-06" name="r_0_L2_E52" public_interface="out" units="metre"/>
+<variable initial_value="9.078256702987897e-06" name="u_0_L2_E52" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="u_ext_L2_E52" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="theta_L2_E52" public_interface="out" units="dimensionless"/>
+<variable initial_value="208791.07997211168" name="E_L2_E53" public_interface="out" units="J_per_m3"/>
+<variable initial_value="5.9685e-06" name="l_L2_E53" public_interface="out" units="metre"/>
+<variable initial_value="7.113e-06" name="r_0_L2_E53" public_interface="out" units="metre"/>
+<variable initial_value="0.000522092197627444" name="u_0_L2_E53" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="u_ext_L2_E53" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="theta_L2_E53" public_interface="out" units="dimensionless"/>
+<variable initial_value="151849.3306747822" name="E_L2_E54" public_interface="out" units="J_per_m3"/>
+<variable initial_value="6.1578e-06" name="l_L2_E54" public_interface="out" units="metre"/>
+<variable initial_value="5.21e-07" name="r_0_L2_E54" public_interface="out" units="metre"/>
+<variable initial_value="-2.2737367544323206e-13" name="u_0_L2_E54" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="u_ext_L2_E54" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="theta_L2_E54" public_interface="out" units="dimensionless"/>
+<variable initial_value="127220.50868448653" name="E_L2_E55" public_interface="out" units="J_per_m3"/>
+<variable initial_value="8.1606e-06" name="l_L2_E55" public_interface="out" units="metre"/>
+<variable initial_value="1.1956999999999998e-06" name="r_0_L2_E55" public_interface="out" units="metre"/>
+<variable initial_value="5.011358173544206e-11" name="u_0_L2_E55" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="u_ext_L2_E55" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="theta_L2_E55" public_interface="out" units="dimensionless"/>
+<variable initial_value="196222.50082150238" name="E_L2_E56" public_interface="out" units="J_per_m3"/>
+<variable initial_value="9.818999999999999e-07" name="l_L2_E56" public_interface="out" units="metre"/>
+<variable initial_value="4.3933e-06" name="r_0_L2_E56" public_interface="out" units="metre"/>
+<variable initial_value="8.934845642620537e-07" name="u_0_L2_E56" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="theta_L2_E56" public_interface="out" units="dimensionless"/>
+<variable initial_value="0.0" name="u_ext_L2_E56" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="u_ext_L2_E57" public_interface="out" units="J_per_m3"/>
+<variable initial_value="8.854397071900166e-05" name="u_0_L2_E57" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="theta_L2_E57" public_interface="out" units="dimensionless"/>
+<variable initial_value="196627.73554273395" name="E_L2_E57" public_interface="out" units="J_per_m3"/>
+<variable initial_value="6.660899999999999e-06" name="l_L2_E57" public_interface="out" units="metre"/>
+<variable initial_value="2.8923e-06" name="r_0_L2_E57" public_interface="out" units="metre"/>
+<variable initial_value="127564.28017033225" name="E_L2_E58" public_interface="out" units="J_per_m3"/>
+<variable initial_value="3.1712e-06" name="l_L2_E58" public_interface="out" units="metre"/>
+<variable initial_value="5.138899999999999e-06" name="r_0_L2_E58" public_interface="out" units="metre"/>
+<variable initial_value="0.03946461827387715" name="u_0_L2_E58" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="u_ext_L2_E58" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="theta_L2_E58" public_interface="out" units="dimensionless"/>
+<variable initial_value="122162.12883690478" name="E_L2_E59" public_interface="out" units="J_per_m3"/>
+<variable initial_value="5.6906999999999996e-06" name="l_L2_E59" public_interface="out" units="metre"/>
+<variable initial_value="8.4435e-06" name="r_0_L2_E59" public_interface="out" units="metre"/>
+<variable initial_value="1.0383128579185268" name="u_0_L2_E59" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="theta_L2_E59" public_interface="out" units="dimensionless"/>
+<variable initial_value="0.0" name="u_ext_L2_E59" public_interface="out" units="J_per_m3"/>
+<variable initial_value="118991.75808855674" name="E_L2_E60" public_interface="out" units="J_per_m3"/>
+<variable initial_value="1.33927e-05" name="l_L2_E60" public_interface="out" units="metre"/>
+<variable initial_value="1.9594e-06" name="r_0_L2_E60" public_interface="out" units="metre"/>
+<variable initial_value="0.003169823592600096" name="u_0_L2_E60" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="theta_L2_E60" public_interface="out" units="dimensionless"/>
+<variable initial_value="0.0" name="u_ext_L2_E60" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="u_ext_L2_E61" public_interface="out" units="J_per_m3"/>
+<variable initial_value="12.847324823608744" name="u_0_L2_E61" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="theta_L2_E61" public_interface="out" units="dimensionless"/>
+<variable initial_value="118140.26823528786" name="E_L2_E61" public_interface="out" units="J_per_m3"/>
+<variable initial_value="1.3729e-06" name="l_L2_E61" public_interface="out" units="metre"/>
+<variable initial_value="7.1666999999999995e-06" name="r_0_L2_E61" public_interface="out" units="metre"/>
+<variable initial_value="160268.06351282017" name="E_L2_E62" public_interface="out" units="J_per_m3"/>
+<variable initial_value="4.359600000000001e-06" name="l_L2_E62" public_interface="out" units="metre"/>
+<variable initial_value="4.5631e-06" name="r_0_L2_E62" public_interface="out" units="metre"/>
+<variable initial_value="2.106038294868995e-06" name="u_0_L2_E62" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="u_ext_L2_E62" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="theta_L2_E62" public_interface="out" units="dimensionless"/>
+<variable initial_value="117840.34537860905" name="E_L2_E63" public_interface="out" units="J_per_m3"/>
+<variable initial_value="3.0109e-06" name="l_L2_E63" public_interface="out" units="metre"/>
+<variable initial_value="6.108399999999999e-06" name="r_0_L2_E63" public_interface="out" units="metre"/>
+<variable initial_value="0.00011790975296577244" name="u_0_L2_E63" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="u_ext_L2_E63" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="theta_L2_E63" public_interface="out" units="dimensionless"/>
+<variable initial_value="88581.27959524406" name="E_L2_E64" public_interface="out" units="J_per_m3"/>
+<variable initial_value="2.2677999999999997e-06" name="l_L2_E64" public_interface="out" units="metre"/>
+<variable initial_value="7.607e-06" name="r_0_L2_E64" public_interface="out" units="metre"/>
+<variable initial_value="0.0016370419310760553" name="u_0_L2_E64" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="u_ext_L2_E64" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="theta_L2_E64" public_interface="out" units="dimensionless"/>
+<variable initial_value="107178.46180614969" name="E_L2_E65" public_interface="out" units="J_per_m3"/>
+<variable initial_value="7.085799999999999e-06" name="l_L2_E65" public_interface="out" units="metre"/>
+<variable initial_value="5.4410999999999995e-06" name="r_0_L2_E65" public_interface="out" units="metre"/>
+<variable initial_value="1.0390088789336005e-10" name="u_0_L2_E65" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="u_ext_L2_E65" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="theta_L2_E65" public_interface="out" units="dimensionless"/>
+<variable initial_value="256046.21933511115" name="E_L2_E66" public_interface="out" units="J_per_m3"/>
+<variable initial_value="2.7859e-06" name="l_L2_E66" public_interface="out" units="metre"/>
+<variable initial_value="7.6686e-06" name="r_0_L2_E66" public_interface="out" units="metre"/>
+<variable initial_value="4.163609901297605e-09" name="u_0_L2_E66" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="theta_L2_E66" public_interface="out" units="dimensionless"/>
+<variable initial_value="0.0" name="u_ext_L2_E66" public_interface="out" units="J_per_m3"/>
+<variable initial_value="140872.17508329503" name="E_L2_E67" public_interface="out" units="J_per_m3"/>
+<variable initial_value="8.353e-07" name="l_L2_E67" public_interface="out" units="metre"/>
+<variable initial_value="6.826699999999999e-06" name="r_0_L2_E67" public_interface="out" units="metre"/>
+<variable initial_value="1.25924628302189" name="u_0_L2_E67" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="u_ext_L2_E67" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="theta_L2_E67" public_interface="out" units="dimensionless"/>
+<variable initial_value="151257.71034027621" name="E_L2_E68" public_interface="out" units="J_per_m3"/>
+<variable initial_value="8.1446e-06" name="l_L2_E68" public_interface="out" units="metre"/>
+<variable initial_value="4.5201999999999995e-06" name="r_0_L2_E68" public_interface="out" units="metre"/>
+<variable initial_value="0.013997742138798614" name="u_0_L2_E68" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="theta_L2_E68" public_interface="out" units="dimensionless"/>
+<variable initial_value="0.0" name="u_ext_L2_E68" public_interface="out" units="J_per_m3"/>
+<variable initial_value="204154.44522210688" name="E_L2_E69" public_interface="out" units="J_per_m3"/>
+<variable initial_value="6.716e-06" name="l_L2_E69" public_interface="out" units="metre"/>
+<variable initial_value="1.08286e-05" name="r_0_L2_E69" public_interface="out" units="metre"/>
+<variable initial_value="0.0012234395005279453" name="u_0_L2_E69" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="theta_L2_E69" public_interface="out" units="dimensionless"/>
+<variable initial_value="0.0" name="u_ext_L2_E69" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="u_ext_L2_E70" public_interface="out" units="J_per_m3"/>
+<variable initial_value="13.558075663863292" name="u_0_L2_E70" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="theta_L2_E70" public_interface="out" units="dimensionless"/>
+<variable initial_value="113949.16031170411" name="E_L2_E70" public_interface="out" units="J_per_m3"/>
+<variable initial_value="5.8997e-06" name="l_L2_E70" public_interface="out" units="metre"/>
+<variable initial_value="1.40511e-05" name="r_0_L2_E70" public_interface="out" units="metre"/>
+<variable initial_value="158574.10962556367" name="E_L2_E71" public_interface="out" units="J_per_m3"/>
+<variable initial_value="4.4706e-06" name="l_L2_E71" public_interface="out" units="metre"/>
+<variable initial_value="1.01233e-05" name="r_0_L2_E71" public_interface="out" units="metre"/>
+<variable initial_value="2.503372814812053" name="u_0_L2_E71" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="u_ext_L2_E71" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="theta_L2_E71" public_interface="out" units="dimensionless"/>
+<variable initial_value="169021.93879203062" name="E_L2_E72" public_interface="out" units="J_per_m3"/>
+<variable initial_value="4.422799999999999e-06" name="l_L2_E72" public_interface="out" units="metre"/>
+<variable initial_value="6.7245e-06" name="r_0_L2_E72" public_interface="out" units="metre"/>
+<variable initial_value="0.19745601762181586" name="u_0_L2_E72" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="u_ext_L2_E72" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="theta_L2_E72" public_interface="out" units="dimensionless"/>
+<variable initial_value="138427.80165228897" name="E_L2_E73" public_interface="out" units="J_per_m3"/>
+<variable initial_value="8.8786e-06" name="l_L2_E73" public_interface="out" units="metre"/>
+<variable initial_value="4.8662999999999995e-06" name="r_0_L2_E73" public_interface="out" units="metre"/>
+<variable initial_value="0.002400495560048732" name="u_0_L2_E73" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="theta_L2_E73" public_interface="out" units="dimensionless"/>
+<variable initial_value="0.0" name="u_ext_L2_E73" public_interface="out" units="J_per_m3"/>
+<variable initial_value="173515.63849811172" name="E_L2_E74" public_interface="out" units="J_per_m3"/>
+<variable initial_value="7.5998e-06" name="l_L2_E74" public_interface="out" units="metre"/>
+<variable initial_value="1.1614000000000001e-05" name="r_0_L2_E74" public_interface="out" units="metre"/>
+<variable initial_value="41.32552413268111" name="u_0_L2_E74" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="u_ext_L2_E74" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="theta_L2_E74" public_interface="out" units="dimensionless"/>
+<variable initial_value="198107.11696647835" name="E_L2_E75" public_interface="out" units="J_per_m3"/>
+<variable initial_value="5.846e-07" name="l_L2_E75" public_interface="out" units="metre"/>
+<variable initial_value="9.247e-06" name="r_0_L2_E75" public_interface="out" units="metre"/>
+<variable initial_value="164.27691256459985" name="u_0_L2_E75" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="u_ext_L2_E75" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="theta_L2_E75" public_interface="out" units="dimensionless"/>
+<variable initial_value="0.0" name="u_ext_L2_E76" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.2950314229137234" name="u_0_L2_E76" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="theta_L2_E76" public_interface="out" units="dimensionless"/>
+<variable initial_value="141906.33383382478" name="E_L2_E76" public_interface="out" units="J_per_m3"/>
+<variable initial_value="2.6101e-06" name="l_L2_E76" public_interface="out" units="metre"/>
+<variable initial_value="8.3631e-06" name="r_0_L2_E76" public_interface="out" units="metre"/>
+<variable initial_value="0.0" name="u_ext_L2_E77" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.059386049459178025" name="u_0_L2_E77" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="theta_L2_E77" public_interface="out" units="dimensionless"/>
+<variable initial_value="64995.20261928794" name="E_L2_E77" public_interface="out" units="J_per_m3"/>
+<variable initial_value="8.693999999999999e-07" name="l_L2_E77" public_interface="out" units="metre"/>
+<variable initial_value="7.7777e-06" name="r_0_L2_E77" public_interface="out" units="metre"/>
+<variable initial_value="0.0" name="u_ext_L2_E78" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0003379992409966448" name="u_0_L2_E78" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="theta_L2_E78" public_interface="out" units="dimensionless"/>
+<variable initial_value="189338.39279880177" name="E_L2_E78" public_interface="out" units="J_per_m3"/>
+<variable initial_value="1.052e-06" name="l_L2_E78" public_interface="out" units="metre"/>
+<variable initial_value="5.3555e-06" name="r_0_L2_E78" public_interface="out" units="metre"/>
+<variable initial_value="122785.65943092118" name="E_L2_E79" public_interface="out" units="J_per_m3"/>
+<variable initial_value="6.403999999999999e-07" name="l_L2_E79" public_interface="out" units="metre"/>
+<variable initial_value="9.6524e-06" name="r_0_L2_E79" public_interface="out" units="metre"/>
+<variable initial_value="3608.3705083043556" name="u_0_L2_E79" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="u_ext_L2_E79" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="theta_L2_E79" public_interface="out" units="dimensionless"/>
+<variable initial_value="0.0" name="u_ext_L2_E80" public_interface="out" units="J_per_m3"/>
+<variable initial_value="45.898490175020314" name="u_0_L2_E80" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="theta_L2_E80" public_interface="out" units="dimensionless"/>
+<variable initial_value="195873.32261015842" name="E_L2_E80" public_interface="out" units="J_per_m3"/>
+<variable initial_value="2.2913e-06" name="l_L2_E80" public_interface="out" units="metre"/>
+<variable initial_value="1.62801e-05" name="r_0_L2_E80" public_interface="out" units="metre"/>
+<variable initial_value="109903.41646167092" name="E_L2_E81" public_interface="out" units="J_per_m3"/>
+<variable initial_value="1.03108e-05" name="l_L2_E81" public_interface="out" units="metre"/>
+<variable initial_value="1.03177e-05" name="r_0_L2_E81" public_interface="out" units="metre"/>
+<variable initial_value="8.279548411355712" name="u_0_L2_E81" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="u_ext_L2_E81" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="theta_L2_E81" public_interface="out" units="dimensionless"/>
+<variable initial_value="181519.59230997914" name="E_L2_E82" public_interface="out" units="J_per_m3"/>
+<variable initial_value="1.7919e-06" name="l_L2_E82" public_interface="out" units="metre"/>
+<variable initial_value="5.785e-06" name="r_0_L2_E82" public_interface="out" units="metre"/>
+<variable initial_value="0.7008447500964365" name="u_0_L2_E82" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="theta_L2_E82" public_interface="out" units="dimensionless"/>
+<variable initial_value="0.0" name="u_ext_L2_E82" public_interface="out" units="J_per_m3"/>
+<variable initial_value="205072.86373682565" name="E_L2_E83" public_interface="out" units="J_per_m3"/>
+<variable initial_value="6.947e-07" name="l_L2_E83" public_interface="out" units="metre"/>
+<variable initial_value="5.046599999999999e-06" name="r_0_L2_E83" public_interface="out" units="metre"/>
+<variable initial_value="2.51600560080556e-06" name="u_0_L2_E83" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="u_ext_L2_E83" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="theta_L2_E83" public_interface="out" units="dimensionless"/>
+<variable initial_value="176912.86968462405" name="E_L2_E84" public_interface="out" units="J_per_m3"/>
+<variable initial_value="7.0575e-06" name="l_L2_E84" public_interface="out" units="metre"/>
+<variable initial_value="5.7819e-06" name="r_0_L2_E84" public_interface="out" units="metre"/>
+<variable initial_value="7.548155044057037e-08" name="u_0_L2_E84" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="theta_L2_E84" public_interface="out" units="dimensionless"/>
+<variable initial_value="0.0" name="u_ext_L2_E84" public_interface="out" units="J_per_m3"/>
+<variable initial_value="220522.94351944054" name="E_L2_E85" public_interface="out" units="J_per_m3"/>
+<variable initial_value="1.3468e-06" name="l_L2_E85" public_interface="out" units="metre"/>
+<variable initial_value="8.176699999999999e-06" name="r_0_L2_E85" public_interface="out" units="metre"/>
+<variable initial_value="0.0019486551103966576" name="u_0_L2_E85" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="u_ext_L2_E85" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="theta_L2_E85" public_interface="out" units="dimensionless"/>
+<variable initial_value="0.0" name="u_ext_L2_E86" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.5463461253738373" name="u_0_L2_E86" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="theta_L2_E86" public_interface="out" units="dimensionless"/>
+<variable initial_value="254225.17144483532" name="E_L2_E86" public_interface="out" units="J_per_m3"/>
+<variable initial_value="5.158e-06" name="l_L2_E86" public_interface="out" units="metre"/>
+<variable initial_value="6.0968e-06" name="r_0_L2_E86" public_interface="out" units="metre"/>
+<variable initial_value="131188.1029702105" name="E_L2_E87" public_interface="out" units="J_per_m3"/>
+<variable initial_value="1.7345999999999999e-06" name="l_L2_E87" public_interface="out" units="metre"/>
+<variable initial_value="6.7914e-06" name="r_0_L2_E87" public_interface="out" units="metre"/>
+<variable initial_value="3.1652484621971745e-06" name="u_0_L2_E87" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="theta_L2_E87" public_interface="out" units="dimensionless"/>
+<variable initial_value="0.0" name="u_ext_L2_E87" public_interface="out" units="J_per_m3"/>
+<variable initial_value="174448.59299304622" name="E_L2_E88" public_interface="out" units="J_per_m3"/>
+<variable initial_value="8.0874e-06" name="l_L2_E88" public_interface="out" units="metre"/>
+<variable initial_value="6.3189e-06" name="r_0_L2_E88" public_interface="out" units="metre"/>
+<variable initial_value="1.2306851322918533e-05" name="u_0_L2_E88" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="u_ext_L2_E88" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="theta_L2_E88" public_interface="out" units="dimensionless"/>
+<variable initial_value="196090.10858989702" name="E_L2_E89" public_interface="out" units="J_per_m3"/>
+<variable initial_value="7.0505000000000005e-06" name="l_L2_E89" public_interface="out" units="metre"/>
+<variable initial_value="1.9573e-06" name="r_0_L2_E89" public_interface="out" units="metre"/>
+<variable initial_value="2.985417502734261e-06" name="u_0_L2_E89" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="u_ext_L2_E89" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="theta_L2_E89" public_interface="out" units="dimensionless"/>
+<variable initial_value="176319.2591391229" name="E_L2_E90" public_interface="out" units="J_per_m3"/>
+<variable initial_value="3.719e-07" name="l_L2_E90" public_interface="out" units="metre"/>
+<variable initial_value="3.5889999999999996e-07" name="r_0_L2_E90" public_interface="out" units="metre"/>
+<variable initial_value="4.374455316283762e-06" name="u_0_L2_E90" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="theta_L2_E90" public_interface="out" units="dimensionless"/>
+<variable initial_value="0.0" name="u_ext_L2_E90" public_interface="out" units="J_per_m3"/>
+<variable initial_value="111139.60252233161" name="E_L2_E91" public_interface="out" units="J_per_m3"/>
+<variable initial_value="8.1275e-06" name="l_L2_E91" public_interface="out" units="metre"/>
+<variable initial_value="2.5777999999999997e-06" name="r_0_L2_E91" public_interface="out" units="metre"/>
+<variable initial_value="0.0004901428160616531" name="u_0_L2_E91" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="u_ext_L2_E91" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="theta_L2_E91" public_interface="out" units="dimensionless"/>
+<variable initial_value="171288.88273397612" name="E_L2_E92" public_interface="out" units="J_per_m3"/>
+<variable initial_value="2.8863e-06" name="l_L2_E92" public_interface="out" units="metre"/>
+<variable initial_value="1.2695e-06" name="r_0_L2_E92" public_interface="out" units="metre"/>
+<variable initial_value="8.489577433823552e-08" name="u_0_L2_E92" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="theta_L2_E92" public_interface="out" units="dimensionless"/>
+<variable initial_value="0.0" name="u_ext_L2_E92" public_interface="out" units="J_per_m3"/>
+<variable initial_value="143548.12737823575" name="E_L2_E93" public_interface="out" units="J_per_m3"/>
+<variable initial_value="8.037000000000001e-06" name="l_L2_E93" public_interface="out" units="metre"/>
+<variable initial_value="2.4506e-06" name="r_0_L2_E93" public_interface="out" units="metre"/>
+<variable initial_value="0.052863976793300405" name="u_0_L2_E93" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="u_ext_L2_E93" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="theta_L2_E93" public_interface="out" units="dimensionless"/>
+<variable initial_value="100353.3012435522" name="E_L2_E94" public_interface="out" units="J_per_m3"/>
+<variable initial_value="3.9041e-06" name="l_L2_E94" public_interface="out" units="metre"/>
+<variable initial_value="4.6627e-06" name="r_0_L2_E94" public_interface="out" units="metre"/>
+<variable initial_value="0.0002255023695845182" name="u_0_L2_E94" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="theta_L2_E94" public_interface="out" units="dimensionless"/>
+<variable initial_value="0.0" name="u_ext_L2_E94" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="u_ext_L2_E95" public_interface="out" units="J_per_m3"/>
+<variable initial_value="8.610762091776358e-05" name="u_0_L2_E95" public_interface="out" units="J_per_m3"/>
+<variable initial_value="0.0" name="theta_L2_E95" public_interface="out" units="dimensionless"/>
+<variable initial_value="193810.37227320208" name="E_L2_E95" public_interface="out" units="J_per_m3"/>
+<variable initial_value="3.6474e-06" name="l_L2_E95" public_interface="out" units="metre"/>
+<variable initial_value="3.1373e-06" name="r_0_L2_E95" public_interface="out" units="metre"/>
+<variable initial_value="6666.12" name="P_L2_E47_PI" public_interface="out" units="J_per_m3"/>
+<variable initial_value="6666.12" name="P_L2_E48_PI" public_interface="out" units="J_per_m3"/>
+<variable initial_value="6666.12" name="P_L2_E79_PI" public_interface="out" units="J_per_m3"/>
+<variable initial_value="666.612" name="P_L2_E9_PO" public_interface="out" units="J_per_m3"/>
+<variable initial_value="666.612" name="P_L2_E13_PO" public_interface="out" units="J_per_m3"/>
+<variable initial_value="666.612" name="P_L2_E16_PO" public_interface="out" units="J_per_m3"/>
+<variable initial_value="666.612" name="P_L2_E20_PO" public_interface="out" units="J_per_m3"/>
+<variable initial_value="666.612" name="P_L2_E40_PO" public_interface="out" units="J_per_m3"/>
+<variable initial_value="666.612" name="P_L2_E45_PO" public_interface="out" units="J_per_m3"/>
+<variable initial_value="666.612" name="P_L2_E46_PO" public_interface="out" units="J_per_m3"/>
+</component>
+</model>
