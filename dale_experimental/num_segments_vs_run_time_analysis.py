@@ -76,22 +76,16 @@ else:
 image_selection_index = 3 ### Change value to 0, 1, or 2 depending on which image you would like to input into the pipeline
 target_image_path = image_path_list[image_selection_index]
 
-#############################################################
-### // Specify sub-volume (<= 0.1) of image to process // ###
-#############################################################
-
-### TODO: User to specify desired sub-volume. Ensure the value is <= 0.1 to avoid long processing times.
-sub_volume = 0.1
-
 ##########################
 ### // Run pipeline // ###
 ##########################
 
 ### Run pipeline
 run_image_to_model(target_image_path, resources_path, ilastik_path, model_path,
-                   input_batch_processing_path, output_batch_processing_path, sub_volume, 
+                   input_batch_processing_path, output_batch_processing_path, 
+                   sub_volume=0.1, 
                    run_ilastik_batch_processing=False,
-                   run_circ_autogen=True, 
+                   run_circ_autogen=False, 
                    bypass_network_gen_and_just_plot_binary_volume=False, 
                    plot_pls=False)
 
