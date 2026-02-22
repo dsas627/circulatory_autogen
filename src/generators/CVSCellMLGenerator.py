@@ -72,6 +72,7 @@ class CVS0DCellMLGenerator(object):
 
         # this is a temporary hack to include zero flow ivc if only one input to heart TODO make more robust
         self.ivc_connection_done = 0
+        self.mappings_buffer = {}
 
     def generate_files(self):
         if type(self.model).__name__ != "CVS0DModel":
@@ -243,6 +244,7 @@ class CVS0DCellMLGenerator(object):
 
     def __generate_CellML_file(self):
         print("Generating CellML file {}.cellml".format(self.file_prefix))
+        self.mappings_buffer = {}
         with open(self.base_script, 'r') as rf:
             with open(os.path.join(self.output_dir, f'{self.file_prefix}.cellml'), 'w') as wf:
                 for line in rf:
@@ -330,6 +332,10 @@ class CVS0DCellMLGenerator(object):
                 print('writing writing time mappings between environment and modules')
                 self.__write_section_break(wf, 'time mapping')
                 self.__write_time_mappings(wf, self.model.vessels_df)
+
+                print('writing all connection mappings')
+                self.__write_section_break(wf, 'all connection mappings')
+                self.__flush_mappings(wf)
 
                 # Finalise the file
                 wf.write('</model>\n')
@@ -2163,14 +2169,39 @@ class CVS0DCellMLGenerator(object):
             exit()
 
     def __write_mapping(self, wf, inp_name, out_name, inp_vars_list, out_vars_list):
-        mapping = ['<connection>\n', f'   <map_components component_1="{inp_name}" component_2="{out_name}"/>\n']
-        for inp_var, out_var in zip(inp_vars_list, out_vars_list):
-            if inp_var and out_var:
-                mapping.append(f'   <map_variables variable_1="{inp_var}" variable_2="{out_var}"/>\n')
+        # Enforce canonical ordering of components to handle bi-directional mappings properly
+        if inp_name < out_name:
+            c1, c2 = inp_name, out_name
+            v1_list, v2_list = inp_vars_list, out_vars_list
+        else:
+            c1, c2 = out_name, inp_name
+            v1_list, v2_list = out_vars_list, inp_vars_list
+            
+        pair = (c1, c2)
+        if pair not in self.mappings_buffer:
+            self.mappings_buffer[pair] = ([], [])
+            
+        for v1, v2 in zip(v1_list, v2_list):
+            if v1 and v2:
+                is_duplicate = False
+                # Prevent writing exactly identical mapped variables 
+                for ex_v1, ex_v2 in zip(self.mappings_buffer[pair][0], self.mappings_buffer[pair][1]):
+                    if ex_v1 == v1 and ex_v2 == v2:
+                        is_duplicate = True
+                        break
+                if not is_duplicate:
+                    self.mappings_buffer[pair][0].append(v1)
+                    self.mappings_buffer[pair][1].append(v2)
 
-        mapping.append('</connection>\n')
-        if len(mapping) > 3:
-            wf.writelines(mapping)
+    def __flush_mappings(self, wf):
+        for (c1, c2), (v1_list, v2_list) in self.mappings_buffer.items():
+            if len(v1_list) > 0:
+                mapping = ['<connection>\n', f'   <map_components component_1="{c1}" component_2="{c2}"/>\n']
+                for v1, v2 in zip(v1_list, v2_list):
+                    mapping.append(f'   <map_variables variable_1="{v1}" variable_2="{v2}"/>\n')
+                mapping.append('</connection>\n')
+                wf.writelines(mapping)
+        self.mappings_buffer = {}
 
     def __write_variable_declarations(self, wf, variables, units, in_outs):
         for variable, unit, in_out in zip(variables, units, in_outs):
