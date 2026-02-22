@@ -1334,14 +1334,19 @@ class IlastikClassifier():
             print(f"Results saved in: {output_dir}")
             
         except subprocess.CalledProcessError as e:
-            print("!!! Error occurred during processing !!!")
+            print("\n!!! Error occurred during Ilastik processing !!!")
+            print("--- ILASTIK STANDARD OUTPUT ---")
+            print(e.stdout)
+            print("--- ILASTIK ERROR OUTPUT ---")
+            print(e.stderr)
+            print("-------------------------------")
             raise e
 
 ##################################
 ### // Function Definitions // ###
 ##################################
 
-def load_segmentation_data(filepath, hdf5_dataset_name=None):
+def load_segmentation_data(filepath, hdf5_dataset_name=None, is_probability=False):
     import tifffile
 
     if not filepath:
@@ -1351,32 +1356,43 @@ def load_segmentation_data(filepath, hdf5_dataset_name=None):
     _, extension = os.path.splitext(str(filepath).lower())
     try:
         if extension in ['.h5', '.hdf5']:
-            if not hdf5_dataset_name:
-                raise ValueError("Error: HDF5 dataset name is required.")
             with h5py.File(filepath, 'r') as f:
-                if hdf5_dataset_name not in f:
-                    raise ValueError(f"Error: Dataset '{hdf5_dataset_name}' not found.")
                 data = np.array(f[hdf5_dataset_name])
         elif extension in ['.tif', '.tiff']:
             data = tifffile.imread(filepath)
-        else:
-            raise ValueError(f"Error: Unsupported file extension '{extension}'.")
 
-        if data.ndim == 4 and data.shape[-1] == 1:
-            data = np.squeeze(data, axis=-1)
-        elif data.ndim == 4:
-            if data.shape[0] == 1:
+        # CRITICAL FIX: Handle 4D Probability Volumes gracefully
+        if data.ndim == 4:
+            if data.shape[0] == 1: # Sometimes Z is packed in the first dimension uniquely
                 data = data[0]
-            elif data.shape[-1] > 1:
+            elif not is_probability and data.shape[-1] > 1:
+                # Only slice off channels if we explicitly don't want probabilities
                 data = data[..., 0]
-
-        if data.ndim != 3:
-            raise ValueError(f"Error: Loaded data is not 3D (shape: {data.shape}).")
+                
         print(f"Successfully loaded data: {data.shape}, {data.dtype}")
         return data
     except Exception as e:
         print(f"Error loading data: {e}")
         raise e
+
+def calculate_entropy_map(probability_volume):
+    """
+    Calculates voxel-wise Shannon entropy from a probability volume.
+    Assumes shape is (Z, Y, X, K) where K is the number of classes.
+    """
+    print("         Calculating Shannon Entropy Map...")
+    # Add a tiny epsilon to prevent log2(0) errors
+    epsilon = 1e-10
+    prob_safe = np.clip(probability_volume, epsilon, 1.0)
+    
+    # Calculate entropy along the class axis (axis=-1)
+    entropy_map = -np.sum(prob_safe * np.log2(prob_safe), axis=-1)
+    
+    # Normalize entropy between 0 and 1 for easier thresholding
+    max_entropy = np.log2(probability_volume.shape[-1])
+    normalized_entropy = entropy_map / max_entropy
+    
+    return normalized_entropy
 
 def discretize_network_with_grid(graph, grid_planes_x, grid_planes_y, grid_planes_z, vedo_spacing):
     """
@@ -1563,7 +1579,7 @@ def _order_voxel_path(path_voxels_zyx, start_node_pos_zyx):
 ### // Main (Function) // ###
 #############################
 
-def run_image_to_model(target_image_path, resources_path, ilastik_path, model_path, 
+def run_image_to_model(target_input_image_path, target_output_image_path, resources_path, ilastik_path, model_path, 
                        input_batch_processing_path, output_batch_processing_path, sub_volume, run_ilastik_batch_processing,
                        run_circ_autogen, bypass_network_gen_and_just_plot_binary_volume, plot_pls, return_timing):
     
@@ -1603,7 +1619,7 @@ def run_image_to_model(target_image_path, resources_path, ilastik_path, model_pa
     ### // Image(s) Config // ###
     #############################
 
-    input_file_path = target_image_path
+    input_file_path = target_output_image_path
     # input_file_path = "/home/dsas627/PycharmProjects/me_bioeng_cb_vessel_network/Segmentation (Label 1)_skeletal_muscle_pc_no_raw_data.h5"
     labels_to_render_str = "1"
     hdf5_dataset_name_if_applicable = "exported_data"
@@ -1711,12 +1727,12 @@ def run_image_to_model(target_image_path, resources_path, ilastik_path, model_pa
     #################################
 
     if run_ilastik_batch_processing:
-
         classifier = IlastikClassifier(ilastik_path, model_path)
-
+        # CHANGE: Request Probabilities instead of Simple Segmentation
         classifier.segment_images(input_dir=input_batch_processing_path,
-                                output_dir=output_batch_processing_path,
-                                input_ext="*.tif")
+                                  output_dir=output_batch_processing_path,
+                                  input_ext="*.tif",
+                                  export_source="Probabilities")
 
     ####################################################
     ### // Process Image Segmentation Shenanigans // ###
@@ -1726,7 +1742,7 @@ def run_image_to_model(target_image_path, resources_path, ilastik_path, model_pa
     
     print("\nStarting network construction timing...")
     t_start_network = time.time()
-
+    
     ### ================================================================================================
 
     ### // v DEBUG: Load from batch processing output folder v // ###
@@ -1747,12 +1763,48 @@ def run_image_to_model(target_image_path, resources_path, ilastik_path, model_pa
 
     ### // v DEBUG: Load from hard-coded input file path // v ###
 
-    segmentation_data = load_segmentation_data(input_file_path, hdf5_dataset_name_if_applicable)
-    if segmentation_data is None:
-        if return_timing:
-            return 0.0, 0.0, 0
-        else:
-            return
+    # segmentation_data = load_segmentation_data(input_file_path, hdf5_dataset_name_if_applicable)
+    # if segmentation_data is None:
+    #     if return_timing:
+    #         return 0.0, 0.0, 0
+    #     else:
+    #         return
+
+    ### ================================================================================================
+
+    ### ================================================================================================
+
+    ### // v DEBUG: Load from hard-coded input file path but integrate shannon entropy processing // v ###
+
+    # CHANGE: Flag the loader to expect multi-channel probability data
+    probability_data = load_segmentation_data(input_file_path, hdf5_dataset_name_if_applicable, is_probability=True)
+    if probability_data is None:
+        if return_timing: return 0.0, 0.0, 0
+        else: return
+
+    # --- NEW ENTROPY REFINEMENT BLOCK ---
+    print("\n--- Applying Entropy-Based Refinement ---")
+    
+    # 1. Calculate the uncertainty of the model
+    entropy_map = calculate_entropy_map(probability_data)
+    
+    # 2. Reconstruct the "Simple Segmentation" (argmax picks the most likely class)
+    # Adding 1 assumes your Ilastik labels were 1, 2, 3...
+    segmentation_data = np.argmax(probability_data, axis=-1) + 1 
+    
+    # 3. Artifact Rejection: Erase highly uncertain voxels 
+    # If the model was highly uncertain (e.g., entropy > 0.8), we force it to Background (Label 2)
+    # You can tune this threshold based on your specific volume.
+    entropy_threshold = 0.8 
+    highly_uncertain_mask = entropy_map > entropy_threshold
+    
+    # Assuming Label 2 is your background class
+    background_label = 2 
+    voxels_corrected = np.sum(highly_uncertain_mask)
+    segmentation_data[highly_uncertain_mask] = background_label
+    
+    print(f"  -> Reclassified {voxels_corrected} highly uncertain voxels to background.")
+    # ------------------------------------
 
     ### ================================================================================================
 
