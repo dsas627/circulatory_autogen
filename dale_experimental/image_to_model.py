@@ -200,15 +200,15 @@ class VesselNetwork():
             print(f"  [Error] Cycle detection failed: {e}")
         # # ============================================================
 
-        ### // Initialise Variables // ###
+        # ### // Initialise Variables // ###
 
-        # TODO FIX THIS!!!
-        # temporarily remove self-loops 
-        # remove any inputs to the first node (index 0)
-        first_node_idx = 0
-        first_node_inp = np.where(self.C_vessel[:, first_node_idx] != 0)[0]
-        if first_node_inp.size > 0:
-            self.C_vessel[first_node_inp, first_node_idx] = 0
+        # # TODO FIX THIS!!!
+        # # temporarily remove self-loops 
+        # # remove any inputs to the first node (index 0)
+        # first_node_idx = 0
+        # first_node_inp = np.where(self.C_vessel[:, first_node_idx] != 0)[0]
+        # if first_node_inp.size > 0:
+        #     self.C_vessel[first_node_inp, first_node_idx] = 0
 
         n_vessel = self.C_vessel.shape[0]
         n_vessel_idx = np.arange(0, n_vessel)
@@ -233,7 +233,7 @@ class VesselNetwork():
         n_vessel_MinNout_idx = np.array([]).astype(int)
 
         N_ITER = 0
-        MAX_ITER = 100
+        MAX_ITER = np.inf
 
         ### // BC_type initial assignment // ###
 
@@ -262,7 +262,7 @@ class VesselNetwork():
 
         print('Assigning Network Boundary Conditions...')
 
-        while N_ITER <= MAX_ITER:
+        while N_ITER < MAX_ITER:
 
             ### // (Re)-Assign and get idxs of in-out, and multi-in/out vessels respectively, and (re)-assign junc_types // ###
 
@@ -1596,7 +1596,7 @@ def run_image_to_model(target_image_path, resources_path, ilastik_path, model_pa
     ### // User Output Folder Config // ###
     #######################################
 
-    output_dir = Path.cwd() / "resources/user_output"
+    output_dir = Path.cwd() / "dale_experimental/resources/user_output"
     output_dir.mkdir(parents=True, exist_ok=True)
 
     #############################

@@ -722,10 +722,6 @@
             "variables":["u_out"]
           },
           {
-            "port_type":"flow_port",
-            "variables":["v"]
-          },
-          {
             "port_type":"flow_feedback_port",
             "variables":["v"]
           }
@@ -785,11 +781,6 @@
             "port_type":"pressure_port",
             "variables":["u"]
           },
-          {
-            "port_type":"flow_port",
-            "variables":["v"]
-          },
-    
           {
             "port_type":"pressure_feedback_port",
             "variables":["u"]
@@ -852,10 +843,6 @@
           {
             "port_type":"pressure_port",
             "variables":["u_out"]
-          },
-          {
-            "port_type":"flow_port",
-            "variables":["v"]
           }
         ],
         "general_ports":[],
@@ -911,10 +898,6 @@
           {
             "port_type":"pressure_port",
             "variables":["u_out"]
-          },
-          {
-            "port_type":"flow_port",
-            "variables":["v"]
           },
           {
             "port_type":"flow_feedback_port",
@@ -977,10 +960,6 @@
             "variables":["u_out"]
           },
           {
-            "port_type":"flow_port",
-            "variables":["v"]
-          },
-          {
             "port_type":"flow_feedback_port",
             "variables":["v"]
           }
@@ -1039,10 +1018,6 @@
           {
             "port_type":"pressure_port",
             "variables":["u_out"]
-          },
-          {
-            "port_type":"flow_port",
-            "variables":["v"]
           }
         ],
         "general_ports":[],
@@ -1158,10 +1133,6 @@
           {
             "port_type":"pressure_port",
             "variables":["u_out"]
-          },
-          {
-            "port_type":"flow_port",
-            "variables":["v"]
           }
         ],
         "general_ports":[],
@@ -1208,10 +1179,6 @@
           {
             "port_type":"pressure_port",
             "variables":["u_out"]
-          },
-          {
-            "port_type":"flow_port",
-            "variables":["v"]
           }
         ],
         "general_ports":[],
@@ -1259,11 +1226,6 @@
             "port_type":"pressure_port",
             "variables":["u"]
           },
-          {
-            "port_type":"flow_port",
-            "variables":["v"]
-          },
-    
           {
             "port_type":"pressure_feedback_port",
             "variables":["u"]
@@ -1326,10 +1288,6 @@
           {
             "port_type":"pressure_port",
             "variables":["u"]
-          },
-          {
-            "port_type":"flow_port",
-            "variables":["v"]
           }
         ],
         "general_ports":[],
@@ -1375,10 +1333,6 @@
           {
             "port_type":"pressure_port",
             "variables":["u"]
-          },
-          {
-            "port_type":"flow_port",
-            "variables":["v"]
           }
         ],
         "general_ports":[],
@@ -1424,10 +1378,6 @@
           {
             "port_type":"pressure_port",
             "variables":["u"]
-          },
-          {
-            "port_type":"flow_port",
-            "variables":["v"]
           }
         ],
         "general_ports":[],
@@ -1473,10 +1423,6 @@
           {
             "port_type":"pressure_port",
             "variables":["u"]
-          },
-          {
-            "port_type":"flow_port",
-            "variables":["v"]
           }
         ],
         "general_ports":[],
@@ -1522,10 +1468,6 @@
           {
             "port_type":"pressure_port",
             "variables":["u_out"]
-          },
-          {
-            "port_type":"flow_port",
-            "variables":["v"]
           }
         ],
         "general_ports":[],
@@ -1581,10 +1523,6 @@
           {
             "port_type":"pressure_port",
             "variables":["u_out"]
-          },
-          {
-            "port_type":"flow_port",
-            "variables":["v"]
           }
         ],
         "general_ports":[],
@@ -1698,10 +1636,6 @@
           {
             "port_type":"pressure_port",
             "variables":["u_out"]
-          },
-          {
-            "port_type":"flow_port",
-            "variables":["v"]
           }
         ],
         "general_ports":[],
@@ -1747,10 +1681,6 @@
           {
             "port_type":"pressure_port",
             "variables":["u_out"]
-          },
-          {
-            "port_type":"flow_port",
-            "variables":["v"]
           }
         ],
         "general_ports":[],
@@ -1796,10 +1726,6 @@
           {
             "port_type":"pressure_port",
             "variables":["u_d"]
-          },
-          {
-            "port_type":"flow_port",
-            "variables":["v"]
           }
         ],
         "general_ports":[],
@@ -1859,10 +1785,6 @@
           {
             "port_type":"pressure_port",
             "variables":["u_d"]
-          },
-          {
-            "port_type":"flow_port",
-            "variables":["v"]
           }
         ],
         "general_ports":[],

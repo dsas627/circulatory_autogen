@@ -83,12 +83,13 @@ target_image_path = image_path_list[image_selection_index]
 ### Run pipeline
 run_image_to_model(target_image_path, resources_path, ilastik_path, model_path,
                    input_batch_processing_path, output_batch_processing_path, 
-                   sub_volume=0.1, 
+                   sub_volume=0.11, 
                    run_ilastik_batch_processing=False,
-                   run_circ_autogen=False, 
+                   run_circ_autogen=True, 
                    bypass_network_gen_and_just_plot_binary_volume=False, 
                    plot_pls=False)
 
 ### Print filepaths to vessel_array and parameter_array
+print()
 print("Wrote:", str(CA_root / Path("dale_experimental/resources/user_output/image_to_model_vessel_array.csv")))
 print("Wrote:", str(CA_root / Path("dale_experimental/resources/user_output/image_to_model_parameters.csv")))
