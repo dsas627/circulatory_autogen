@@ -1565,8 +1565,8 @@ def _order_voxel_path(path_voxels_zyx, start_node_pos_zyx):
 
 def run_image_to_model(target_image_path, resources_path, ilastik_path, model_path, 
                        input_batch_processing_path, output_batch_processing_path, sub_volume, run_ilastik_batch_processing,
-                       run_circ_autogen, bypass_network_gen_and_just_plot_binary_volume, plot_pls):
-
+                       run_circ_autogen, bypass_network_gen_and_just_plot_binary_volume, plot_pls, return_timing):
+    
     # --- LAZY LOAD IMPORTS ---
     import pandas as pd
     import networkx as nx
@@ -1722,6 +1722,11 @@ def run_image_to_model(target_image_path, resources_path, ilastik_path, model_pa
     ### // Process Image Segmentation Shenanigans // ###
     ####################################################
 
+    import time
+    
+    print("\nStarting network construction timing...")
+    t_start_network = time.time()
+
     ### ================================================================================================
 
     ### // v DEBUG: Load from batch processing output folder v // ###
@@ -1731,7 +1736,10 @@ def run_image_to_model(target_image_path, resources_path, ilastik_path, model_pa
 
     # segmentation_data = load_segmentation_data(segmentation_files[1], hdf5_dataset_name_if_applicable)
     # if segmentation_data is None:
-    #     return
+    #     if return_timing:
+    #       return 0.0, 0.0, 0
+    #     else:
+    #       return
 
     ### ================================================================================================
 
@@ -1741,7 +1749,10 @@ def run_image_to_model(target_image_path, resources_path, ilastik_path, model_pa
 
     segmentation_data = load_segmentation_data(input_file_path, hdf5_dataset_name_if_applicable)
     if segmentation_data is None:
-        return
+        if return_timing:
+            return 0.0, 0.0, 0
+        else:
+            return
 
     ### ================================================================================================
 
@@ -1851,7 +1862,10 @@ def run_image_to_model(target_image_path, resources_path, ilastik_path, model_pa
                     viewup='z')
             
             print("Exiting script early.")
-            return
+            if return_timing:
+                return 0.0, 0.0, 0
+            else:
+                return
         
         # ==========================================================
 
@@ -2829,6 +2843,11 @@ def run_image_to_model(target_image_path, resources_path, ilastik_path, model_pa
     ### // Vessel Network Construction // ###
     #########################################
 
+    import time
+
+    print("\nStarting network construction timing...")
+    t_start_network = time.time()
+
     C_vessel_filepath = output_dir / f'label_{label_id}_edge_adjacency_matrix.csv'
     C_vessel = np.genfromtxt(C_vessel_filepath, delimiter=',')
 
@@ -2865,9 +2884,15 @@ def run_image_to_model(target_image_path, resources_path, ilastik_path, model_pa
     vessel_network.parameter_df.to_csv(parameters_csv_abs_path_temp_resources, index=False, header=True)
     vessel_network.parameter_df.to_csv(parameters_csv_abs_path_temp_user_output, index=False, header=True)
 
+    t_end_network = time.time()
+    network_generation_time = t_end_network - t_start_network
+    print(f"--> Time to construct network and generate arrays: {network_generation_time:.4f} seconds")
+
     #####################################
     ### // Run Circulatory Autogen // ###
     #####################################
+
+    t_start_autogen = time.time()
 
     if run_circ_autogen:
 
@@ -2882,3 +2907,17 @@ def run_image_to_model(target_image_path, resources_path, ilastik_path, model_pa
             [sys.executable, "-u", script_path, "False"],  # -u is important for real-time printing!
             cwd=script_dir
         )
+
+        t_end_autogen = time.time()
+        circ_autogen_time = t_end_autogen - t_start_autogen
+        print(f"--> Time to run Circulatory Autogen: {circ_autogen_time:.4f} seconds")
+
+    ##################################################################
+    ### // Get the Number of Vessels from the Generated Network // ###
+    ##################################################################
+
+    # Get the number of vessels generated
+    num_vessels = len(vessel_network.vessel_df) if vessel_network.vessel_df is not None else 0
+    print(f"--> Number of vessels generated: {num_vessels}")
+
+    return network_generation_time, circ_autogen_time, num_vessels

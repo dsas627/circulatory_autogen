@@ -3,6 +3,8 @@
 ################################
 
 from image_to_model import *
+import matplotlib.pyplot as plt
+import numpy as np
 
 #########################################################################
 ### // Initialise this_dir, resources, CA_root, and src file paths // ###
@@ -81,15 +83,94 @@ target_image_path = image_path_list[image_selection_index]
 ##########################
 
 ### Run pipeline
-run_image_to_model(target_image_path, resources_path, ilastik_path, model_path,
-                   input_batch_processing_path, output_batch_processing_path, 
-                   sub_volume=0.11, 
-                   run_ilastik_batch_processing=False,
-                   run_circ_autogen=True, 
-                   bypass_network_gen_and_just_plot_binary_volume=False, 
-                   plot_pls=False)
+network_construction_time, cellml_model_generation_time, num_vessels = run_image_to_model(target_image_path, resources_path, ilastik_path, model_path,
+                                                                                          input_batch_processing_path, output_batch_processing_path, 
+                                                                                          sub_volume=0.13, 
+                                                                                          run_ilastik_batch_processing=False,
+                                                                                          run_circ_autogen=True, 
+                                                                                          bypass_network_gen_and_just_plot_binary_volume=False, 
+                                                                                          plot_pls=False,
+                                                                                          return_timing=True)
 
-### Print filepaths to vessel_array and parameter_array
-print()
-print("Wrote:", str(CA_root / Path("dale_experimental/resources/user_output/image_to_model_vessel_array.csv")))
-print("Wrote:", str(CA_root / Path("dale_experimental/resources/user_output/image_to_model_parameters.csv")))
+print("Image to model generation completed successfully!\n")
+
+### Print network construction and cellml model generation timing(s)
+
+print("Number of Vessels in Generated Network:", num_vessels)
+print("Network Contruction Time:", network_construction_time)
+print("CellML Model Generation Time:", cellml_model_generation_time, "\n")
+
+# ##########################
+# ### // Run pipeline // ###
+# ##########################
+
+# # Define the sub-volumes to test (0.10 to 0.15 in 0.01 intervals)
+# # np.arange(0.10, 0.16, 0.01) creates the array: [0.10, 0.11, 0.12, 0.13, 0.14, 0.15]
+# sub_volumes = np.arange(0.10, 0.16, 0.01)
+
+# # Initialize empty lists to store the results of each loop
+# num_vessels_list = []
+# network_times_list = []
+# cellml_times_list = []
+
+# print("Starting batch analysis loop...")
+
+# for sv in sub_volumes:
+#     print(f"\n========================================")
+#     print(f"Running pipeline for sub-volume: {sv:.2f}")
+#     print(f"========================================")
+
+#     # Make sure 'return_timing' is removed here if it's not defined in your image_to_model.py def signature
+#     network_time, cellml_time, num_vessels = run_image_to_model(
+#         target_image_path, 
+#         resources_path, 
+#         ilastik_path, 
+#         model_path,
+#         input_batch_processing_path, 
+#         output_batch_processing_path, 
+#         sub_volume=sv, 
+#         run_ilastik_batch_processing=False,
+#         run_circ_autogen=True, 
+#         bypass_network_gen_and_just_plot_binary_volume=False, 
+#         plot_pls=False,
+#         return_timing=True
+#     )
+
+#     # Append the results of this iteration to our lists
+#     num_vessels_list.append(num_vessels)
+#     network_times_list.append(network_time)
+#     cellml_times_list.append(cellml_time)
+
+# print("\nImage to model batch generation completed successfully!\n")
+
+# #########################################
+# ### // Sort and Plot the Results // ###
+# #########################################
+
+# # It is good practice to sort the lists based on the X-axis (number of vessels) 
+# # so the plotted lines connect smoothly from left to right.
+# sorted_indices = np.argsort(num_vessels_list)
+# sorted_vessels = np.array(num_vessels_list)[sorted_indices]
+# sorted_network_times = np.array(network_times_list)[sorted_indices]
+# sorted_cellml_times = np.array(cellml_times_list)[sorted_indices]
+
+# # Set up the plot
+# plt.figure(figsize=(10, 6))
+
+# # Plot the two lines
+# plt.plot(sorted_vessels, sorted_network_times, marker='o', color='blue', linewidth=2, label='Network Construction Time')
+# plt.plot(sorted_vessels, sorted_cellml_times, marker='s', color='red', linewidth=2, linestyle='--', label='CellML Model Generation Time')
+
+# # Add Labels, Title, and Grid
+# plt.title('Run Time vs. Number of Vessels Generated', fontsize=14, fontweight='bold')
+# plt.xlabel('Number of Vessels', fontsize=12)
+# plt.ylabel('Run Time (seconds)', fontsize=12)
+# plt.grid(True, linestyle=':', alpha=0.7)
+# plt.legend(fontsize=11)
+
+# # Save the plot as an image file in your current directory
+# plt.savefig("runtime_vs_vessels_plot.png", dpi=300, bbox_inches='tight')
+# print("Plot successfully saved as 'runtime_vs_vessels_plot.png'")
+
+# # Display the plot in a pop-up window
+# plt.show()
