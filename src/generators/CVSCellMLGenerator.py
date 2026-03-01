@@ -82,7 +82,11 @@ class CVS0DCellMLGenerator(object):
 
         print("Generating model files at {}".format(self.output_dir))
 
-        ### // ADD TIME-CHECK START HERE // ###
+        ### ======================================================================================= ###
+
+        ###########################################################
+        ###  // Time-check __generate_files() function calls // ###
+        ###########################################################
 
         print("\nTiming __generate_files() function calls...")
         t_start_generate_files = time.time()
@@ -96,11 +100,11 @@ class CVS0DCellMLGenerator(object):
         self.__generate_parameters_file()
         self.__generate_modules_file()
 
-        ### // ADD TIME-CHECK END AND START HERE // ###
-
         t_end_generate_files = time.time()
         t_generate_files = t_end_generate_files - t_start_generate_files
         print(f"--> Time to run all __generate_files() function calls: {t_generate_files:.4f} seconds")
+
+        ### ======================================================================================== ###
 
         # TODO check that model generation is successful, possibly by calling to opencor
         print('Model generation complete.')
@@ -109,7 +113,11 @@ class CVS0DCellMLGenerator(object):
         if LIBCELLML_available:
             # parse the model in non-strict mode to allow non CellML 2.0 models
 
-            ### // TIME-CHECK EACH OF THESE CELLML FUNCTION CALLS // ###
+            ### ====================================================================================== ###
+
+            ###########################################################
+            ### // Time-Check Model Configuration Function Calls // ###
+            ###########################################################
 
             print("\nTiming parse_model() function call...")
             t_start_parse_model = time.time()
@@ -145,12 +153,19 @@ class CVS0DCellMLGenerator(object):
             with open(os.path.join(self.output_dir, self.file_prefix + '_flat.cellml'), 'w') as f:
                 f.write(model_string)
 
+            ### ===================================================================================== ###
+
             ### ------------------------------------------------------------------------------------
-            ### // TIME-CHECK ANALYSER FUNCTION CALL // ###
             ### // TIME CHECK SOLUTION TIME USING SIM HELPER IN generation_and_calibration.py // ###
             ### // SAVE ALL TIMES TO A TIME-CHECK LOG TO EASILY INTEGRATE LATER // ###
             ### ------------------------------------------------------------------------------------
 
+            ### ================================================================ ###
+
+            #################################################
+            ### // Time-Check Analyser Method(s) Calls // ###
+            #################################################
+            
             a = Analyser()
 
             print("\nTiming Analyser() function call...")
@@ -161,6 +176,8 @@ class CVS0DCellMLGenerator(object):
             t_end_analyser = time.time()
             t_analyser = t_end_analyser - t_start_analyser
             print(f"--> Time to run Analyser() function: {t_analyser:.4f} seconds")
+
+            ### ================================================================ ###
 
             # ==========================================================
             # NEW: Write timings to a temporary "drop box" JSON file
