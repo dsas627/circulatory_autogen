@@ -160,6 +160,39 @@ class CVS0DCellMLGenerator(object):
             ### // SAVE ALL TIMES TO A TIME-CHECK LOG TO EASILY INTEGRATE LATER // ###
             ### ------------------------------------------------------------------------------------
 
+            from solver_wrappers import get_simulation_helper_from_inp_data_dict
+            
+            # Setup simulation inputs - ensure we use the newly generated CellML file
+            sim_inp_data_dict = self.inp_data_dict.copy()
+            sim_inp_data_dict["model_path"] = os.path.join(self.output_dir, self.file_prefix + '.cellml')
+            
+            try:
+                # Initialize simulation helper
+                sim_helper = get_simulation_helper_from_inp_data_dict(sim_inp_data_dict)
+                
+                # 1. Reach steady state (pre-time) - This phase is NOT timed
+                pre_time = sim_inp_data_dict.get('pre_time', 0.0)
+                if pre_time > 0:
+                    print(f"Reaching steady state ({pre_time}s)...")
+                    sim_helper.update_times(sim_inp_data_dict['dt'], 0.0, 0.0, pre_time)
+                    sim_helper.run()
+                
+                # 2. Time only the actual simulation phase (sim_time)
+                sim_time = sim_inp_data_dict.get('sim_time', 1.0)
+                print(f"Timing simulation phase ({sim_time}s)...")
+                # Start from pre_time, run for sim_time, with 0 additional pre_time
+                sim_helper.update_times(sim_inp_data_dict['dt'], pre_time, sim_time, 0.0)
+                
+                t_start_simulation = time.perf_counter()
+                success = sim_helper.run()
+                t_end_simulation = time.perf_counter()
+                
+                t_simulation = t_end_simulation - t_start_simulation if success else 0.0
+                print(f"--> Time to solve model simulation phase: {t_simulation:.4f} seconds")
+            except Exception as e:
+                print(f"Warning: Simulation timing failed: {e}")
+                t_simulation = 0.0
+
             ### ================================================================ ###
 
             #################################################
@@ -189,7 +222,8 @@ class CVS0DCellMLGenerator(object):
                 "t_resolve_imports": t_resolve_imports,
                 "t_flatten_model": t_flatten_model,
                 "t_print_model": t_print_model,
-                "t_analyser": t_analyser
+                "t_analyser": t_analyser,
+                "t_simulation": t_simulation
             }
             
             # FOOLPROOF FIX: Just drop it in the current execution directory
