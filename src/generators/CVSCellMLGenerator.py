@@ -8,6 +8,7 @@ import numpy as np
 import re
 import pandas as pd
 import os
+import time
 from sys import exit
 generators_dir = os.path.dirname(__file__)
 base_dir = os.path.join(os.path.dirname(__file__), '../..')
@@ -81,6 +82,11 @@ class CVS0DCellMLGenerator(object):
 
         print("Generating model files at {}".format(self.output_dir))
 
+        ### // ADD TIME-CHECK START HERE // ###
+
+        print("\nTiming __generate_files() function calls...")
+        t_start_generate_files = time.time()
+
         #    Code to generate model files
         self.__generate_units_file()
         self.__generate_CellML_file()
@@ -90,28 +96,91 @@ class CVS0DCellMLGenerator(object):
         self.__generate_parameters_file()
         self.__generate_modules_file()
 
+        ### // ADD TIME-CHECK END AND START HERE // ###
+
+        t_end_generate_files = time.time()
+        t_generate_files = t_end_generate_files - t_start_generate_files
+        print(f"--> Time to run all __generate_files() function calls: {t_generate_files:.4f} seconds")
+
         # TODO check that model generation is successful, possibly by calling to opencor
         print('Model generation complete.')
         print('Checking Status of Model')
 
         if LIBCELLML_available:
             # parse the model in non-strict mode to allow non CellML 2.0 models
+
+            ### // TIME-CHECK EACH OF THESE CELLML FUNCTION CALLS // ###
+
+            print("\nTiming parse_model() function call...")
+            t_start_parse_model = time.time()
             model = cellml.parse_model(os.path.join(self.output_dir, self.file_prefix + '.cellml'), False)
+            t_end_parse_model = time.time()
+            t_parse_model = t_end_parse_model - t_start_parse_model
+            print(f"--> Time to run all parse_model() function: {t_parse_model:.4f} seconds")
+
+            print("\nTiming resolve_imports() function call...")
+            t_start_resolve_imports = time.time()
             # resolve imports, in non-strict mode
             importer = cellml.resolve_imports(model, self.output_dir, False)
+            t_end_resolve_imports = time.time()
+            t_resolve_imports = t_end_resolve_imports - t_start_resolve_imports
+            print(f"--> Time to run all resolve_imports() function: {t_resolve_imports:.4f} seconds")
+
+            print("\nTiming flatten_model() function call...")
+            t_start_flatten_model = time.time()
             # need a flattened model for analysing
             flat_model = cellml.flatten_model(model, importer)
+            t_end_flatten_model = time.time()
+            t_flatten_model = t_end_flatten_model - t_start_flatten_model
+            print(f"--> Time to run all flatten_model() function: {t_flatten_model:.4f} seconds")
+
+            print("\nTiming print_model() function call...")
+            t_start_print_model = time.time()
             model_string = cellml.print_model(flat_model)
+            t_end_print_model = time.time()
+            t_print_model = t_end_print_model - t_start_print_model
+            print(f"--> Time to run all print_model() function: {t_print_model:.4f} seconds")
             
             # this if we want to create the flat model, for debugging
             with open(os.path.join(self.output_dir, self.file_prefix + '_flat.cellml'), 'w') as f:
                 f.write(model_string)
 
-            # analyse the model
+            ### ------------------------------------------------------------------------------------
+            ### // TIME-CHECK ANALYSER FUNCTION CALL // ###
+            ### // TIME CHECK SOLUTION TIME USING SIM HELPER IN generation_and_calibration.py // ###
+            ### // SAVE ALL TIMES TO A TIME-CHECK LOG TO EASILY INTEGRATE LATER // ###
+            ### ------------------------------------------------------------------------------------
+
             a = Analyser()
 
+            print("\nTiming Analyser() function call...")
+            t_start_analyser = time.time()
+            # analyse the model
             a.analyseModel(flat_model)
             analysed_model = a.model()
+            t_end_analyser = time.time()
+            t_analyser = t_end_analyser - t_start_analyser
+            print(f"--> Time to run Analyser() function: {t_analyser:.4f} seconds")
+
+            # ==========================================================
+            # NEW: Write timings to a temporary "drop box" JSON file
+            # ==========================================================
+            import json
+            timing_data = {
+                "t_generate_files": t_generate_files,
+                "t_parse_model": t_parse_model,
+                "t_resolve_imports": t_resolve_imports,
+                "t_flatten_model": t_flatten_model,
+                "t_print_model": t_print_model,
+                "t_analyser": t_analyser
+            }
+            
+            # FOOLPROOF FIX: Just drop it in the current execution directory
+            temp_timing_path = "temp_timing.json"
+            
+            with open(temp_timing_path, "w") as f:
+                json.dump(timing_data, f)
+            # ==========================================================
             
             # Force print the libcellml issues to diagnose ODE failure
             if a.issueCount() > 0:

@@ -167,38 +167,38 @@ class VesselNetwork():
         np.fill_diagonal(self.C_vessel, 0)
         # ============================================================
 
-        # ============================================================
-        # NEW FIX: Remove Closed Loops (Cycles)
-        # ============================================================
-        # Docker math differences can create loops (A->B->C->A) that don't exist locally.
-        # These loops confuse the solver. We must find and break them.
-        
-        print("Sanitizing Graph Topology (Cycle Removal)...")
-        # Create a temporary graph to find cycles
-        G_temp = nx.DiGraph(self.C_vessel)
-        
-        # Find cycles (this is fast for small loops)
-        try:
-            cycles = list(nx.simple_cycles(G_temp))
-            if len(cycles) > 0:
-                print(f"  [WARNING] Found {len(cycles)} closed loops (cycles) in the network.")
-                print("  -> Breaking cycles to prevent solver stalemate...")
-                
-                for cycle in cycles:
-                    # cycle is a list of nodes, e.g., [A, B, C] meaning A->B->C->A
-                    if len(cycle) > 1:
-                        # Arbitrarily cut the connection between the first two nodes
-                        u, v = cycle[0], cycle[1]
-                        self.C_vessel[u, v] = 0
-                        print(f"     * Cut connection {u} -> {v}")
-                        
-                print("  Cycle removal complete.")
-            else:
-                print("  No cycles found. Topology is clean.")
-                
-        except Exception as e:
-            print(f"  [Error] Cycle detection failed: {e}")
         # # ============================================================
+        # # NEW FIX: Remove Closed Loops (Cycles)
+        # # ============================================================
+        # # Docker math differences can create loops (A->B->C->A) that don't exist locally.
+        # # These loops confuse the solver. We must find and break them.
+        
+        # print("Sanitizing Graph Topology (Cycle Removal)...")
+        # # Create a temporary graph to find cycles
+        # G_temp = nx.DiGraph(self.C_vessel)
+        
+        # # Find cycles (this is fast for small loops)
+        # try:
+        #     cycles = list(nx.simple_cycles(G_temp))
+        #     if len(cycles) > 0:
+        #         print(f"  [WARNING] Found {len(cycles)} closed loops (cycles) in the network.")
+        #         print("  -> Breaking cycles to prevent solver stalemate...")
+                
+        #         for cycle in cycles:
+        #             # cycle is a list of nodes, e.g., [A, B, C] meaning A->B->C->A
+        #             if len(cycle) > 1:
+        #                 # Arbitrarily cut the connection between the first two nodes
+        #                 u, v = cycle[0], cycle[1]
+        #                 self.C_vessel[u, v] = 0
+        #                 print(f"     * Cut connection {u} -> {v}")
+                        
+        #         print("  Cycle removal complete.")
+        #     else:
+        #         print("  No cycles found. Topology is clean.")
+                
+        # except Exception as e:
+        #     print(f"  [Error] Cycle detection failed: {e}")
+        # # # ============================================================
 
         # ### // Initialise Variables // ###
 
@@ -2946,6 +2946,9 @@ def run_image_to_model(target_input_image_path, target_output_image_path, resour
 
     t_start_autogen = time.time()
 
+    # NEW: Initialize defaults just in case run_circ_autogen is False or the subprocess fails!
+    t_gen_files = t_parse = t_resolve = t_flatten = t_print = t_analyser = 0.0
+
     if run_circ_autogen:
 
         script_path = Path.cwd() / "src/scripts/script_generate_with_new_architecture.py"
@@ -2964,6 +2967,29 @@ def run_image_to_model(target_input_image_path, target_output_image_path, resour
         circ_autogen_time = t_end_autogen - t_start_autogen
         print(f"--> Time to run Circulatory Autogen: {circ_autogen_time:.4f} seconds")
 
+        # ==========================================================
+        # NEW: Read the temporary "drop box" JSON file
+        # ==========================================================
+        import json
+        # from pathlib import Path # Ensure Path is available
+        
+        # FOOLPROOF FIX: Read from the exact directory the script ran in
+        temp_timing_path = Path(script_dir) / "temp_timing.json"
+        
+        if temp_timing_path.exists():
+            with open(temp_timing_path, "r") as f:
+                timing_data = json.load(f)
+                t_gen_files = timing_data.get("t_generate_files", 0.0)
+                t_parse = timing_data.get("t_parse_model", 0.0)
+                t_resolve = timing_data.get("t_resolve_imports", 0.0)
+                t_flatten = timing_data.get("t_flatten_model", 0.0)
+                t_print = timing_data.get("t_print_model", 0.0)
+                t_analyser = timing_data.get("t_analyser", 0.0)
+            
+            # Clean up
+            temp_timing_path.unlink()
+        # ==========================================================
+
     ##################################################################
     ### // Get the Number of Vessels from the Generated Network // ###
     ##################################################################
@@ -2972,4 +2998,5 @@ def run_image_to_model(target_input_image_path, target_output_image_path, resour
     num_vessels = len(vessel_network.vessel_df) if vessel_network.vessel_df is not None else 0
     print(f"--> Number of vessels generated: {num_vessels}")
 
-    return network_generation_time, circ_autogen_time, num_vessels
+    # NEW: Return all 9 timing variables at the very end of the script
+    return network_generation_time, circ_autogen_time, num_vessels, t_gen_files, t_parse, t_resolve, t_flatten, t_print, t_analyser
