@@ -1740,8 +1740,9 @@ def run_image_to_model(target_input_image_path, target_output_image_path, resour
 
     import time
     
-    print("\nStarting network construction timing...")
-    t_start_network = time.time()
+    if return_timing:
+        print("\nStarting network construction timing...")
+        t_start_network = time.time()
     
     ### ================================================================================================
 
@@ -2619,277 +2620,236 @@ def run_image_to_model(target_input_image_path, target_output_image_path, resour
             import traceback
             traceback.print_exc()
 
-    # --- NEW (ROBUST): Generate Actors by mapping voxel paths to filtered graph nodes ---
-    print("\n      Generating new visual actors from filtered network data (Voxel-First Method)...")
-
-    filtered_skeleton_actors = []
-    filtered_node_actors = {}
-    filtered_actors_for_feeding_plot = []
-
-    if 'processed_edge_list' in locals() and 'labeled_segments' in locals() and processed_edge_list:
-        # 1. Get the definitive set of nodes that are part of the connected network
-        connected_node_ids = set()
-        for u_node, v_node in processed_edge_list:
-            connected_node_ids.add(u_node)
-            connected_node_ids.add(v_node)
-
-        # 2. Build a KDTree of the final, connected nodes for fast geometric lookup
-        valid_connected_node_ids = [nid for nid in connected_node_ids if nid in G_final_processed.nodes]
-        if not valid_connected_node_ids:
-                print("        Warning: No valid nodes found in the filtered list. Cannot generate plot actors.")
-        else:
-            connected_node_coords = np.array([G_final_processed.nodes[nid]['pos_zyx_image'] for nid in valid_connected_node_ids])
-            node_id_list = list(valid_connected_node_ids)
-            from scipy.spatial import KDTree
-            node_kdtree_final = KDTree(connected_node_coords)
-
-            # 3. Iterate through every single voxel segment identified earlier
-            num_segments_total = np.max(labeled_segments)
-            print(f"        Mapping {num_segments_total} original voxel segments to the filtered graph...")
-            
-            skeleton_points_coords = []
-            feeding_points_coords = []
-            non_feeding_points_coords = []
-
-            for seg_id in tqdm(range(1, num_segments_total + 1), desc="      Voxel Segments", unit="segment", leave=False):
-                # Retrieve the tight bounding box slice
-                sl = segment_slices[seg_id - 1]
-                if sl is None: continue
-
-                # EXPAND THE SLICE (Padding)
-                # Padding ensures the convolution for endpoint detection sees the full neighborhood
-                padding = 3
-                
-                sl_padded = tuple(
-                    slice(max(0, s.start - padding), min(max_dim, s.stop + padding))
-                    for s, max_dim in zip(sl, vol_shape)
-                )
-
-                # Crop using the PADDED slice
-                seg_crop = labeled_segments[sl_padded]
-                current_seg_mask_local = (seg_crop == seg_id)
-                
-                # Get local voxels
-                local_voxels = np.argwhere(current_seg_mask_local)
-                if local_voxels.shape[0] < 2: continue
-                
-                # Calculate global offset based on PADDED slice start
-                offset = np.array([s.start for s in sl_padded])
-                segment_voxels_zyx = local_voxels + offset
-
-                # Perform endpoint detection on the small local mask
-                from scipy.ndimage import convolve
-                kernel = np.ones((3,3,3))
-                neighbor_counts_local = convolve(current_seg_mask_local.astype(np.uint8), kernel, mode='constant', cval=0) * current_seg_mask_local
-                endpoint_mask_local = (neighbor_counts_local == 2)
-                
-                endpoints_local = np.argwhere(endpoint_mask_local)
-                
-                # Map local endpoints to global coordinates
-                if endpoints_local.shape[0] != 2:
-                    # Fallback to first and last point of the global list if convolution is ambiguous
-                    endpoints_zyx = np.array([segment_voxels_zyx[0], segment_voxels_zyx[-1]])
-                else:
-                    endpoints_zyx = endpoints_local + offset
-
-                if endpoints_zyx.shape[0] != 2: continue
-
-                dist1, idx1 = node_kdtree_final.query(endpoints_zyx[0])
-                dist2, idx2 = node_kdtree_final.query(endpoints_zyx[1])
-                
-                if dist1 < 15 and dist2 < 15:
-                    node_u = node_id_list[idx1]
-                    node_v = node_id_list[idx2]
-
-                    if node_u in connected_node_ids and node_v in connected_node_ids and node_u != node_v:
-                        s_pts_vedo = np.zeros_like(segment_voxels_zyx, dtype=float)
-                        s_pts_vedo[:, 0] = segment_voxels_zyx[:, 2] * vedo_spacing[0]
-                        s_pts_vedo[:, 1] = segment_voxels_zyx[:, 1] * vedo_spacing[1]
-                        s_pts_vedo[:, 2] = segment_voxels_zyx[:, 0] * vedo_spacing[2]
-
-                        skeleton_points_coords.append(s_pts_vedo)
-                        
-                        edge_data = G_final_processed.edges.get((node_u, node_v)) or G_final_processed.edges.get((node_v, node_u), {})
-                        if edge_data.get('feeding_status') == 'feeding':
-                            feeding_points_coords.append(s_pts_vedo)
-                        else:
-                            non_feeding_points_coords.append(s_pts_vedo)
-
-            # 4. Generate the node actors
-            node_render_configs = {
-                'junction': (junction_node_color_str, junction_node_radius, "Junctions"),
-                'endpoint': (endpoint_node_color_str, endpoint_node_radius, "Endpoints"),
-                'inlet': (inlet_node_color_str, inlet_node_radius, "Inlets"),
-                'outlet': (outlet_node_color_str, outlet_node_radius, "Outlets"),
-                'inlet_outlet': ('purple', junction_node_radius, "Inlet_Outlets"),
-                'intersection': (intersection_node_color_str, intersection_node_radius, "Intersection_Nodes")
-            }
-            coords_by_type_filtered = {key: [] for key in node_render_configs}
-            for node_id in connected_node_ids:
-                if node_id in G_final_processed.nodes:
-                    node_data = G_final_processed.nodes[node_id]
-                    node_type = node_data['type']
-                    if node_type in coords_by_type_filtered:
-                        coords_by_type_filtered[node_type].append(node_data['pos_xyz_world'])
-            
-            for n_type, (color, radius, name) in node_render_configs.items():
-                if coords_by_type_filtered[n_type]:
-                    points = np.array(coords_by_type_filtered[n_type])
-                    node_actor = vedo.Points(points, r=radius, c=color)
-                    node_actor.name = f"Filtered_{name}"
-                    filtered_node_actors[n_type] = node_actor
-
-            # 5. Create the final vedo.Points actors for segments
-            if skeleton_points_coords:
-                all_skeleton_points = np.vstack(skeleton_points_coords)
-                skeleton_actor = vedo.Points(all_skeleton_points, r=centerline_point_radius, c=centerline_color_str)
-                filtered_skeleton_actors.append(skeleton_actor)
-
-            if feeding_points_coords:
-                all_feeding_points = np.vstack(feeding_points_coords)
-                feeding_actor = vedo.Points(all_feeding_points, r=centerline_point_radius, c='orange')
-                filtered_actors_for_feeding_plot.append(feeding_actor)
-                
-            if non_feeding_points_coords:
-                all_non_feeding_points = np.vstack(non_feeding_points_coords)
-                non_feeding_actor = vedo.Points(all_non_feeding_points, r=centerline_point_radius, c='black')
-                filtered_actors_for_feeding_plot.append(non_feeding_actor)
-
-            # --- NEW: VISUAL SNAPPING OF INTERSECTION NODES ---
-            # This block takes the floating intersection nodes and snaps them to the
-            # nearest point on the actual skeleton for a clean visualization.
-            
-            snapped_intersection_actor = None
-            if 'intersection' in filtered_node_actors and skeleton_volume is not None:
-                print("         Snapping intersection nodes to skeleton for visual accuracy...")
-                
-                # 1. Get the entire skeleton as a point cloud in world coordinates
-                skel_indices_zyx = np.argwhere(skeleton_volume)
-                if skel_indices_zyx.size > 0:
-                    spacing_zyx = np.array([vedo_spacing[2], vedo_spacing[1], vedo_spacing[0]])
-                    skeleton_points_world_zyx = skel_indices_zyx * spacing_zyx
-                    skeleton_points_world_xyz = skeleton_points_world_zyx[:, ::-1] # Reverse to XYZ
-                    
-                    # 2. Build a KDTree for ultra-fast nearest neighbor searching
-                    skeleton_kdtree = KDTree(skeleton_points_world_xyz)
-                    
-                    # 3. Get the "floating" positions of the intersection nodes
-                    floating_intersection_points = filtered_node_actors['intersection'].points
-                    
-                    # 4. Query the tree to find the closest skeleton point for each floating node
-                    distances, closest_indices = skeleton_kdtree.query(floating_intersection_points)
-                    
-                    # 5. Get the coordinates of these closest points. These are the "snapped" positions.
-                    snapped_positions = skeleton_points_world_xyz[closest_indices]
-                    
-                    # 6. Create a new vedo actor for the snapped nodes
-                    snapped_intersection_actor = vedo.Points(snapped_positions, 
-                                                            r=intersection_node_radius, 
-                                                            c=intersection_node_color_str)
-                    snapped_intersection_actor.name = "Snapped_Intersection_Nodes"
-
-    # 6. Assemble the final actor lists for each plot, using the snapped nodes
-
-    # Create a list of all node actors EXCEPT the original, floating intersection nodes
-    nodes_to_plot = [actor for n_type, actor in filtered_node_actors.items() if n_type != 'intersection']
-
-    # Add our new, snapped intersection node actor to the list
-    if snapped_intersection_actor is not None:
-        nodes_to_plot.append(snapped_intersection_actor)
-
-    all_filtered_nodes = nodes_to_plot # This list now contains the snapped nodes
-
-    filtered_skeleton_junction_actors = filtered_skeleton_actors + all_filtered_nodes
-    filtered_actors_for_combined_plot = surface_only_actors + filtered_skeleton_junction_actors
-    filtered_actors_for_feeding_plot += all_filtered_nodes
-    # --- END of new actor generation ---
-
     # --- Plotting (using filtered data) ---
     # Note: Surface plots (like Plot 1 and 4) will show the COMPLETE original surface, 
     # as filtering a 3D mesh is non-trivial. The skeleton/nodes overlaid will be filtered.
 
-    plot_pls = plot_pls
     if plot_pls:
+        # --- NEW (ROBUST): Generate Actors by mapping voxel paths to filtered graph nodes ---
+        print("\n      Generating new visual actors from filtered network data (Voxel-First Method)...")
 
-        if 'filtered_skeleton_junction_actors' in locals():
-            if labels_to_render_str.lower() != "all" and surface_only_actors:
-                print("\nShowing Plot 1: Segmentation Surfaces Only...")
-                plotter_segmentation_only = vedo.Plotter(axes=0, bg=bg_col, title="Segmentation Surfaces Only")
-                plotter_segmentation_only.show(*surface_only_actors, interactive=interactive_mode, viewup='z').close()
+        import vedo
+        # -------------------------
 
-            if labels_to_render_str.lower() != "all" and filtered_skeleton_junction_actors:
-                print("\nShowing Plot 2: Filtered Skeletons and Nodes Only...")
-                plotter_skel_nodes = vedo.Plotter(axes=plotter_combined_axes_type, bg=bg_col, title="Filtered Skeletons and Nodes Only")
-                plotter_skel_nodes.show(*filtered_skeleton_junction_actors, interactive=interactive_mode, viewup='z').close()
+        # Prevent crashing by looking for a screen that doesn't exist
+        # vedo.settings.default_backend = 'k3d'
 
-            if filtered_actors_for_combined_plot:
-                print("\nShowing Plot 3: Combined Segmentation with Filtered Network...")
-                plotter_combined = vedo.Plotter(axes=plotter_combined_axes_type, bg=bg_col, title="Combined Segmentation with Filtered Network")
-                plotter_combined.show(*filtered_actors_for_combined_plot, screenshot=output_image_path_or_none, interactive=interactive_mode, viewup='z').close()
+        filtered_skeleton_actors = []
+        filtered_node_actors = {}
+        filtered_actors_for_feeding_plot = []
 
-            if glomus_actor is not None and surface_only_actors:
-                print("\nShowing Plot 4: Superimposed Vessel Surfaces on Glomus Cells...")
-                plotter_superimposed = vedo.Plotter(axes=plotter_combined_axes_type, bg=bg_col, title="Vessel Surfaces on Glomus Cells")
-                plotter_superimposed.add(glomus_actor).add(surface_only_actors)
-                plotter_superimposed.show(interactive=interactive_mode, viewup='z').close()
+        if 'processed_edge_list' in locals() and 'labeled_segments' in locals() and processed_edge_list:
+            # 1. Get the definitive set of nodes that are part of the connected network
+            connected_node_ids = set()
+            for u_node, v_node in processed_edge_list:
+                connected_node_ids.add(u_node)
+                connected_node_ids.add(v_node)
 
-            if 'filtered_actors_for_feeding_plot' in locals() and filtered_actors_for_feeding_plot:
-                print("\nShowing Plot 5: Filtered Vessel Feeding Status...")
-                plotter_feeding = vedo.Plotter(axes=plotter_combined_axes_type, bg=bg_col, title="Filtered Vessel Feeding Status (Feeding=Orange)")
-                plotter_feeding.add(filtered_actors_for_feeding_plot)
-                plotter_feeding.show(interactive=interactive_mode, viewup='z').close()
+            # 2. Build a KDTree of the final, connected nodes for fast geometric lookup
+            valid_connected_node_ids = [nid for nid in connected_node_ids if nid in G_final_processed.nodes]
+            if not valid_connected_node_ids:
+                    print("        Warning: No valid nodes found in the filtered list. Cannot generate plot actors.")
+            else:
+                connected_node_coords = np.array([G_final_processed.nodes[nid]['pos_zyx_image'] for nid in valid_connected_node_ids])
+                node_id_list = list(valid_connected_node_ids)
+                from scipy.spatial import KDTree
+                node_kdtree_final = KDTree(connected_node_coords)
 
-            if discretize_with_grid and filtered_actors_for_combined_plot:
-                print("\nShowing Plot 6: Discretization Grid with Filtered Network...")
-                full_network_assembly = vedo.Assembly(filtered_actors_for_combined_plot) # Use original assembly for bounds
-                bounds = full_network_assembly.bounds()
-                grid_lines = []
-                x_coords = np.linspace(bounds[0], bounds[1], grid_resolution_xyz[0] + 1)
-                y_coords = np.linspace(bounds[2], bounds[3], grid_resolution_xyz[1] + 1)
-                z_coords = np.linspace(bounds[4], bounds[5], grid_resolution_xyz[2] + 1)
-                # (Grid line generation remains the same)
-                for y in y_coords:
-                    for z in z_coords: grid_lines.append(vedo.Line((bounds[0], y, z), (bounds[1], y, z)).c('gray').alpha(0.5))
-                for x in x_coords:
-                    for z in z_coords: grid_lines.append(vedo.Line((x, bounds[2], z), (x, bounds[3], z)).c('gray').alpha(0.5))
-                for x in x_coords:
-                    for y in y_coords: grid_lines.append(vedo.Line((x, y, bounds[4]), (x, y, bounds[5])).c('gray').alpha(0.5))
+                # 3. Iterate through every single voxel segment identified earlier
+                num_segments_total = np.max(labeled_segments)
+                print(f"        Mapping {num_segments_total} original voxel segments to the filtered graph...")
                 
-                grid_assembly = vedo.Assembly(grid_lines)
-                plotter_grid = vedo.Plotter(axes=plotter_combined_axes_type, bg=bg_col, title="Discretization Grid with Filtered Network")
-                plotter_grid.add(grid_assembly).add(filtered_actors_for_feeding_plot)
-                plotter_grid.show(interactive=interactive_mode, viewup='z').close()
+                skeleton_points_coords = []
+                feeding_points_coords = []
+                non_feeding_points_coords = []
 
-        else:
-            print("\nWarning: Filtered actors for plotting were not generated. No plots will be shown.")
+                for seg_id in tqdm(range(1, num_segments_total + 1), desc="      Voxel Segments", unit="segment", leave=False):
+                    # Retrieve the tight bounding box slice
+                    sl = segment_slices[seg_id - 1]
+                    if sl is None: continue
 
-        # --- NEW: Plot 7 - Abstract Graph Representation (Simple Lines) ---
-        if 'G_final_processed' in locals() and 'filtered_node_actors' in locals() and G_final_processed.number_of_edges() > 0:
-            print("\nShowing Plot 7: Abstract Graph Network (Simple Lines)...")
-            
-            # 1. Create a list to hold the straight-line edge actors
-            straight_line_edge_actors = []
-            
-            # 2. Iterate through every edge in the final, processed graph
-            for u, v, data in G_final_processed.edges(data=True):
-                # Get the 3D world coordinates of the start and end nodes for the edge
-                p1 = G_final_processed.nodes[u]['pos_xyz_world']
-                p2 = G_final_processed.nodes[v]['pos_xyz_world']
+                    # EXPAND THE SLICE (Padding)
+                    # Padding ensures the convolution for endpoint detection sees the full neighborhood
+                    padding = 3
+                    
+                    sl_padded = tuple(
+                        slice(max(0, s.start - padding), min(max_dim, s.stop + padding))
+                        for s, max_dim in zip(sl, vol_shape)
+                    )
+
+                    # Crop using the PADDED slice
+                    seg_crop = labeled_segments[sl_padded]
+                    current_seg_mask_local = (seg_crop == seg_id)
+                    
+                    # Get local voxels
+                    local_voxels = np.argwhere(current_seg_mask_local)
+                    if local_voxels.shape[0] < 2: continue
+                    
+                    # Calculate global offset based on PADDED slice start
+                    offset = np.array([s.start for s in sl_padded])
+                    segment_voxels_zyx = local_voxels + offset
+
+                    # Perform endpoint detection on the small local mask
+                    from scipy.ndimage import convolve
+                    kernel = np.ones((3,3,3))
+                    neighbor_counts_local = convolve(current_seg_mask_local.astype(np.uint8), kernel, mode='constant', cval=0) * current_seg_mask_local
+                    endpoint_mask_local = (neighbor_counts_local == 2)
+                    
+                    endpoints_local = np.argwhere(endpoint_mask_local)
+                    
+                    # Map local endpoints to global coordinates
+                    if endpoints_local.shape[0] != 2:
+                        # Fallback to first and last point of the global list if convolution is ambiguous
+                        endpoints_zyx = np.array([segment_voxels_zyx[0], segment_voxels_zyx[-1]])
+                    else:
+                        endpoints_zyx = endpoints_local + offset
+
+                    if endpoints_zyx.shape[0] != 2: continue
+
+                    dist1, idx1 = node_kdtree_final.query(endpoints_zyx[0])
+                    dist2, idx2 = node_kdtree_final.query(endpoints_zyx[1])
+                    
+                    if dist1 < 15 and dist2 < 15:
+                        node_u = node_id_list[idx1]
+                        node_v = node_id_list[idx2]
+
+                        if node_u in connected_node_ids and node_v in connected_node_ids and node_u != node_v:
+                            s_pts_vedo = np.zeros_like(segment_voxels_zyx, dtype=float)
+                            s_pts_vedo[:, 0] = segment_voxels_zyx[:, 2] * vedo_spacing[0]
+                            s_pts_vedo[:, 1] = segment_voxels_zyx[:, 1] * vedo_spacing[1]
+                            s_pts_vedo[:, 2] = segment_voxels_zyx[:, 0] * vedo_spacing[2]
+
+                            skeleton_points_coords.append(s_pts_vedo)
+                            
+                            edge_data = G_final_processed.edges.get((node_u, node_v)) or G_final_processed.edges.get((node_v, node_u), {})
+                            if edge_data.get('feeding_status') == 'feeding':
+                                feeding_points_coords.append(s_pts_vedo)
+                            else:
+                                non_feeding_points_coords.append(s_pts_vedo)
+
+                # 4. Generate the node actors
+                node_render_configs = {
+                    'junction': (junction_node_color_str, junction_node_radius, "Junctions"),
+                    'endpoint': (endpoint_node_color_str, endpoint_node_radius, "Endpoints"),
+                    'inlet': (inlet_node_color_str, inlet_node_radius, "Inlets"),
+                    'outlet': (outlet_node_color_str, outlet_node_radius, "Outlets"),
+                    'inlet_outlet': ('purple', junction_node_radius, "Inlet_Outlets"),
+                    'intersection': (intersection_node_color_str, intersection_node_radius, "Intersection_Nodes")
+                }
+                coords_by_type_filtered = {key: [] for key in node_render_configs}
+                for node_id in connected_node_ids:
+                    if node_id in G_final_processed.nodes:
+                        node_data = G_final_processed.nodes[node_id]
+                        node_type = node_data['type']
+                        if node_type in coords_by_type_filtered:
+                            coords_by_type_filtered[node_type].append(node_data['pos_xyz_world'])
                 
-                # Create a Line actor with a fixed color and line width (lw)
-                edge_actor = vedo.Line(p1, p2, c='silver', lw=2)
-                straight_line_edge_actors.append(edge_actor)
+                for n_type, (color, radius, name) in node_render_configs.items():
+                    if coords_by_type_filtered[n_type]:
+                        points = np.array(coords_by_type_filtered[n_type])
+                        node_actor = vedo.Points(points, r=radius, c=color)
+                        node_actor.name = f"Filtered_{name}"
+                        filtered_node_actors[n_type] = node_actor
+
+                # 5. Create the final vedo.Points actors for segments
+                if skeleton_points_coords:
+                    all_skeleton_points = np.vstack(skeleton_points_coords)
+                    skeleton_actor = vedo.Points(all_skeleton_points, r=centerline_point_radius, c=centerline_color_str)
+                    filtered_skeleton_actors.append(skeleton_actor)
+
+                if feeding_points_coords:
+                    all_feeding_points = np.vstack(feeding_points_coords)
+                    feeding_actor = vedo.Points(all_feeding_points, r=centerline_point_radius, c='orange')
+                    filtered_actors_for_feeding_plot.append(feeding_actor)
+                    
+                if non_feeding_points_coords:
+                    all_non_feeding_points = np.vstack(non_feeding_points_coords)
+                    non_feeding_actor = vedo.Points(all_non_feeding_points, r=centerline_point_radius, c='black')
+                    filtered_actors_for_feeding_plot.append(non_feeding_actor)
+
+                # --- NEW: VISUAL SNAPPING OF INTERSECTION NODES ---
+                snapped_intersection_actor = None
+                if 'intersection' in filtered_node_actors and skeleton_volume is not None:
+                    print("         Snapping intersection nodes to skeleton for visual accuracy...")
+                    skel_indices_zyx = np.argwhere(skeleton_volume)
+                    if skel_indices_zyx.size > 0:
+                        spacing_zyx = np.array([vedo_spacing[2], vedo_spacing[1], vedo_spacing[0]])
+                        skeleton_points_world_xyz = (skel_indices_zyx * spacing_zyx)[:, ::-1]
+                        skeleton_kdtree = KDTree(skeleton_points_world_xyz)
+                        floating_intersection_points = filtered_node_actors['intersection'].points
+                        _, closest_indices = skeleton_kdtree.query(floating_intersection_points)
+                        snapped_positions = skeleton_points_world_xyz[closest_indices]
+                        snapped_intersection_actor = vedo.Points(snapped_positions, r=intersection_node_radius, c=intersection_node_color_str)
+                        snapped_intersection_actor.name = "Snapped_Intersection_Nodes"
+
+            # 6. Assemble the final actor lists for each plot
+            nodes_to_plot = [actor for n_type, actor in filtered_node_actors.items() if n_type != 'intersection']
+            if snapped_intersection_actor is not None: nodes_to_plot.append(snapped_intersection_actor)
+            all_filtered_nodes = nodes_to_plot
+            filtered_skeleton_junction_actors = filtered_skeleton_actors + all_filtered_nodes
+            filtered_actors_for_combined_plot = surface_only_actors + filtered_skeleton_junction_actors
+            filtered_actors_for_feeding_plot += all_filtered_nodes
+
+            if 'filtered_skeleton_junction_actors' in locals():
+                if labels_to_render_str.lower() != "all" and surface_only_actors:
+                    print("\nShowing Plot 1: Segmentation Surfaces Only...")
+                    plotter_segmentation_only = vedo.Plotter(axes=0, bg=bg_col, title="Segmentation Surfaces Only")
+                    plotter_segmentation_only.show(*surface_only_actors, interactive=interactive_mode, viewup='z').close()
+
+                if labels_to_render_str.lower() != "all" and filtered_skeleton_junction_actors:
+                    print("\nShowing Plot 2: Filtered Skeletons and Nodes Only...")
+                    plotter_skel_nodes = vedo.Plotter(axes=plotter_combined_axes_type, bg=bg_col, title="Filtered Skeletons and Nodes Only")
+                    plotter_skel_nodes.show(*filtered_skeleton_junction_actors, interactive=interactive_mode, viewup='z').close()
+
+                if filtered_actors_for_combined_plot:
+                    print("\nShowing Plot 3: Combined Segmentation with Filtered Network...")
+                    plotter_combined = vedo.Plotter(axes=plotter_combined_axes_type, bg=bg_col, title="Combined Segmentation with Filtered Network")
+                    plotter_combined.show(*filtered_actors_for_combined_plot, screenshot=output_image_path_or_none, interactive=interactive_mode, viewup='z').close()
+
+                if glomus_actor is not None and surface_only_actors:
+                    print("\nShowing Plot 4: Superimposed Vessel Surfaces on Glomus Cells...")
+                    plotter_superimposed = vedo.Plotter(axes=plotter_combined_axes_type, bg=bg_col, title="Vessel Surfaces on Glomus Cells")
+                    plotter_superimposed.add(glomus_actor).add(surface_only_actors)
+                    plotter_superimposed.show(interactive=interactive_mode, viewup='z').close()
+
+                if 'filtered_actors_for_feeding_plot' in locals() and filtered_actors_for_feeding_plot:
+                    print("\nShowing Plot 5: Filtered Vessel Feeding Status...")
+                    plotter_feeding = vedo.Plotter(axes=plotter_combined_axes_type, bg=bg_col, title="Filtered Vessel Feeding Status (Feeding=Orange)")
+                    plotter_feeding.add(filtered_actors_for_feeding_plot)
+                    plotter_feeding.show(interactive=interactive_mode, viewup='z').close()
+
+                if discretize_with_grid and filtered_actors_for_combined_plot:
+                    print("\nShowing Plot 6: Discretization Grid with Filtered Network...")
+                    full_network_assembly = vedo.Assembly(filtered_actors_for_combined_plot)
+                    bounds = full_network_assembly.bounds()
+                    grid_lines = []
+                    x_coords = np.linspace(bounds[0], bounds[1], grid_resolution_xyz[0] + 1)
+                    y_coords = np.linspace(bounds[2], bounds[3], grid_resolution_xyz[1] + 1)
+                    z_coords = np.linspace(bounds[4], bounds[5], grid_resolution_xyz[2] + 1)
+                    for y in y_coords:
+                        for z in z_coords: grid_lines.append(vedo.Line((bounds[0], y, z), (bounds[1], y, z)).c('gray').alpha(0.5))
+                    for x in x_coords:
+                        for z in z_coords: grid_lines.append(vedo.Line((x, bounds[2], z), (x, bounds[3], z)).c('gray').alpha(0.5))
+                    for x in x_coords:
+                        for y in y_coords: grid_lines.append(vedo.Line((x, y, bounds[4]), (x, y, bounds[5])).c('gray').alpha(0.5))
+                    grid_assembly = vedo.Assembly(grid_lines)
+                    plotter_grid = vedo.Plotter(axes=plotter_combined_axes_type, bg=bg_col, title="Discretization Grid with Filtered Network")
+                    plotter_grid.add(grid_assembly).add(filtered_actors_for_feeding_plot)
+                    plotter_grid.show(interactive=interactive_mode, viewup='z').close()
+
+            # --- NEW: Plot 7 - Abstract Graph Representation (Simple Lines) ---
+            if 'G_final_processed' in locals() and G_final_processed.number_of_edges() > 0:
+                print("\nShowing Plot 7: Abstract Graph Network (Simple Lines)...")
+                straight_line_edge_actors = []
+                for u, v, data in G_final_processed.edges(data=True):
+                    p1, p2 = G_final_processed.nodes[u]['pos_xyz_world'], G_final_processed.nodes[v]['pos_xyz_world']
+                    straight_line_edge_actors.append(vedo.Line(p1, p2, c='silver', lw=2))
                 
-            # 3. Collect all the previously generated node actors for display
-            all_node_actors = list(filtered_node_actors.values())
-            
-            # 4. Set up the plotter and add all the actors
-            plotter_abstract = vedo.Plotter(axes=plotter_combined_axes_type, bg=bg_col, title="Abstract Graph Network (Simple Lines)")
-            plotter_abstract.add(straight_line_edge_actors)
-            plotter_abstract.add(all_node_actors)
-            
-            # 5. Show the interactive plot
-            plotter_abstract.show(interactive=interactive_mode, viewup='z').close()
+                plotter_abstract = vedo.Plotter(axes=plotter_combined_axes_type, bg=bg_col, title="Abstract Graph Network (Simple Lines)")
+                plotter_abstract.add(straight_line_edge_actors).add(list(filtered_node_actors.values()))
+                plotter_abstract.show(interactive=interactive_mode, viewup='z').close()
+    else:
+        print("\n      Visual actor generation and plotting skipped (plot_pls=False).")
 
     #########################################
     ### // Vessel Network Construction // ###
@@ -2897,8 +2857,10 @@ def run_image_to_model(target_input_image_path, target_output_image_path, resour
 
     import time
 
-    print("\nStarting network construction timing...")
-    t_start_network = time.time()
+    network_generation_time = 0.0
+    if return_timing:
+        print("\nStarting network construction timing...")
+        t_start_network = time.time()
 
     C_vessel_filepath = output_dir / f'label_{label_id}_edge_adjacency_matrix.csv'
     C_vessel = np.genfromtxt(C_vessel_filepath, delimiter=',')
@@ -2936,59 +2898,67 @@ def run_image_to_model(target_input_image_path, target_output_image_path, resour
     vessel_network.parameter_df.to_csv(parameters_csv_abs_path_temp_resources, index=False, header=True)
     vessel_network.parameter_df.to_csv(parameters_csv_abs_path_temp_user_output, index=False, header=True)
 
-    t_end_network = time.time()
-    network_generation_time = t_end_network - t_start_network
-    print(f"--> Time to construct network and generate arrays: {network_generation_time:.4f} seconds")
+    if return_timing:
+        t_end_network = time.time()
+        network_generation_time = t_end_network - t_start_network
+        print(f"--> Time to construct network and generate arrays: {network_generation_time:.4f} seconds")
 
     #####################################
     ### // Run Circulatory Autogen // ###
     #####################################
 
-    t_start_autogen = time.time()
+    circ_autogen_time = 0.0
+    if return_timing:
+        t_start_autogen = time.time()
 
     # NEW: Initialize defaults just in case run_circ_autogen is False or the subprocess fails!
-    t_gen_files = t_parse = t_resolve = t_flatten = t_print = t_analyser = 0.0
+    t_gen_files = t_parse = t_resolve = t_flatten = t_print = t_analyser = t_simulation = 0.0
 
     if run_circ_autogen:
 
         script_path = Path.cwd() / "src/scripts/script_generate_with_new_architecture.py"
         script_dir = os.path.dirname(script_path)
 
+        # Fallback for when sys.executable is empty (common in OpenCOR environment)
+        python_executable = sys.executable if sys.executable else "/home/dsas627/Desktop/OpenCOR-0-8-2-Linux/pythonshell"
+
         print("Starting script...")
 
-        # No capture_output=True here. 
+        # No capture_output=True here.
         # The output will stream directly to your console.
         subprocess.run(
-            [sys.executable, "-u", script_path, "False"],  # -u is important for real-time printing!
+            [python_executable, "-u", script_path, "False", str(return_timing)],  # -u is important for real-time printing!
             cwd=script_dir
         )
-
-        t_end_autogen = time.time()
-        circ_autogen_time = t_end_autogen - t_start_autogen
-        print(f"--> Time to run Circulatory Autogen: {circ_autogen_time:.4f} seconds")
-
-        # ==========================================================
-        # NEW: Read the temporary "drop box" JSON file
-        # ==========================================================
-        import json
-        # from pathlib import Path # Ensure Path is available
         
-        # FOOLPROOF FIX: Read from the exact directory the script ran in
-        temp_timing_path = Path(script_dir) / "temp_timing.json"
-        
-        if temp_timing_path.exists():
-            with open(temp_timing_path, "r") as f:
-                timing_data = json.load(f)
-                t_gen_files = timing_data.get("t_generate_files", 0.0)
-                t_parse = timing_data.get("t_parse_model", 0.0)
-                t_resolve = timing_data.get("t_resolve_imports", 0.0)
-                t_flatten = timing_data.get("t_flatten_model", 0.0)
-                t_print = timing_data.get("t_print_model", 0.0)
-                t_analyser = timing_data.get("t_analyser", 0.0)
+        if return_timing:
+            t_end_autogen = time.time()
+            circ_autogen_time = t_end_autogen - t_start_autogen
+            print(f"--> Time to run Circulatory Autogen: {circ_autogen_time:.4f} seconds")
+
+            # ==========================================================
+            # NEW: Read the temporary "drop box" JSON file
+            # ==========================================================
+            import json
+            # from pathlib import Path # Ensure Path is available
             
-            # Clean up
-            temp_timing_path.unlink()
-        # ==========================================================
+            # FOOLPROOF FIX: Read from the exact directory the script ran in
+            temp_timing_path = Path(script_dir) / "temp_timing.json"
+            
+            if temp_timing_path.exists():
+                with open(temp_timing_path, "r") as f:
+                    timing_data = json.load(f)
+                    t_gen_files = timing_data.get("t_generate_files", 0.0)
+                    t_parse = timing_data.get("t_parse_model", 0.0)
+                    t_resolve = timing_data.get("t_resolve_imports", 0.0)
+                    t_flatten = timing_data.get("t_flatten_model", 0.0)
+                    t_print = timing_data.get("t_print_model", 0.0)
+                    t_analyser = timing_data.get("t_analyser", 0.0)
+                    t_simulation = timing_data.get("t_simulation", 0.0)
+
+                # Clean up
+                temp_timing_path.unlink()
+            # ==========================================================
 
     ##################################################################
     ### // Get the Number of Vessels from the Generated Network // ###
@@ -2996,7 +2966,8 @@ def run_image_to_model(target_input_image_path, target_output_image_path, resour
 
     # Get the number of vessels generated
     num_vessels = len(vessel_network.vessel_df) if vessel_network.vessel_df is not None else 0
-    print(f"--> Number of vessels generated: {num_vessels}")
+    if return_timing:
+        print(f"--> Number of vessels generated: {num_vessels}")
 
-    # NEW: Return all 9 timing variables at the very end of the script
-    return network_generation_time, circ_autogen_time, num_vessels, t_gen_files, t_parse, t_resolve, t_flatten, t_print, t_analyser
+    # NEW: Return all 10 timing variables at the very end of the script
+    return network_generation_time, circ_autogen_time, num_vessels, t_gen_files, t_parse, t_resolve, t_flatten, t_print, t_analyser, t_simulation

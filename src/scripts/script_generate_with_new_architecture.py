@@ -22,11 +22,15 @@ from parsers.PrimitiveParsers import YamlFileParser
 
 
 def generate_with_new_architecture(do_generation_with_fit_parameters=False,
-                                   inp_data_dict=None):
+                                   inp_data_dict=None,
+                                   return_timing=None):
 
     yaml_parser = YamlFileParser()
     inp_data_dict = yaml_parser.parse_user_inputs_file(inp_data_dict, obs_path_needed=False, 
                                                        do_generation_with_fit_parameters=do_generation_with_fit_parameters)
+
+    if return_timing is not None:
+        inp_data_dict['return_timing'] = return_timing
 
     DEBUG = inp_data_dict['DEBUG']
     file_prefix = inp_data_dict['file_prefix']
@@ -180,16 +184,15 @@ def generate_with_new_architecture(do_generation_with_fit_parameters=False,
 if __name__ == '__main__':
     try:
         do_generation_with_fit_parameters = sys.argv[1] in ['true', 'True']
-        # if len(sys.argv) > 2 and sys.argv[2] not in ["None", "none"]:
-        #     inp_data_dict = sys.argv[2]
-        #     print(inp_data_dict)
-        #     generate_with_new_architecture(do_generation_with_fit_parameters, inp_data_dict=inp_data_dict)
-        # else:
-        #     generate_with_new_architecture(do_generation_with_fit_parameters)
-        generate_with_new_architecture(do_generation_with_fit_parameters)
+        
+        return_timing = None
+        if len(sys.argv) > 2:
+            return_timing = sys.argv[2] in ['true', 'True']
+
+        generate_with_new_architecture(do_generation_with_fit_parameters, return_timing=return_timing)
 
     except:
         print(traceback.format_exc())
         print("Usage with id params: do_generation_with_fit_parameters")
-        print("e.g. script_generate_with_new_architecture.py True")
+        print("e.g. script_generate_with_new_architecture.py True False")
         exit()

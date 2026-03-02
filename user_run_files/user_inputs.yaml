@@ -33,7 +33,7 @@ param_id_method: genetic_algorithm
 pre_time: 20   
 # sim_time is the amount of simulation time where the outputs are compared to ground truth
 # NOTE: If doing freq domain fitting make sure the simulation is periodic and the sim time is the period.
-sim_time: 2
+sim_time: 10
 
 # specifying number of heart periods has been made obsolete. If you want to do this, do it when preprocessing
 # and set the pre_time and sim_time accordingly.
@@ -54,7 +54,7 @@ cpp_1d_model_config_path:
   /home/farg967/software/venous_system/lucas_model/aortic_bif_coupling/run_dir/input1d.dat
 
 # Output time step (sampling) 
-dt: 0.01 # This should be smaller than all of the dt in your obs_data.json file.
+dt: 0.0001 # This should be smaller than all of the dt in your obs_data.json file.
 
 # OLD: solver options are: RK4, forward_euler, CVODE
 # solver options are: CVODE (uses Myokit, default), CVODE_opencor (uses OpenCOR), or for Python models: solve_ivp
