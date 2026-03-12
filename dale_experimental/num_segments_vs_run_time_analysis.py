@@ -384,7 +384,7 @@ else:
     ### Run pipeline
     network_construction_time, cellml_model_generation_time, num_vessels, *rest = run_image_to_model(target_input_image_path, target_output_image_path, resources_path, ilastik_path, model_path,
                                                                                             input_batch_processing_path, output_batch_processing_path, 
-                                                                                            sub_volume=1.0, 
+                                                                                            sub_volume= 1.0,
                                                                                             run_ilastik_batch_processing=False,
                                                                                             run_circ_autogen=False, 
                                                                                             bypass_network_gen_and_just_plot_binary_volume=False, 

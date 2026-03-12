@@ -1944,7 +1944,7 @@ def run_image_to_model(target_input_image_path, target_output_image_path, resour
 
             # 3. Generate the surface using vedo
             print("Generating 3D surface (this may take a moment)...")
-            vol_raw = vedo.Volume(raw_binary_volume, spacing=vedo_spacing)
+            vol_raw = vedo.Volume(raw_binary_volume.transpose(2, 1, 0), spacing=vedo_spacing)
             
             # value=0.5 draws the boundary between 0 and 1
             surf_raw = vol_raw.isosurface(value=0.5).color("yellow").alpha(0.5)
@@ -1996,7 +1996,7 @@ def run_image_to_model(target_input_image_path, target_output_image_path, resour
         print("Rendering all distinct non-zero labels using legosurface...")
         if not np.issubdtype(segmentation_data.dtype, np.integer):
             segmentation_data = segmentation_data.astype(np.uint16)
-        vol = vedo.Volume(segmentation_data, spacing=vedo_spacing)
+        vol = vedo.Volume(segmentation_data.transpose(2, 1, 0), spacing=vedo_spacing)
         lego = vol.legosurface(vmin=1)
         if lego.npoints > 0:
             lego.cmap('viridis').opacity(surface_opacity)
@@ -2022,7 +2022,7 @@ def run_image_to_model(target_input_image_path, target_output_image_path, resour
                     continue
 
                 volume_shape_for_masking = binary_volume.shape
-                vol_label = vedo.Volume(binary_volume.astype(np.uint8), spacing=vedo_spacing)
+                vol_label = vedo.Volume(binary_volume.astype(np.uint8).transpose(2, 1, 0), spacing=vedo_spacing)
                 isosurface = vol_label.isosurface(value=0.5)
                 if isosurface.npoints == 0:
                     print(f"    No surface points for label {label_id}. Skipping.")
