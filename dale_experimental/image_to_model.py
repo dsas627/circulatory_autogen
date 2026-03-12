@@ -1285,31 +1285,37 @@ class IlastikClassifier():
         if not os.path.exists(self.project):
             raise FileNotFoundError(f"Project file not found at: {self.project}")
 
-    def segment_images(self, input_dir, output_dir, input_ext="*.tif", export_source="Simple Segmentation"):
+    def segment_images(self, input_dir, output_dir, input_ext="*.tif", export_source=None, workflow="pixel classification"):
         """
         Runs the segmentation on a batch of images.
         
         :param input_dir: Folder containing images to process.
         :param output_dir: Folder to save results.
         :param input_ext: File pattern (e.g., "*.tif", "*.png", "*.h5").
-        :param export_source: "Simple Segmentation" (integers) or "Probabilities" (floats).
+        :param export_source: Explicitly override export source (e.g. "Probabilities"). 
+                              If None, it is determined by the workflow.
+        :param workflow: "pixel classification" or "tda".
         """
         # Ensure output directory exists
         os.makedirs(output_dir, exist_ok=True)
         
+        # Determine default export source based on workflow if not provided
+        if export_source is None:
+            if workflow.lower() == "tda":
+                export_source = "Domain Adapted Segmentation"
+            else:
+                export_source = "Simple Segmentation"
+
         # Find images
-        # We use Path for cleaner OS-agnostic handling
         input_path = Path(input_dir)
         images = list(input_path.glob(input_ext))
         
         if not images:
             raise FileNotFoundError(f"No images found in {input_dir} matching {input_ext}")
 
-        print(f"Found {len(images)} images. Starting Ilastik engine...")
+        print(f"Starting Ilastik engine ({workflow} workflow)...")
 
-        # Construct the internal command (Hidden from you during usage)
-        # We assume 0-255 renormalization is OFF for integer masks, ON for probabilities usually
-        # but here we stick to defaults.
+        # Construct the internal command
         cmd = [
             str(self.binary),
             "--headless",
@@ -1581,7 +1587,10 @@ def _order_voxel_path(path_voxels_zyx, start_node_pos_zyx):
 
 def run_image_to_model(target_input_image_path, target_output_image_path, resources_path, ilastik_path, model_path, 
                        input_batch_processing_path, output_batch_processing_path, sub_volume, run_ilastik_batch_processing,
-                       run_circ_autogen, bypass_network_gen_and_just_plot_binary_volume, plot_pls, return_timing):
+                       run_circ_autogen, bypass_network_gen_and_just_plot_binary_volume, plot_pls, return_timing,
+                       enable_giant_component_pruning=True, enable_topological_pruning=True,
+                       shannon_entropy_threshold=0.8, enable_morphological_closing=True,
+                       morphological_closing_size=3, ilastik_workflow="pixel classification"):
     
     # --- LAZY LOAD IMPORTS ---
     import pandas as pd
@@ -1698,6 +1707,7 @@ def run_image_to_model(target_input_image_path, target_output_image_path, resour
     glomus_surface_opacity = 0.8
     # --- NEW: Grid Discretization ---
     discretize_with_grid = True
+    # enable_giant_component_pruning is now a function parameter
     grid_resolution_xyz = (5, 5, 5)
     intersection_node_color_str = "purple"
     intersection_node_radius = 5
@@ -1728,11 +1738,16 @@ def run_image_to_model(target_input_image_path, target_output_image_path, resour
 
     if run_ilastik_batch_processing:
         classifier = IlastikClassifier(ilastik_path, model_path)
-        # CHANGE: Request Probabilities instead of Simple Segmentation
+        # Determine export source based on if we want probabilities or masks
+        # If return_timing is True, we NEED probabilities for entropy refinement.
+        # Otherwise, let the workflow decide the default.
+        export_source = "Probabilities" if return_timing else None
+        
         classifier.segment_images(input_dir=input_batch_processing_path,
                                   output_dir=output_batch_processing_path,
                                   input_ext="*.tif",
-                                  export_source="Probabilities")
+                                  export_source=export_source,
+                                  workflow=ilastik_workflow)
 
     ####################################################
     ### // Process Image Segmentation Shenanigans // ###
@@ -1794,17 +1809,45 @@ def run_image_to_model(target_input_image_path, target_output_image_path, resour
     segmentation_data = np.argmax(probability_data, axis=-1) + 1 
     
     # 3. Artifact Rejection: Erase highly uncertain voxels 
-    # If the model was highly uncertain (e.g., entropy > 0.8), we force it to Background (Label 2)
-    # You can tune this threshold based on your specific volume.
-    entropy_threshold = 0.8 
-    highly_uncertain_mask = entropy_map > entropy_threshold
-    
+    # If the model was highly uncertain (e.g., entropy > threshold), we force it to Background (Label 2)
+    highly_uncertain_mask = entropy_map > shannon_entropy_threshold
     # Assuming Label 2 is your background class
     background_label = 2 
     voxels_corrected = np.sum(highly_uncertain_mask)
     segmentation_data[highly_uncertain_mask] = background_label
     
     print(f"  -> Reclassified {voxels_corrected} highly uncertain voxels to background.")
+
+    # --- NEW: Morphological Closing (Hole Filling) ---
+    if enable_morphological_closing:
+        print(f"\n--- Performing Morphological Closing (Size: {morphological_closing_size}) ---")
+        from scipy import ndimage
+        
+        # We assume Label 1 is the vessel class
+        vessel_label = 1
+        vessel_mask = (segmentation_data == vessel_label)
+        
+        # Define the structural element (kernel)
+        struct_element = np.ones((morphological_closing_size, morphological_closing_size, morphological_closing_size))
+        
+        # Execute closing
+        vessel_mask_closed = ndimage.binary_closing(vessel_mask, structure=struct_element)
+        
+        # Identify newly filled voxels
+        voxels_filled = np.sum(vessel_mask_closed) - np.sum(vessel_mask)
+        
+        # Update segmentation data
+        segmentation_data[vessel_mask_closed] = vessel_label
+        print(f"  -> Filled {voxels_filled} holes/gaps in the vessel geometry.")
+    # -------------------------------------------------
+    
+    # --- DEBUG: Identify Labels ---
+    unique_labels, counts = np.unique(segmentation_data, return_counts=True)
+    print("\n[DEBUG] Label Distribution in segmentation_data:")
+    for label, count in zip(unique_labels, counts):
+        percentage = (count / segmentation_data.size) * 100
+        print(f"  Label {label}: {count} voxels ({percentage:.2f}%)")
+    # ------------------------------
     # ------------------------------------
 
     ### ================================================================================================
@@ -2307,15 +2350,19 @@ def run_image_to_model(target_input_image_path, target_output_image_path, resour
                                     G_undirected.add_edge(n1_id, n2_id, voxel_path=voxel_coords_zyx)
 
                     # --- NEW PIPELINE STEP 1: Filter for the largest connected component ---
-                    print("      Filtering for the largest connected component...")
-                    connected_components = sorted(nx.connected_components(G_undirected), key=len, reverse=True)
-                    if connected_components:
-                        giant_component_nodes = connected_components[0]
-                        num_removed = G_undirected.number_of_nodes() - len(giant_component_nodes)
-                        print(f"        Identified giant component with {len(giant_component_nodes)} nodes. Removing {num_removed} nodes from small, disconnected fragments.")
-                        G_clean_undirected = G_undirected.subgraph(giant_component_nodes).copy()
+                    if enable_giant_component_pruning:
+                        print("      Filtering for the largest connected component...")
+                        connected_components = sorted(nx.connected_components(G_undirected), key=len, reverse=True)
+                        if connected_components:
+                            giant_component_nodes = connected_components[0]
+                            num_removed = G_undirected.number_of_nodes() - len(giant_component_nodes)
+                            print(f"        Identified giant component with {len(giant_component_nodes)} nodes. Removing {num_removed} nodes from small, disconnected fragments.")
+                            G_clean_undirected = G_undirected.subgraph(giant_component_nodes).copy()
+                        else:
+                            print("        Warning: No connected components found. Using original graph.")
+                            G_clean_undirected = G_undirected.copy()
                     else:
-                        print("        Warning: No connected components found. Using original graph.")
+                        print("      [SKIP] Giant component pruning disabled. Keeping all segments.")
                         G_clean_undirected = G_undirected.copy()
 
                     # --- NEW PIPELINE STEP 2: Discretize the CLEAN graph ---
@@ -2492,18 +2539,22 @@ def run_image_to_model(target_input_image_path, target_output_image_path, resour
                             edge_adj_mtx = nx.to_numpy_array(G_ln, nodelist=initial_edge_list)
                             
                             # --- RE-INTRODUCED CRUCIAL FILTERING LOGIC (Strong Version) ---
-                            print("         Performing strong topological pruning (removing floating islands)...")
+                            if enable_topological_pruning:
+                                print("         Performing strong topological pruning (removing floating islands)...")
 
-                            # 1. Build a temporary graph of the edge connections
-                            G_temp_connectivity = nx.from_numpy_array(edge_adj_mtx)
+                                # 1. Build a temporary graph of the edge connections
+                                G_temp_connectivity = nx.from_numpy_array(edge_adj_mtx)
 
-                            # 2. Find the largest connected component (The Main Network)
-                            #    This keeps the main network and discards ALL disconnected clusters (islands)
-                            if G_temp_connectivity.number_of_nodes() > 0:
-                                largest_cc_indices = max(nx.connected_components(G_temp_connectivity), key=len)
-                                keep_edge_indices = sorted(list(largest_cc_indices))
+                                # 2. Find the largest connected component (The Main Network)
+                                #    This keeps the main network and discards ALL disconnected clusters (islands)
+                                if G_temp_connectivity.number_of_nodes() > 0:
+                                    largest_cc_indices = max(nx.connected_components(G_temp_connectivity), key=len)
+                                    keep_edge_indices = sorted(list(largest_cc_indices))
+                                else:
+                                    keep_edge_indices = []
                             else:
-                                keep_edge_indices = []
+                                print("         [SKIP] Strong topological pruning disabled. Keeping all edges.")
+                                keep_edge_indices = list(range(len(initial_edge_list)))
 
                             num_original_edges = len(initial_edge_list)
                             num_processed_edges = len(keep_edge_indices)

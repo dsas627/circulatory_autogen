@@ -37,7 +37,7 @@ image_input_path_list = np.array([image_path_0, image_path_1, image_path_2, imag
 ### // Initialise target image files paths // ###
 #################################################
 
-image_path_0 = CA_root / Path("dale_experimental/resources/batch_process_output_folder/image_0_seg.h5") # Image 0
+image_path_0 = CA_root / Path("dale_experimental/resources/batch_process_output_folder/image_0_seg_ORIGINAL.h5") # Image 0
 image_path_1 = CA_root / Path("dale_experimental/resources/batch_process_output_folder/image_1_seg.h5") # Image 1
 image_path_2 = CA_root / Path("dale_experimental/resources/batch_process_output_folder/image_2_seg.h5") # Image 2
 image_path_3 = CA_root / Path("dale_experimental/resources/batch_process_output_folder/image_3_WKY_CB.h5") # Image 2
@@ -98,16 +98,17 @@ target_output_image_path = image_output_path_list[image_selection_index]
 ### // Configure Pipeline Benchmarking // ###
 #############################################
 
-run_pipeline_benchmarking = True
+run_pipeline_benchmarking = False
 
 if run_pipeline_benchmarking:
+
 
     ##########################
     ### // Run pipeline // ###
     ##########################
 
     # Define the sub-volumes to test (0.10 to 0.15 in 0.01 intervals)
-    sub_volumes = np.arange(0.05, 0.1, 0.005)
+    sub_volumes = np.arange(0.05, 0.1, 0.01)
 
     # Initialize empty lists to store the results of each loop
     num_vessels_list = []
@@ -133,9 +134,12 @@ if run_pipeline_benchmarking:
             target_input_image_path, target_output_image_path, resources_path, ilastik_path, model_path,
             input_batch_processing_path, output_batch_processing_path, sub_volume=sv, 
             run_ilastik_batch_processing=False, run_circ_autogen=True, 
-            bypass_network_gen_and_just_plot_binary_volume=False, plot_pls=False, return_timing=True
-        )
-
+            bypass_network_gen_and_just_plot_binary_volume=False, plot_pls=False, return_timing=True,
+            enable_giant_component_pruning=True,
+            enable_topological_pruning=True,
+            shannon_entropy_threshold=0.8,
+            enable_morphological_closing=True,
+            morphological_closing_size=3)
         # Append the results of this iteration to our lists
         num_vessels_list.append(num_vessels)
         network_times_list.append(network_time)
@@ -380,12 +384,18 @@ else:
     ### Run pipeline
     network_construction_time, cellml_model_generation_time, num_vessels, *rest = run_image_to_model(target_input_image_path, target_output_image_path, resources_path, ilastik_path, model_path,
                                                                                             input_batch_processing_path, output_batch_processing_path, 
-                                                                                            sub_volume=0.1, 
+                                                                                            sub_volume=1.0, 
                                                                                             run_ilastik_batch_processing=False,
-                                                                                            run_circ_autogen=True, 
+                                                                                            run_circ_autogen=False, 
                                                                                             bypass_network_gen_and_just_plot_binary_volume=False, 
-                                                                                            plot_pls=False,
-                                                                                            return_timing=True)
+                                                                                            plot_pls=True,
+                                                                                            return_timing=True,
+                                                                                            enable_giant_component_pruning=True,
+                                                                                            enable_topological_pruning=True,
+                                                                                            shannon_entropy_threshold=1.0,
+                                                                                            enable_morphological_closing=True,
+                                                                                            morphological_closing_size=3,
+                                                                                            ilastik_workflow="pixel classification")
 
     print("Image to model generation completed successfully!\n")
 
@@ -394,3 +404,8 @@ else:
     print("Number of Vessels in Generated Network:", num_vessels)
     print("Network Contruction Time:", network_construction_time)
     print("CellML Model Generation Time:", cellml_model_generation_time, "\n")
+
+    ### // NOTES TO SELF FOR LATER // ###
+    ### Add feature to configure disable largest connected component pruning
+    ### Compare network skeletonisation output from this version to the old working version
+    ### Ask Gemini to try recover my notes to self before I rolled back the commit
