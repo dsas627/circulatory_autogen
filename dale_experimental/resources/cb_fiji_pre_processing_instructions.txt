@@ -1,0 +1,61 @@
+CAROTID BODY 3D CFM PRE-PROCESSING GUIDE (FIJI/ImageJ)
+====================================================
+Goal: Prepare raw stacks for optimal Ilastik Pixel Classification 
+and Frangi Vesselness filtering.
+
+STEP 1: DENOISING (The AI Priority)
+-----------------------------------
+AI classifiers perform better when edges are not "jittery" from 
+camera noise.
+1. Open your raw .tif stack.
+2. Go to: Process > Filters > Median (3D)...
+3. Set X, Y, and Z radius to 1.0. 
+   - This removes "salt and pepper" noise while preserving vessel 
+     wall boundaries.
+
+STEP 2: ISOTROPIC RESAMPLING (The Geometry Priority)
+----------------------------------------------------
+Frangi filters calculate "tubularness." If your Z-spacing is 
+larger than X/Y, vessels look like pancakes, and the filter fails.
+1. Check your current spacing: Image > Properties.
+2. Note the 'Voxel Width' and 'Voxel Depth' (Z).
+3. Go to: Image > Stacks > Rescale...
+4. Set the 'Depth (Z)' scale such that the new Z-spacing matches X/Y.
+   - Example: If X/Y is 0.6 and Z is 1.2, set Z-scale to 2.0.
+5. Use "Bilinear" or "Bicubic" interpolation for smoothness.
+
+STEP 3: INTENSITY NORMALIZATION (The Consistency Priority)
+----------------------------------------------------------
+Ensures the AI sees the same "brightness" for vessels across 
+different animals.
+1. Go to: Process > Enhance Contrast...
+2. Set 'Saturated Pixels' to 0.3%.
+3. Check 'Normalize' and 'Process Entire Stack'.
+4. Go to: Edit > Selection > Select None (to ensure full image).
+5. Go to: Process > Math > Min-Max (if available) or use 
+   Process > Contrast > Reset to map the range to 0-255 (8-bit) 
+   or 0-65535 (16-bit).
+
+STEP 4: FRANGI VESSELNESS GENERATION
+------------------------------------
+Generate the structural channel that guides the AI toward tubes.
+1. Go to: Plugins > Process > Frangi Vesselness (or similar 
+   Vesselness plugin).
+2. Set 'Number of Scales': 3 to 5.
+3. Set 'Minimum Scale': Roughly the width of your smallest capillary.
+4. Set 'Maximum Scale': Roughly the width of your largest artery.
+5. Save the output as a separate .tif file (e.g., "Animal1_Frangi.tif").
+
+STEP 5: PREPARING FOR ILASTIK
+-----------------------------
+Ilastik can take multiple files, but it is often easier to 
+provide one multi-channel stack.
+1. Open your Denoised/Normalized image AND your Frangi image.
+2. Go to: Image > Color > Merge Channels...
+3. Assign the Raw Image to 'C1' (Red) and Frangi to 'C2' (Green).
+4. Save the result as an OME-TIF or HDF5.
+5. In Ilastik, ensure both channels are selected as 'Features'.
+
+PRO-TIP: If you find vessels are "hollow" or like "Swiss Cheese," 
+increase the Frangi 'Maximum Scale' or use 'Process > Filters > 
+Gaussian Blur (3D)' with a radius of 1.0 before the Frangi step.
